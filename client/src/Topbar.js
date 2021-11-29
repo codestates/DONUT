@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
@@ -8,13 +9,13 @@ function Topbar() {
     return (
         <nav className="App">
             <div className="navbar">
-                DONUT
-    <ul className="navbar-menu">
+                <Link to="/">DONUT</Link>
+                <ul className="navbar-menu">
                     <FontAwesomeIcon icon={faSearch} className="navbar-icon" />
-                    <a href='a'>ALL</a>
-                    <a href='b'>POST</a >
-                    <a href='c'>FREE-TALK</a >
-                    <a href='d'>LOGIN</a >
+                    <Link to="./all">ALL</Link>
+                    <Link to="./post">POST</Link>
+                    <Link to="./freeTalk">FREE-TALK</Link >
+                    <Link to="./login">LOGIN</Link>
                 </ul>
             </div>
         </nav>
