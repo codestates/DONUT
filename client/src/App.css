@@ -4,7 +4,6 @@ body {
 }
 
 a {
-  /* 생략 */
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
