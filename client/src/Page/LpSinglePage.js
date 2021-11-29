@@ -1,0 +1,12 @@
+import React from "react";
+import turntable from "./turntable.gif";
+
+function LpSinglePage() {
+  return (
+    <section>
+      <img src={turntable} alt="turntable" />
+    </section>
+  );
+}
+
+export default LpSinglePage;
