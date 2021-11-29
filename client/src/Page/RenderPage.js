@@ -1,7 +1,8 @@
 import React from "react";
 
 function RenderPage() {
-  return <section></section>;
+
+  return <section></section>
 }
 
 export default RenderPage;
