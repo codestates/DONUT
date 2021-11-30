@@ -14,6 +14,7 @@ import MyinfoPage from "./Page/MyInfoPage";
 import LpSinglePage from "./Page/LpSinglePage";
 
 
+
 function App() {
   return (
     <div>
@@ -23,9 +24,9 @@ function App() {
         <Route exact path="/" element={<RenderPage />}></Route>
         <Route path="/login" element={<LoginPage />}></Route>
         <Route path="/all" element={<LpListPage />}></Route>
-        <Route path="/LpSinglePage" element={<LpSinglePage />}></Route>
+        <Route path="/lp_single_page" element={<LpSinglePage />}></Route>
         <Route path="/post" element={<PostPage />}></Route>
-        <Route path="/freeTalk" element={<FreeTalkPage />}></Route>
+        <Route path="/free-talk" element={<FreeTalkPage />}></Route>
         <Route path="/my" element={<MyinfoPage />}></Route>
       </Routes>
     </div>
