@@ -5,9 +5,9 @@ import qs from "qs";
 import { useNavigate } from "react-router-dom";
 
 const Auth = () => {
-  const REST_API_KEY = "";
+  const REST_API_KEY = "80707c3a0383bc1cc8f54a77a631fdb3";
   const REDIRECT_URI = "http://localhost:3000/oauth/kakao/callback";
-  const CLIENT_SECRET = "";
+  const CLIENT_SECRET = "cbZmJGLQBACLpJmPUiWzv7GbArJAgGtS";
 
   const [userEmail, setUserEmail] = useState();
   const [userName, setUserName] = useState();
