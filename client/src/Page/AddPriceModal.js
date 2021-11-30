@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import "./AddPriceModal.css";
 
 export default function AddPriceModal({addPriceModalClose}){
 	const [share, setShare] = useState(false);
@@ -20,20 +21,21 @@ export default function AddPriceModal({addPriceModalClose}){
 
 
 	return (
-		<>
-			<div>
+		<div>
+			<div className="price-modal-container">
+			<button className="price-modal-close-btn" onClick={addPriceModalClose}> X </button>
+			<div className="recent-price-part">
 				최근 구매가 
-				<input value={price} onChange={onChangePrice}/>
+				<input className="recnet-price-input" value={price} onChange={onChangePrice}/>
 			</div>
-			<div>
+			<div className="recent-date-part">
 				구매 일자 
-				<input value={date} onChange={onChangeDate}/>
+				<input className="recnet-date-input" value={date} onChange={onChangeDate}/>
 			</div>
 			{alert}
-			{!share ? <button onClick={onChangeBtn} >SHARE</button> :
-			<button onClick={addPriceModalClose}>CHECK</button> }
-			
-			
-		</>
+			{!share ? <button className="price-modal-share-btn" onClick={onChangeBtn} >SHARE</button> :
+			<button className="price-modal-check-btn" onClick={addPriceModalClose}>CHECK</button> }
+			</div>
+		</div>
 	)
 }
