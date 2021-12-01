@@ -80,26 +80,6 @@ a {
   border-radius: 12px;
 }
 
-.myinfo-name {
-  padding: 8px 12px;
-}
-
-.myinfo-post {
-  padding: 8px 12px;
-}
-
-.free-talk {
-  padding: 8px 12px;
-}
-
-.nickname-box {
-  border: none;
-  border-bottom: solid 2px black;
-}
-.nickname-box:focus {
-  outline: none;
-}
-
 @media screen and (max-width: 768px) {
   .navbar {
     flex-direction: column;

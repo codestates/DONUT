@@ -1,5 +1,6 @@
 import React from "react";
 // import MyInfoEdit from "./Page/MyInfoEdit"
+import "./MyInfo.css"
 import been from "./been.png";
 import { Link, Route, Routes } from "react-router-dom";
 
