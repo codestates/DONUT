@@ -15,14 +15,14 @@ app.use(
   cors({
     origin: ['https://localhost:3000'],
     credentials: true,
-    methods: ['GET', 'POST', 'OPTIONS', 'PUT']
+    methods: ['GET', 'POST', 'OPTIONS', 'DELETE', 'PATCH']
   })
 );
 
 // 라우터가 제대로 지정되어있어야 함 - 404에러의 주범;
 app.use(cookieParser());
-app.post('/Kakao', controllers.Kakao);
-
+app.post('/Kakao', controllers.Kakao.getToken);
+app.get('/Kakao', controllers.Kakao.getUserInfo);
 
 const HTTPS_PORT = process.env.HTTPS_PORT || 4000;
 
