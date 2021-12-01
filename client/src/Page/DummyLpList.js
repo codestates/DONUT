@@ -1,3 +1,4 @@
+
 const LpInfo = [
 	{
 		id: 1,
@@ -67,4 +68,3 @@ const LpInfo = [
 	},
 ]
 
-export default LpInfo
