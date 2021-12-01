@@ -15,6 +15,7 @@ import PostPage from "./Page/PostPage";
 import FreeTalkPage from "./Page/FreeTalkPage";
 import LpSinglePage from "./Page/LpSinglePage";
 import FreeTalkSinglePage from "./Page/FreeTalkSinglePage";
+import SinglePostPage from "./Page/SinglePostPage"
 
 function App() {
   const [singlePageId, setSinglePageId] = useState(1);
@@ -30,6 +31,7 @@ function App() {
         <Route path="/all" element={<LpListPage />}></Route>
         <Route path="/all/lp_single_page/" element={<LpSinglePage />}></Route>
         <Route path="/post" element={<PostPage />}></Route>
+        <Route Path="/post/single/" elemet={<SinglePostPage/>}></Route>
         <Route
           path="/free-talk"
           element={
