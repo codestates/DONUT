@@ -4,9 +4,10 @@ const https = require('https');
 const cors = require('cors'); // 보안정책
 const cookieParser = require('cookie-parser'); // 쿠키정보에 접근가능
 const express = require('express'); // express 사용
+const controllers = require('./controllers');
 const app = express();
 
-//const controllers = require('./controllers');
+const controllers = require('./controllers');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false })); // 주소형식으로 들어온 요청 파싱 옵션 지정
@@ -20,6 +21,7 @@ app.use(
 
 // 라우터가 제대로 지정되어있어야 함 - 404에러의 주범;
 app.use(cookieParser());
+app.post('/Kakao', controllers.Kakao);
 
 
 const HTTPS_PORT = process.env.HTTPS_PORT || 4000;
