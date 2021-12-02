@@ -12,7 +12,7 @@ function LpSinglePage(props) {
   const [show, setShow] = useState(false)
   const [likeBtn, setLikeBtn] = useState(false)
   const [likeNum, setLikeNum] = useState(0)
-  const [tableContent, setTableContent] = useState("recentPrice")
+  const [tableContent, setTableContent] = useState([RecentPrice])
   
 
 
@@ -66,7 +66,6 @@ function LpSinglePage(props) {
 				))}
 			</tbody>
 	   </table>
-
     </div>
     </> 
   );
