@@ -5,71 +5,87 @@ import qs from "qs";
 import { useNavigate } from "react-router-dom";
 
 const Auth = () => {
- 
   const REST_API_KEY = process.env.REACT_APP_REST_API_KEY;
   const REDIRECT_URI = "http://localhost:3000/oauth/kakao/callback";
   const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET;
 
+  console.log(process.env);
 
   const [userEmail, setUserEmail] = useState();
   const [userName, setUserName] = useState();
   const [profileImg, setProfileImg] = useState();
 
+  const getAccessToken = (code) => {
+    console.log(code);
+    axios
+      .post("https://localhost:4000/Kakao", { authorizationCode: code })
+      .then((data) => {
+        console.log(data);
+      });
+  };
+
   const code = new URL(window.location.href).searchParams.get("code");
 
-  const importProfile = (info) => {
-    // console.log(info);
-    setUserEmail(info.email);
-    setUserName(info.profile.nickname);
-    setProfileImg(info.profile.profile_image_url);
-  };
+  console.log(code);
 
-  const history = useNavigate();
+  if (code) {
+    getAccessToken(code);
+  }
 
-  const getToken = async () => {
-    const payload = qs.stringify({
-      grant_type: "authorization_code",
-      client_id: REST_API_KEY,
-      redirect_uri: REDIRECT_URI,
-      code: code,
-      client_secret: CLIENT_SECRET,
-    });
+  // const importProfile = (info) => {
+  //   // console.log(info);
+  //   setUserEmail(info.email);
+  //   setUserName(info.profile.nickname);
+  //   setProfileImg(info.profile.profile_image_url);
+  // };
 
-    console.log("payload", payload);
+  // const history = useNavigate();
 
-    try {
-      // access token 가져오기
-      const res = await axios.post(
-        "https://kauth.kakao.com/oauth/token",
-        payload
-      );
-      // Kakao Javascript SDK 초기화
-      window.Kakao.init(REST_API_KEY);
-      // access token 설정
-      window.Kakao.Auth.setAccessToken(res.data.access_token);
+  // const getToken = async () => {
+  //   const payload = qs.stringify({
+  //     grant_type: "authorization_code",
+  //     client_id: REST_API_KEY,
+  //     redirect_uri: REDIRECT_URI,
+  //     code: code,
+  //     client_secret: CLIENT_SECRET,
+  //   });
 
-      let data = await window.Kakao.API.request({
-        url: "/v2/user/me",
-        success: (res) => {
-          const kakaoAccount = res.kakao_account;
-          console.log(
-            kakaoAccount.email,
-            kakaoAccount.profile.nickname,
-            kakaoAccount.profile.profile_image_url
-          );
-          importProfile(kakaoAccount);
-        },
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  //   console.log("payload", payload);
 
-  useEffect(() => {
-    getToken();
-  }, []);
+  //   try {
+  //     // access token 가져오기
+  //     const res = await axios.post(
+  //       "https://kauth.kakao.com/oauth/token",
+  //       payload
+  //     );
+  //     // Kakao Javascript SDK 초기화
+  //     window.Kakao.init(REST_API_KEY);
+  //     // access token 설정
+  //     window.Kakao.Auth.setAccessToken(res.data.access_token);
 
-  console.log(userEmail, userName, profileImg);
+  //     let data = await window.Kakao.API.request({
+  //       url: "/v2/user/me",
+  //       success: (res) => {
+  //         const kakaoAccount = res.kakao_account;
+  //         console.log(
+  //           kakaoAccount,
+  //           kakaoAccount.email,
+  //           kakaoAccount.profile.nickname,
+  //           kakaoAccount.profile.profile_image_url
+  //         );
+  //         importProfile(kakaoAccount);
+  //       },
+  //     });
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   getToken();
+  // }, []);
+
+  // console.log(userEmail, userName, profileImg);
 
   return null;
 };

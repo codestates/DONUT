@@ -1,3 +1,3 @@
 module.exports = {
-  Kakao: require('./login/Kakao')
-}; 
+  Kakao: require("./user/Kakao"),
+};
