@@ -40,7 +40,7 @@ function LpListPage() {
       </div>
       {console.log(lpAlbum)}
       <Link to="./lp_single_page">
-        <AlbumsToRender albumsToRender={albumShow}/>
+        <AlbumsToRender albumsToRender={albumShow} />
         {/* <div className="album-wrapper">
           {lpAlbum.map((el) => (
             <div className="album-list">
