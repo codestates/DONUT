@@ -1,3 +1,8 @@
+.post-title {
+  font-size: 25px;
+  font-weight: bold;
+}
+
 .posts {
   -webkit-column-count: 3;
   -moz-column-count: 3;
@@ -5,7 +10,6 @@
   -webkit-column-width: 30%;
   -moz-column-width: 30%;
   column-width: 30%;
-  padding: 0 12px;
 }
 
 .post-image {
@@ -17,6 +21,14 @@
 
 .post-image:hover {
   filter: opacity(0.8);
+}
+
+.camera-icon {
+  float: right;
+}
+
+.camera-icon:hover {
+  cursor: pointer;
 }
 
 @media (max-width: 991px) {

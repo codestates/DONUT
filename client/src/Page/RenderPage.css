@@ -1,0 +1,99 @@
+body {
+  min-height: 50;
+  display: grid;
+  place-items: center;
+}
+
+.render-title {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.hottest-albums {
+  height: 300px;
+  margin: auto;
+  position: relative;
+  width: 98%;
+  display: grid;
+  place-items: center;
+}
+
+.hottest-albums-track {
+  display: flex;
+  width: calc(250px * 18);
+}
+
+.hottest-album {
+  height: 300px;
+  width: 250px;
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  perspective: 100px;
+}
+
+.hottest-img {
+  width: 100%;
+}
+
+.hottest-img:hover {
+  transform: translateZ(5px);
+}
+
+/* -----------post section----------- */
+
+.slider {
+  height: 250px;
+  margin: auto;
+  position: relative;
+  width: 98%;
+  display: grid;
+  place-items: center;
+}
+
+.slide-track {
+  display: flex;
+  width: calc(250px * 18);
+  animation: scroll 40s linear infinite;
+}
+
+.slide-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: trnaslateX(calc(-250px * 9));
+  }
+}
+
+.slide {
+  height: 200px;
+  width: 250px;
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  perspective: 100px;
+}
+
+.slide-img {
+  width: 100%;
+}
+
+.slide-img:hover {
+  transform: translateZ(5px);
+}
+
+/* ----------------------------------------- */
+.video {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+  height: 100%;
+  object-fit: contain;
+  box-sizing: inherit;
+}
