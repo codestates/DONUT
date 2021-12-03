@@ -15,19 +15,30 @@ import PostPage from "./Page/PostPage";
 import FreeTalkPage from "./Page/FreeTalkPage";
 import LpSinglePage from "./Page/LpSinglePage";
 import FreeTalkSinglePage from "./Page/FreeTalkSinglePage";
+
 import SinglePostPage from "./Page/SinglePostPage";
 import PostUploadPage from "./Page/PostUploadPage";
 import FreeTalkWrite from "./Page/FreeTalkWrite";
 
+
 function App() {
   const [singlePageId, setSinglePageId] = useState(1);
+  const [isLogin, setIsLogin] = useState(false);
+
   return (
     <div>
       <Topbar></Topbar>
       <hr></hr>
       <Routes>
         <Route exact path="/" element={<RenderPage />}></Route>
-        <Route path="/login" element={<LoginPage />}></Route>
+        <Route
+          path="/main"
+          element={<RenderPage isLogin={isLogin} setIsLogin={setIsLogin} />}
+        ></Route>
+        <Route
+          path="/login"
+          element={<LoginPage isLogin={isLogin} setIsLogin={setIsLogin} />}
+        ></Route>
         <Route path="/my" element={<MyInfoPage />}></Route>
         <Route path="/my/my_info_Edit" element={<MyInfoEdit />}></Route>
         <Route path="/all" element={<LpListPage />}></Route>

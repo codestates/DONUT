@@ -4,9 +4,10 @@ import {LpInfo} from "./DummyLpList";
 import "./RenderPage.css";
 import LpVideo from "./LpVideo.mp4"
 
-
-
-function RenderPage() {
+function RenderPage({ isLogin, setIsLogin }) {
+  // console.log("렌더페이지", isLogin);
+  const code = new URL(window.location.href).searchParams.get("code");
+  console.log(code);
 
   return (
     <>
@@ -41,7 +42,6 @@ function RenderPage() {
         <source calssName="video" src={LpVideo} type="video/mp4"/>
       </video>
     </section>
-
     </>
   )
 }
