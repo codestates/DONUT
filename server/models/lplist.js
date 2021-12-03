@@ -11,9 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      models.lplist.hasMany(models.recentprice, {foreignKey: 'lpListId', sourceKey: 'id'});
-      models.lplist.belongsToMany(models.albumtag, {through: 'lplistAlbumtag', foreignKey: 'lpListId'});
-      models.lplist.hasMany(models.like, {foreignKey: 'lpListId', sourceKey: 'id'});
+      //models.lplist.hasMany(models.recentprice, {foreignKey: 'lpListId', sourceKey: 'id'});
+      //models.lplist.belongsToMany(models.albumtag, {through: 'lplistAlbumtag', foreignKey: 'lpListId'});
+      //models.lplist.hasMany(models.like, {foreignKey: 'lpListId', sourceKey: 'id'});
     }
   };
   lpList.init({

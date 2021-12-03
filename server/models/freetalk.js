@@ -11,9 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      models.freetalk.belongsTo(models.user, {foreignKey: 'userId', targetKey: 'id'});
-      models.freetalk.hasMany(models.comment, {foreignKey: 'freetalkId', sourceKey: 'id'});
-      models.freetalk.hasMany(models.like, {foreignKey: 'freetalkId', sourceKey: 'id'});
+      //models.freetalk.belongsTo(models.user, {foreignKey: 'userId', targetKey: 'id'});
+      //models.freetalk.hasMany(models.comment, {foreignKey: 'freetalkId', sourceKey: 'id'});
+      //models.freetalk.hasMany(models.like, {foreignKey: 'freetalkId', sourceKey: 'id'});
     }
   };
   freetalk.init({
