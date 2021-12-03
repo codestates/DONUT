@@ -1,3 +1,4 @@
 module.exports = {
-  Kakao: require('./login/Kakao')
+  Kakao: require('./user/Kakao'),
+  KakaoCallback: require('./user/KakaoCallback')
 }; 
