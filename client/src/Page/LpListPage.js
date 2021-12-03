@@ -1,10 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { LpInfo } from "./DummyLpList";
 import "./LpListPage.css";
+import AlbumsToRender from "./AlbumsToRender"
 
 function LpListPage() {
   const [lpAlbum, setLpAlbum] = useState(LpInfo);
+  const [albumShow, setAlbumShow] = useState([]);
+  const [next, setNext] = useState(3);
+
+  const albumsPerPage = 3
+  let arrayForHoldingPosts = [];
+
+  const loopWithSlice = (start, end) => {
+    const slicedAlbums = LpInfo.slice(start, end);
+    arrayForHoldingPosts = [...arrayForHoldingPosts, ...slicedAlbums];
+    setAlbumShow(arrayForHoldingPosts)
+  }
+
+  useEffect(() => {
+    loopWithSlice(0, albumsPerPage);
+  }, []);
+
+  const onLoadMore = () => {
+    loopWithSlice(next, next + albumsPerPage);
+    setNext(next + albumsPerPage);
+  }
 
   return (
     <div>
@@ -19,7 +40,8 @@ function LpListPage() {
       </div>
       {console.log(lpAlbum)}
       <Link to="./lp_single_page">
-        <div className="album-wrapper">
+        <AlbumsToRender albumsToRender={albumShow} />
+        {/* <div className="album-wrapper">
           {lpAlbum.map((el) => (
             <div className="album-list">
               <img calssName="album-image" src={el.image} alt={el.albumTitle} />
@@ -30,10 +52,10 @@ function LpListPage() {
               </div>
             </div>
           ))}
-        </div>
+        </div> */}
       </Link>
 
-      <button>More</button>
+      <button onClick={onLoadMore} className="load-more-button">More</button>
     </div>
   );
 }

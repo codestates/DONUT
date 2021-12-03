@@ -34,7 +34,7 @@ export default function AddPriceModal({addPriceModalClose}){
 			</div>
 			{alert}
 			{!share ? <button className="price-modal-share-btn" onClick={onChangeBtn} >SHARE</button> :
-			<button className="price-modal-check-btn" onClick={addPriceModalClose}>CHECK</button> }
+			<button type="submit" className="price-modal-check-btn" onClick={addPriceModalClose}>CHECK</button> }
 			</div>
 		</div>
 	)
