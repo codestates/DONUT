@@ -1,21 +1,21 @@
 import { faTags } from '@fortawesome/free-solid-svg-icons';
 import React, {useState} from "react"
-
+import './PostUploadPage.css'
 
 
 function PostUploadPage() {
 	const [image ,setImage ] = useState('');
 	const [loading, setLoading] = useState(false);
+	const [fileImage, setFileImage] = useState("");
 
+	const deleteFileImage = () => {
+		URL.revokeObjectURL(fileImage);
+		setFileImage("")
+	}
 
-
-	const uploadImage = (e) => {
-		console.log(e.target.files[0])
-		const files = e.target.files
-		const data = new FormData()
-		data.append('file', files[0])
-		data.append('upload_preset', 'darwin')
-		setLoading(true)
+	const saveFileImage = (e) => {
+		// console.log(e.target.files[0])
+		setFileImage(URL.createObjectURL(e.target.files[0]));
 		
 	}
 
@@ -28,10 +28,19 @@ function PostUploadPage() {
   return (
 	<div>
 		<div className="picture-upload">
-			<div>POST</div>
-			<input type="file" name="file" placeholder="Upload an image" onChange={uploadImage}/>
-			<button onClick={fileUploadHandler}>SHARE</button>
-			{loading ? ( <h3> Loading...</h3>) : ( <img src={image} style={{width: '300px'}} / >)}
+			<div className="post-title">POST</div>
+			<div className="post-upload-container">
+				<div className="post-image-space">
+					{fileImage && (<img salt="sample" src={fileImage} style={{ margin: "auto"}}/>)}
+				</div>
+				<label className="post-btn" for="input-file">
+					ChososeFile
+				</label>
+				<input type="file" id="input-file" placeholder="Upload an image" style={{display:"none"}} onChange={saveFileImage}/>
+				<textarea className="post-text-area" placeHolder="content"></textarea>
+				<button className="post-btn" onClick={fileUploadHandler}>SHARE</button>
+				<button className="post-btn" onClick={deleteFileImage}>삭제</button>
+			</div>
 		</div>
 	</div>
   	);

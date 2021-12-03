@@ -4,6 +4,21 @@ body {
   place-items: center;
 }
 
+.render-first {
+  height: 100vh;
+  background-color: skyblue;
+}
+
+.render-second {
+  height: 100vh;
+  background-color: mediumpurple;
+}
+
+.render-third {
+  height: 100vh;
+  background-color: tomato;
+}
+
 .render-title {
   font-size: 25px;
   font-weight: bold;

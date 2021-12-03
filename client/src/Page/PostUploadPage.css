@@ -1,0 +1,50 @@
+.post-upload-container {
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.post-image-space {
+  box-sizing: border-box;
+  position: absoulte;
+  top: 0px;
+  left: 0px;
+  width: 50%;
+  flex-direction: column;
+  min-height: 200px;
+  align-items: center;
+  background-color: #b8b8b8;
+}
+
+.post-btn {
+  width: 150px;
+  height: 45px;
+  margin: 10px;
+  border: none;
+  background-color: black;
+  color: white;
+  border-radius: 30px;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.post-text-area {
+  width: 50%;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  height: 145px;
+  padding: 8px 15px 9px;
+  display: inline-block;
+  box-sizing: border-box;
+  border-color: rgb(219, 219, 219);
+  appearance: none;
+}
+
+@media screen and (min-width: 768px) {
+  .post-upload-container {
+    margin: 30px auto 0px;
+    padding: 0px 30px;
+    max-width: 1003px;
+    box-sizing: border-box;
+  }
+}
