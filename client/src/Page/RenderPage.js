@@ -11,22 +11,22 @@ function RenderPage() {
   return (
     <>
   
-    <section>
+    <section className="render-first">
       <div className="render-title">Hottest</div>
       <div className="hottest-albums">
         <div className="hottest-albums-track">
-		{LpInfo.map((el) => (
-		  <div className="hottest-album">
-		      <img src={el.image} className="hottest-img" alt={el.albumTitle} />
-          <div>{el.artist}</div>
-		      <div>{el.albumTitle}</div>
+        {LpInfo.map((el) => (
+          <div className="hottest-album">
+              <img src={el.image} className="hottest-img" alt={el.albumTitle} />
+              <div>{el.artist}</div>
+              <div>{el.albumTitle}</div>
+          </div>
+        ))}
       </div>
-		))}
-    </div>
-	   </div>
+	    </div>
     </section>
 
-    <section>
+    <section className="render-second">
       <div className="render-title">Post</div>
       <div className="slider">
         <div className="slide-track">
@@ -35,7 +35,7 @@ function RenderPage() {
       </div>
     </section>
 
-    <section>
+    <section className="render-third">
       <div className="render-title">video</div>
       <video autoPlay loop muted>
         <source calssName="video" src={LpVideo} type="video/mp4"/>
