@@ -6,6 +6,7 @@ import { Route, Routes } from "react-router-dom";
 
 import "./App.css";
 import Topbar from "./Topbar";
+import Footer from "./Footer";
 import LoginPage from "./Page/LoginPage";
 import RenderPage from "./Page/RenderPage";
 import MyInfoPage from "./Page/MyInfoPage";
@@ -66,6 +67,8 @@ function App() {
           }
         ></Route>
       </Routes>
+      <hr></hr>
+      <Footer></Footer>
     </div>
   );
 }
