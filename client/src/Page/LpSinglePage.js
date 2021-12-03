@@ -5,12 +5,14 @@ import { faHeart as regularHeart } from '@fortawesome/free-regular-svg-icons'
 import { faHeart as solidHeart } from '@fortawesome/free-solid-svg-icons';
 import { useParams } from "react-router-dom";
 import LpInfo from "./DummyLpList";
+import LpPriceAddTable from "./DummyRecentPrice"
+import RecentPrice from "./DummyRecentPrice"
 
 function LpSinglePage(props) {
   const [show, setShow] = useState(false)
   const [likeBtn, setLikeBtn] = useState(false)
   const [likeNum, setLikeNum] = useState(0)
-  const [tableContent, setTableContent] = useState("recentPrice")
+  const [tableContent, setTableContent] = useState([RecentPrice])
   
 
 
@@ -49,19 +51,21 @@ function LpSinglePage(props) {
       </div>
 
       <table>
-        <tr>
-          <th>최근구매가</th>
-          <th>구매일자</th>
-        </tr>
-        <tr>
-          <th>10,000원</th>
-          <th>2021.03.04</th> 
-        </tr>
-        <tr>
-          <th>30,000원</th>
-          <th>2021.05.36</th> 
-        </tr>
-      </table>
+			  <thead>
+				  <tr>
+				    <th>최근 구매가</th>
+				    <th>구매일자</th>
+				  </tr>
+			  </thead>
+			<tbody>
+				{RecentPrice.map((el)=>(
+				  <tr>
+				    <td>{el.price}</td>
+				    <td>{el.date}</td> 
+				  </tr>
+				))}
+			</tbody>
+	   </table>
     </div>
     </> 
   );

@@ -4,7 +4,7 @@ export const LpInfo = [
     genre: "KOREAN",
     artist: "선우정아",
     albumTitle:
-      "3집 Serenade3집 Serenade3집 Serenade3집 Serenade3집 Serenade3집 Serenade3집 Serenade3집 Serenade3집 Serenade3집 Serenade3집 Serenade",
+      "3집 Serenade",
     sellingPrice: "66,000원",
     image:
       "https://contents.sixshop.com/thumbnails/uploadedFiles/99047/product/image_1609498984666_1500.jpg",

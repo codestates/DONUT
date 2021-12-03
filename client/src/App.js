@@ -15,7 +15,11 @@ import PostPage from "./Page/PostPage";
 import FreeTalkPage from "./Page/FreeTalkPage";
 import LpSinglePage from "./Page/LpSinglePage";
 import FreeTalkSinglePage from "./Page/FreeTalkSinglePage";
-// import Auth from "./Auth";
+
+import SinglePostPage from "./Page/SinglePostPage";
+import PostUploadPage from "./Page/PostUploadPage";
+import FreeTalkWrite from "./Page/FreeTalkWrite";
+
 
 function App() {
   const [singlePageId, setSinglePageId] = useState(1);
@@ -39,8 +43,10 @@ function App() {
         <Route path="/my/my_info_Edit" element={<MyInfoEdit />}></Route>
         <Route path="/all" element={<LpListPage />}></Route>
         <Route path="/all/lp_single_page/" element={<LpSinglePage />}></Route>
-        {/* <Route path="/oauth/kakao/callback" element={<Auth />}></Route> */}
+        <Route path="/free-talk/write" element={<FreeTalkWrite />}></Route>
         <Route path="/post" element={<PostPage />}></Route>
+        <Route path="/post/upload" element={<PostUploadPage />}></Route>
+        <Route Path="/post/single_post_page/" element={<SinglePostPage />}></Route>
         <Route
           path="/free-talk"
           element={

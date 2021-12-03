@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { talkList, comment } from "./DummyLpList";
 
 function FreeTalkPage({ singlePageId, setSinglePageId }) {
@@ -12,7 +13,6 @@ function FreeTalkPage({ singlePageId, setSinglePageId }) {
     console.log("싱글 페이지로 전환 history.push 구현");
     setSinglePageId(e);
   };
-
   return (
     <section>
       <h3>Free Talk</h3>
@@ -33,8 +33,11 @@ function FreeTalkPage({ singlePageId, setSinglePageId }) {
             <div className="free-talk-view">{e.view}</div>
           </div>
         ))}
+        <Link to="/free-talk/write">
+          <button>버튼</button>
+        </Link>
       </div>
-    </section>
+    </section >
   );
 }
 
