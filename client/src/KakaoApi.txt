@@ -1,0 +1,52 @@
+<!-- 확장자 html로 변경하면 실행 가능합니다. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="javascript:kakaoLogin()">
+        <img src="https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F7e94985e-7054-4174-ac5b-4cbfc13cf506%2Fkakao_login_large_narrow.png?table=block&id=b4e4e1ec-2f58-494c-b352-23a3ec2235ee&spaceId=34b2f1fd-9d82-4494-8402-1bb057b304db&width=2000&userId=b5cfa95d-0fdc-4653-8882-18e28aaae8e9&cache=v2"/>
+    </a>
+    <!-- 아래와 같이 JavaScript SDK를 웹 페이지에 포함(Include)시킵니다. 
+        해당 스크립트에 포함된 URL은 카카오가 제공하는 JavaScript SDK 다운로드 경로로써, 
+        이를 통해 항상 최신 버전을 사용할 수 있습니다. -->
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script>
+        // 다음과 같이 JAVASCRIPT_KEY에 JavaScript 키를 할당하여 초기화 함수를 호출하고, 이어서 초기화가 잘 되었는지 확인하는 함수를 호출합니다
+        // Kakao.init('JAVASCRIPT_KEY');
+        // Kakao.isInitialized();
+
+        // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
+        Kakao.init('');
+
+        // SDK 초기화 여부를 판단합니다.
+        // 초기화 시 true 찍힘
+        console.log(Kakao.isInitialized());
+
+        const kakaoLogin = () => {
+            // 로그인 실행함수
+            window.Kakao.Auth.login({
+                // key : scope , value(받아올 정보) : 닉네임, 프사, 이메일
+                // key : success -> 콜백
+                scope : "profile_nickname, profile_image, account_email",
+                success : function(authObj) {
+                    // console.log(authObj);
+                    window.Kakao.API.request({
+                        url:'/v2/user/me',
+                        success: res => {
+                            const kakaoAccount = res.kakao_account;
+                            // console.log(res)
+                        }
+                    });
+                }
+            })
+        }
+
+    </script>
+</body>
+</html>
