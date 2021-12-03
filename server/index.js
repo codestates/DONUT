@@ -19,8 +19,10 @@ app.use(
 
 // 라우터가 제대로 지정되어있어야 함 - 404에러의 주범;
 app.use(cookieParser());
-app.post("/Kakao", controllers.Kakao.getToken);
-app.get("/Kakao", controllers.Kakao.getUserInfo);
+app.post('/KakaoCallback', controllers.KakaoCallback);
+//console.log(controllers.Kakao.getToken);
+//app.get('/Kakao', controllers.Kakao.getUserInfo);
+
 
 const HTTPS_PORT = process.env.HTTPS_PORT || 4000;
 
@@ -31,7 +33,7 @@ if (fs.existsSync("./key.pem") && fs.existsSync("./cert.pem")) {
   const credentials = { key: privateKey, cert: certificate };
 
   server = https.createServer(credentials, app);
-  server.listen(HTTPS_PORT, () => console.log("https server running"));
+  server.listen(HTTPS_PORT, () => console.log('https server running', '? 됨?'));
 } else {
   server = app.listen(HTTPS_PORT, () => console.log("http server running"));
 }
