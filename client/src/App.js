@@ -46,8 +46,8 @@ function App() {
         <Route path="/all/lp_single_page/" element={<LpSinglePage />}></Route>
         <Route path="/free-talk/write" element={<FreeTalkWrite />}></Route>
         <Route path="/post" element={<PostPage />}></Route>
-        <Route path="/post/upload" element={<PostUploadPage />}></Route>
-        <Route Path="/post/single_post_page/" element={<SinglePostPage />}></Route>
+        <Route exact path="/post/upload" element={<PostUploadPage />}></Route>
+        <Route exact path="/post/single_post_page/" element={<SinglePostPage />}></Route>
         <Route
           path="/free-talk"
           element={
