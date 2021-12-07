@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
 
 import "./App.css";
 import Topbar from "./Topbar";
@@ -20,11 +21,21 @@ import FreeTalkSinglePage from "./Page/FreeTalkSinglePage";
 import SinglePostPage from "./Page/SinglePostPage";
 import PostUploadPage from "./Page/PostUploadPage";
 import FreeTalkWrite from "./Page/FreeTalkWrite";
-
+import AdminPage from "./Page/AdminPage";
 
 function App() {
   const [singlePageId, setSinglePageId] = useState(1);
   const [isLogin, setIsLogin] = useState(false);
+
+  // axios
+  //   .get("https://localhost:4000/")
+  //   .then(function (res) {
+  //     console.log(res);
+  //     // cookie에 "accesstoken" 존재 여부를 확인한 후 로그인 여부 판단.
+  //   })
+  //   .catch(function (error) {
+  //     console.log(error);
+  //   });
 
   return (
     <div>
@@ -44,12 +55,16 @@ function App() {
         <Route path="/my/my_info_Edit" element={<MyInfoEdit />}></Route>
         <Route path="/all" element={<LpListPage />}></Route>
         <Route path="/all/lp_single_page/" element={<LpSinglePage />}></Route>
-        <Route path="/free-talk/write" element={<FreeTalkWrite />}></Route>
+        <Route path="/free_talk/upload" element={<FreeTalkWrite />}></Route>
         <Route path="/post" element={<PostPage />}></Route>
-        <Route path="/post/upload" element={<PostUploadPage />}></Route>
-        <Route Path="/post/single_post_page/" element={<SinglePostPage />}></Route>
+        <Route exact path="/post/upload" element={<PostUploadPage />}></Route>
         <Route
-          path="/free-talk"
+          exact
+          path="/post/single_post_page"
+          element={<SinglePostPage />}
+        ></Route>
+        <Route
+          path="/free_talk"
           element={
             <FreeTalkPage
               singlePageId={singlePageId}
@@ -58,7 +73,7 @@ function App() {
           }
         ></Route>
         <Route
-          path="/free-talk/single"
+          path="/free_talk/single"
           element={
             <FreeTalkSinglePage
               singlePageId={singlePageId}
@@ -66,6 +81,7 @@ function App() {
             />
           }
         ></Route>
+        <Route exact path="/administer" element={<AdminPage />}></Route>
       </Routes>
       <hr></hr>
       <Footer></Footer>
