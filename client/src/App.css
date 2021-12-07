@@ -37,6 +37,15 @@ a {
   border-radius: 4px;
   color: white;
 }
+.navbar-menu2 a {
+  padding: 8px 12px;
+}
+
+.navbar-menu2 a:hover {
+  background-color: black;
+  border-radius: 4px;
+  color: white;
+}
 
 .navbar {
   display: flex;
@@ -49,7 +58,7 @@ a {
   justify-content: space-between;
 }
 
-.navbar-menu {
+.navbar-menu2 {
   display: flex;
   list-style: none;
   padding-left: 0;
@@ -79,6 +88,13 @@ a {
   color: white;
   border-radius: 12px;
 }
+.navbar-toggle-btn {
+  display: none;
+  position: absolute;
+  right: 32px;
+  font-size: 24px;
+  color: black;
+}
 
 @media screen and (max-width: 768px) {
   .navbar {
@@ -86,17 +102,33 @@ a {
     align-items: flex-start;
     padding: 8px 24px;
   }
-  .navbar-menu {
+  .navbar-menu1 {
+    display: none;
     flex-direction: column;
     align-items: center;
     width: 100%;
   }
-  .navbar-menu a {
+  .navbar-menu2 {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  .navbar-menu2 a {
     width: 100%;
     text-align: center;
   }
   .navbar-icon {
     width: 100%;
     align-items: center;
+  }
+
+  .navbar-toggle-btn {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .navbar-menu2 {
+    display: none;
   }
 }
