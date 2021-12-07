@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import qs from "qs";
 import axios from "axios";
 
@@ -6,8 +6,26 @@ import PostList from "./DummyPostList";
 import {LpInfo} from "./DummyLpList";
 import "./RenderPage.css";
 import LpVideo from "./LpVideo.mp4"
+import {FaArrowAltCircleRight, FaArrowAltCircleLeft} from 'react-icons/fa'
 
 function RenderPage({ isLogin, setIsLogin }) {
+  const [currentPost, setCurrentPost] = useState(0)
+  const PostLength = PostList.length;
+
+  const nextSlide = () => {
+    setCurrentPost(currentPost === PostLength - 1 ? 0 : currentPost + 1)
+  }
+
+  const prevSlide = () => {
+    setCurrentPost(currentPost === 0 ? PostLength - 1 : currentPost - 1)
+  }
+
+  console.log(currentPost)
+
+  if(!Array.isArray(PostList) || PostList.length <=0){
+    return null;
+  }
+
   // console.log("렌더페이지", isLogin);
   const url = new URL(window.location.href);
   const authorizationCode = url.searchParams.get("code");
@@ -33,6 +51,8 @@ function RenderPage({ isLogin, setIsLogin }) {
   if (authorizationCode) {
     getAccessToken(authorizationCode);
   }
+
+
 
 
   return (
@@ -62,13 +82,19 @@ function RenderPage({ isLogin, setIsLogin }) {
     <section className="render-second">
       <div className="second-items">
       <div className="render-title">POST</div>
+      <FaArrowAltCircleLeft className="left-arrow" onClick={prevSlide}/>
+      <FaArrowAltCircleRight className="right-arrow" onClick={nextSlide}/> 
       <div className="slider">
         <div className="slide-track">
-      {PostList.map((el) => (<div className="slide"><img src={el.image} className= "slide-img" alt=""/></div>))}
+      {PostList.map((post, idx) => {
+        return (
+          <div className={idx === currentPost ? "slide active" : "slide"} key={idx}>
+              {idx === currentPost && (<img src={post.image} className= "slide-img" alt=""/>)}
+              
+          </div>)})}
         </div>
         <div className="controls">
-          <span className="arrow prev">prev</span>
-          <span className="arrow next">next</span>
+          
         </div>
       </div>
       </div>
