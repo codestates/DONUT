@@ -7,6 +7,7 @@ import {LpInfo} from "./DummyLpList";
 import "./RenderPage.css";
 import LpVideo from "./LpVideo.mp4"
 import {FaArrowAltCircleRight, FaArrowAltCircleLeft} from 'react-icons/fa'
+import donut from "./donut.gif";
 
 function RenderPage({ isLogin, setIsLogin }) {
   const [currentPost, setCurrentPost] = useState(0)
@@ -77,6 +78,10 @@ function RenderPage({ isLogin, setIsLogin }) {
       </div>
     </section>
     </div>
+
+    <section>
+    <img src={donut} className="donut-gif" alt="donut" />
+    </section>
 
     <div>
     <section className="render-second">
