@@ -50,7 +50,9 @@ function PostUploadPage() {
 					ChososeFile
 				</label> */}
 
-			<input type="file" id="input-file" placeholder="Upload an image" style={{display:"none"}} onChange={saveFileImage}/>
+			<input type="file" id="input-file" placeholder="Upload an image" style={{display:"none"}} onChange={saveFileImage}>
+				</ input>
+			
 			<textarea className="post-text-area" onChange={contentChangeHandler} placeHolder="content">{content}</textarea>
 			<button className="post-btn" onClick={fileUploadHandler}>SHARE</button>
 			<button className="post-btn" onClick={deleteFileImage}>삭제</button>

@@ -10,6 +10,7 @@ function ImageUpload(props) {
 	const dropHandler = (files) => {
 		let formData = new FormData();
 		formData.append("file", files[0])
+		console.log(files[0])
 
 		axios.post('https://localhost:4000/post',formData , {headr: {'content-type': 'multipart/fomr-data'}} )
 		.then(res => {
@@ -38,11 +39,11 @@ function ImageUpload(props) {
 			<Dropzone onDrop={dropHandler}>
 			{({getRootProps, getInputProps}) => (
 			<div
-				style={{ width: 300, height: 240, border: '1px solid lightgray',
+				style={{ width: 400, height: 400, border: '1px solid lightgray',
 					display: 'flex', alignItems: 'center', justifyContent: 'center'}}
 			 {...getRootProps()}>
 				<input {...getInputProps()} />
-				<p>+</p>
+				<img src="https://cdn.discordapp.com/attachments/907148581692137515/917214337951727617/imageUp.png" alt="" style={{width: 400, height: 400}}/>
 			</div>
 			)}
 			</Dropzone>
