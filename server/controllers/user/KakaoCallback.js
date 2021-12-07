@@ -1,5 +1,5 @@
 require("dotenv").config();
-const { user } = require("../../models");
+const { user } = require('../../models');
 const { generateAccessToken } = require('../tokenfunction');
 const axios = require("axios");
 
