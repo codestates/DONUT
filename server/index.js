@@ -21,23 +21,24 @@ app.use(
 app.use(cookieParser());
 app.post('/Kakao', controllers.Kakao);
 app.post('/KakaoCallback', controllers.KakaoCallback);
+app.patch('/UserInfo', controllers.UserInfo);
 
-app.get('/PostControl', controllers.PostControl.allPost);
-app.get('/PostControl', controllers.PostControl.detailPost);
-app.post('/PostControl', controllers.PostControl.checkCookie);
-app.post('/PostControl', controllers.PostControl.addNewPost);
-app.patch('/PostControl', controllers.PostControl.postModify);
-app.delete('/PostControl', controllers.PostControl.deletePost);
+app.get('/AllPost', controllers.AllPost);
+app.get('/DetailPost', controllers.DetailPost);
+app.post('/CheckCookiePost', controllers.CheckCookiePost);
+app.post('/AddPost', controllers.AddPost);
+app.patch('/PostModify', controllers.PostModify);
+app.delete('/DeletePost', controllers.DeletePost);
 
-app.get('/FreetalkControl', controllers.FreetalkControl.allFreetalk);
-app.get('/FreetalkControl', controllers.FreetalkControl.detailFreetalk);
-app.post('/FreetalkControl', controllers.FreetalkControl.checkCookie);
-app.post('/FreetalkControl', controllers.FreetalkControl.addNewFreetalk);
-app.patch('/FreetalkControl', controllers.FreetalkControl.freetalkModify);
-app.delete('/FreetalkControl', controllers.FreetalkControl.deleteFreetalk);
+app.get('/AllFreetalk', controllers.AllFreetalk);
+app.get('/DetailFreetalk', controllers.DetailFreetalk);
+app.post('/CheckCookieFreetalk', controllers.CheckCookieFreetalk);
+app.post('/AddFreetalk', controllers.AddFreetalk);
+app.patch('/FreetalkModify', controllers.FreetalkModify);
+app.delete('/DeleteFreetalk', controllers.DeleteFreetalk);
 
-app.get('/LplistControl', controllers.LplistControl.allLplist);
-app.get('/LplistControl', controllers.LplistControl.detailLplist);
+app.get('/AllLplist', controllers.AllLplist);
+app.get('/DetailLplist', controllers.DetailLplist);
 //console.log(controllers.Kakao.getToken);
 //app.get('/Kakao', controllers.Kakao.getUserInfo);
 
