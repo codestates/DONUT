@@ -11,11 +11,13 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      //models.user.hasMany(models.post, {foreignKey: 'userId', sourceKey: 'id'}); // post의 userId컬럼이 user의 id를 참조
-      //models.user.hasMany(models.freetalk, {foreignKey: 'userId', sourceKey: 'id'});
-      //models.user.hasOne(models.recentprice, {foreignKey: 'userId', sourceKey: 'id'});
-      //models.user.hasMany(models.comment, {foreignKey: 'userId', sourceKey: 'id'});
-      //models.user.hasMany(models.like, {foreignKey: 'userId', sourceKey: 'id'});
+    models.user.hasMany(models.post, {foreignKey: 'userId', sourceKey: 'id', onDelete: 'cascade'}); // post의 userId컬럼이 user의 id를 참조
+    models.user.hasMany(models.freetalk, {foreignKey: 'userId', sourceKey: 'id', onDelete: 'cascade'});
+    models.user.hasMany(models.recentPrice, {foreignKey: 'userId', sourceKey: 'id', onDelete: 'cascade'});
+    models.user.hasMany(models.comment, {foreignKey: 'userId', sourceKey: 'id', onDelete: 'cascade'});
+    models.user.hasMany(models.like, {foreignKey: 'userId', sourceKey: 'id', onDelete: 'cascade'});
+
+       
     }
   };
   user.init({
