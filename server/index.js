@@ -21,20 +21,20 @@ app.use(
 app.use(cookieParser());
 app.post('/Kakao', controllers.Kakao);
 app.post('/KakaoCallback', controllers.KakaoCallback);
-app.patch('/UserInfo', controllers.UserInfo);
+//app.patch('/UserInfo', controllers.UserInfo);
 
 app.get('/AllPost', controllers.AllPost);
 app.get('/DetailPost', controllers.DetailPost);
 app.post('/CheckCookiePost', controllers.CheckCookiePost);
 app.post('/AddPost', controllers.AddPost);
-app.patch('/PostModify', controllers.PostModify);
+//app.patch('/PostModify', controllers.PostModify);  이부분 왜 에러임? 미완인데 연결되서?
 app.delete('/DeletePost', controllers.DeletePost);
 
 app.get('/AllFreetalk', controllers.AllFreetalk);
 app.get('/DetailFreetalk', controllers.DetailFreetalk);
 app.post('/CheckCookieFreetalk', controllers.CheckCookieFreetalk);
 app.post('/AddFreetalk', controllers.AddFreetalk);
-app.patch('/FreetalkModify', controllers.FreetalkModify);
+//app.patch('/FreetalkModify', controllers.FreetalkModify);
 app.delete('/DeleteFreetalk', controllers.DeleteFreetalk);
 
 app.get('/AllLplist', controllers.AllLplist);

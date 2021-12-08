@@ -11,10 +11,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      //models.like.belongsTo(models.user, {foreignKey: 'userId', targetKey: 'id'});
-      //models.like.belongsTo(models.post, {foreignKey: 'postId', targetKey: 'id'});
-      //models.like.belongsTo(models.freetalk, {foreignKey: 'freetalkId', targetKey: 'id'});
-      //models.like.belongsTo(models.lpList, {foreignKey: 'lpListId', targetKey: 'id'});
+      models.like.belongsTo(models.user, {foreignKey: 'userId', targetKey: 'id'});
+      models.like.belongsTo(models.post, {foreignKey: 'postId', targetKey: 'id'});
+      models.like.belongsTo(models.freetalk, {foreignKey: 'freetalkId', targetKey: 'id'});
+      models.like.belongsTo(models.lpList, {foreignKey: 'lpListId', targetKey: 'id'});
     }
   };
   like.init({

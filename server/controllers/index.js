@@ -14,7 +14,6 @@ module.exports = {
   AddFreetalk: require('./freetalk/AddFreetalk'),
   FreetalkModify: require('./freetalk/FreetalkModify'),
   DeleteFreetalk: require('./freetalk/DeleteFreetalk'),
-  FreetalkControl: require('./freetalk/FreetalkControl'),
   AllLplist: require('./lplist/AllLplist'),
   DetailLplist: require('./lplist/DetailLplist')
 }; 
