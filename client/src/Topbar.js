@@ -30,10 +30,11 @@ function Topbar() {
                     <FontAwesomeIcon icon={faSearch} className="navbar-icon" />
                     <Link to="./all">ALL</Link>
                     <Link to="./post">POST</Link>
-                    <Link to="./free-talk">FREE-TALK</Link >
+                    <Link to="./free_talk">FREE-TALK</Link >
                     <Link to="./login">LOGIN</Link>
                     <Link to="./my">MY</Link>
                     <Link to="./logout">LOGOUT</Link>
+                    <Link to="./administer">ADMIN</Link>
                 </ul>
             ) : (
                 <></>
