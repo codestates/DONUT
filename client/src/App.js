@@ -63,6 +63,7 @@ function App() {
           path="/post/single_post_page"
           element={<SinglePostPage />}
         ></Route>
+        <Route exact path="/post/single_post_page/" element={<SinglePostPage />}></Route>
         <Route
           path="/free_talk"
           element={

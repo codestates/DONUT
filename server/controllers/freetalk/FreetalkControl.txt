@@ -10,13 +10,13 @@ module.exports = {
     res.status(200).json({data: wholeFreetalk, message: 'whole freetalk list!'})
   },
   detailFreetalk: async (req, res) => {
-    const partFreetalk = await freetalk.findOne({where: {userId: req.body.userId, title: req.body.title}});
+    const partFreetalk = await freetalk.findOne({where: {freetailId: req.body.id, title: req.body.title}});
 
     if(!partFreetalk) {
       res.status(404).json({data: null, message: 'not found!'});
     } else {
       // 임시
-      const freetalkInfo = {picture: partPost.picture, writing: partPost.writing};
+      const freetalkInfo = {title: partFreetalk.title, article: partFreetalk.article};
       
       res.status(200).json({data: freetalkInfo, message: 'found success!'});
     }

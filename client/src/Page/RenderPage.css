@@ -85,51 +85,50 @@ body {
 /* -----------post section----------- */
 
 .slider {
-  width: 20%;
-  margin: 20px 10px;
-  height: 300px;
-}
-
-.slide-track {
-  width: 100%;
-  height: 150%;
-  border: 2px solid orange;
-  border-radius: 3px;
+  position: relative;
+  height: 100vh;
   display: flex;
-  justify-content: flex-start;
-  psotion: relative;
-}
-
-.slide {
-  border: 1px solid green;
-  display: flex;
-  height: 100%;
-  width: 200%;
-  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
 }
 
 .slide-img {
-  flex-basis: 20%;
-  width: 20%;
-  flex-shrink: 0;
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 1000px;
+  height: 600px;
+  border-radius: 10px;
 }
 
-.arrow {
+.right-arrow {
   position: absolute;
-  top: 10px;
+  top: 165%;
+  right: 32px;
+  font-size: 3rem;
+  color: black;
+  z-index: 10;
   cursor: pointer;
+  user-select: none;
 }
 
-.prev {
-  left: 10px;
+.left-arrow {
+  position: absolute;
+  top: 165%;
+  left: 32px;
+  font-size: 3rem;
+  color: black;
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
 }
 
-.next {
-  right: 10px;
+.slide {
+  opacity: 0;
+  transition-duration: 1s ease;
+}
+
+.slide.active {
+  opacity: 1;
+  transition-duration: 1s;
+  transform: scale(1.08);
 }
 
 /* .slider {
@@ -181,9 +180,9 @@ body {
 .video {
   position: absolute;
   width: 100%;
-  left: 0;
-  top: 0;
-  height: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  height: 50%;
   object-fit: contain;
   box-sizing: inherit;
 }
