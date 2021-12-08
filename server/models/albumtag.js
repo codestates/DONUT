@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      models.albumtag.belongsTo(models.lpList, {foreignKey: 'albumtagId', targetKey: 'id'});
+      models.albumtag.belongsTo(models.lpList, {foreignKey: 'lpListId', targetKey: 'id'});
     }
   };
   albumtag.init({

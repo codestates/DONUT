@@ -13,7 +13,6 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       models.recentPrice.belongsTo(models.lpList, {foreignKey: 'lpListId', targetKey: 'id'});
       models.recentPrice.belongsTo(models.user, {foreignKey: 'userId', targetKey: 'id'});
-
     }
   };
   recentPrice.init({

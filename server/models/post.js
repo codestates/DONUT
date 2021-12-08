@@ -11,10 +11,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      models.post.belongsTo(models.user, {foreignKey: 'userId', targetKey: 'id', onDelete: 'cascade'}); // post는 user에 속함
-      models.post.belongsToMany(models.hashtag, {through: 'postHashtag', foreignKey: 'postId', onDelete: 'cascade'});
-      models.post.hasMany(models.comment, {foreignKey: 'postId', sourceKey: 'id', onDelete: 'cascade'});
-      models.post.hasMany(models.like, {foreignKey: 'postId', sourceKey: 'id', onDelete: 'cascade'});
+      models.post.belongsTo(models.user, {foreignKey: 'userId', targetKey: 'id'}); // post는 user에 속함
+      models.post.belongsToMany(models.hashtag, {through: 'postHashtag'});
+      models.post.hasMany(models.comment, {foreignKey: 'postId', sourceKey: 'id'});
+      models.post.hasMany(models.like, {foreignKey: 'postId', sourceKey: 'id'});
     }
   };
   post.init({
