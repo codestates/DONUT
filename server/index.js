@@ -67,8 +67,11 @@ const upload = multer({
 
 app.post("/upload", upload.single("image"), (req, res) => {
   console.log(req.file);
-  res.json(req.file);
-});
+  res.json({data: req.file.path})
+})
+
+
+
 
 const HTTPS_PORT = process.env.HTTPS_PORT || 4000;
 
