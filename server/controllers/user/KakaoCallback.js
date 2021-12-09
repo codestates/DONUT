@@ -51,7 +51,7 @@ module.exports = async (req, res) => {
         secure: true,
         httpOnly: true,
       })
-      .json({ message: "돌아감니다" });
+      .json({ message: "success!" });
 
     // uri의 특정한 문자를 utf-8로 인코딩해 하나, 둘, 셋 혹은 네 개의 연속된 이스케이프 문자로 나타냄
 
