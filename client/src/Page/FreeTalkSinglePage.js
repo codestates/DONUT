@@ -1,18 +1,46 @@
 import React from "react";
+import { useEffect, useState } from "react";
 import { talkList, comment } from "./DummyLpList";
+import axios from "axios";
+import qs from "qs";
 
 function FreeTalkSinglePage({ singlePageId }) {
-  const selectTalk = talkList.filter((e) => e.id === singlePageId);
+  const url = new URL(window.location.href);
+  const talkId = url.searchParams.get("talkId");
+
+  const [selectTalk, setSectTalk] = useState({
+    id: "",
+    userId: 1,
+    title: "",
+    article: "",
+    hashtag: "",
+    createdAt: "",
+    updatedAt: "",
+  });
+
+  const getContent = (data) => {
+    setSectTalk(data);
+  };
+
+  useEffect(() => {
+    axios
+      .post(
+        "https://localhost:4000/DetailFreetalk",
+        qs.stringify({ talkId: talkId })
+      )
+      .then((res) => getContent(res.data.data))
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <div className="single-free-talk-div">
       <h3>Free Talk</h3>
       <div className="single-free-talk-script-div">
-        <div className="single-free-talk-title">{selectTalk[0].title}</div>
-        <div className="single-free-talk-writer">{selectTalk[0].writer}</div>
-        <div className="single-free-talk-date">{selectTalk[0].updateAt}</div>
-        <div className="single-free-talk-view">{selectTalk[0].view}</div>
-        <div className="single-free-talk-script">{selectTalk[0].script}</div>
+        <div className="single-free-talk-title">{selectTalk.title}</div>
+        <div className="single-free-talk-writer">{selectTalk.writer}</div>
+        <div className="single-free-talk-date">{selectTalk.updateAt}</div>
+        <div className="single-free-talk-view">{selectTalk.view}</div>
+        <div className="single-free-talk-script">{selectTalk.article}</div>
       </div>
       <div className="single-free-talk-comment-text">comment</div>
       <input type="text" placeholder="댓글을 입력해 주세요." />

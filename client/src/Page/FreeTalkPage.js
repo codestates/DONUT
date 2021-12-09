@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { comment } from "./DummyLpList";
 import axios from "axios";
+import "./FreetalkPage.css";
 
 function FreeTalkPage({ singlePageId, setSinglePageId }) {
   const [talkList, setTalkList] = useState([]);
@@ -22,7 +23,12 @@ function FreeTalkPage({ singlePageId, setSinglePageId }) {
   };
 
   const talkSinglePageRender = (e) => {
+    console.log(e);
     setSinglePageId(e);
+    console.log(singlePageId);
+    window.location.replace(
+      `https://localhost:3000/free_talk/single/?talkId=${e}`
+    );
   };
   return (
     <section>
@@ -32,14 +38,14 @@ function FreeTalkPage({ singlePageId, setSinglePageId }) {
           <div
             className="free-talk-div"
             key={e.id}
-            onClick={talkSinglePageRender(e)}
+            onClick={() => talkSinglePageRender(e.id)}
           >
             <div className="free-talk-title">{e.title}</div>
             <div className="free-talk-script">{e.article}</div>
-            <div className="free-talk-commentConut">
+            <div className="free-talk-like">
+              like
               <span>{commentCount(e.id, comment)}</span>
             </div>
-            <div className="free-talk-like">like</div>
             <div className="free-talk-date">{e.updateAt}</div>
             <div className="free-talk-view">{e.view}</div>
           </div>
