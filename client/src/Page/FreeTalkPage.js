@@ -1,8 +1,20 @@
 import React from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { talkList, comment } from "./DummyLpList";
+import { comment } from "./DummyLpList";
+import axios from "axios";
 
 function FreeTalkPage({ singlePageId, setSinglePageId }) {
+  const [talkList, setTalkList] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("https://localhost:4000/AllFreetalk")
+      .then((res) => setTalkList(talkList.concat(res.data.data)));
+  }, []);
+
+  console.log(talkList);
+
   const commentCount = (singleTalkId, commentList) => {
     let count = 0;
     commentList.forEach((e) => (e.talkId === singleTalkId ? count++ : null));
@@ -10,7 +22,6 @@ function FreeTalkPage({ singlePageId, setSinglePageId }) {
   };
 
   const talkSinglePageRender = (e) => {
-    console.log("싱글 페이지로 전환 history.push 구현");
     setSinglePageId(e);
   };
   return (
@@ -24,7 +35,7 @@ function FreeTalkPage({ singlePageId, setSinglePageId }) {
             onClick={talkSinglePageRender(e)}
           >
             <div className="free-talk-title">{e.title}</div>
-            <div className="free-talk-script">{e.script}</div>
+            <div className="free-talk-script">{e.article}</div>
             <div className="free-talk-commentConut">
               <span>{commentCount(e.id, comment)}</span>
             </div>
@@ -33,11 +44,11 @@ function FreeTalkPage({ singlePageId, setSinglePageId }) {
             <div className="free-talk-view">{e.view}</div>
           </div>
         ))}
-        <Link to="/free-talk/write">
+        <Link to="/free_talk/write">
           <button>버튼</button>
         </Link>
       </div>
-    </section >
+    </section>
   );
 }
 

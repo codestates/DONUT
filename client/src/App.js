@@ -55,7 +55,7 @@ function App() {
         <Route path="/my/my_info_Edit" element={<MyInfoEdit />}></Route>
         <Route path="/all" element={<LpListPage />}></Route>
         <Route path="/all/lp_single_page/" element={<LpSinglePage />}></Route>
-        <Route path="/free_talk/upload" element={<FreeTalkWrite />}></Route>
+        <Route path="/free_talk/write" element={<FreeTalkWrite />}></Route>
         <Route path="/post" element={<PostPage />}></Route>
         <Route exact path="/post/upload" element={<PostUploadPage />}></Route>
         <Route
@@ -63,7 +63,11 @@ function App() {
           path="/post/single_post_page"
           element={<SinglePostPage />}
         ></Route>
-        <Route exact path="/post/single_post_page/" element={<SinglePostPage />}></Route>
+        <Route
+          exact
+          path="/post/single_post_page/"
+          element={<SinglePostPage />}
+        ></Route>
         <Route
           path="/free_talk"
           element={
