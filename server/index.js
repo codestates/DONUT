@@ -6,6 +6,11 @@ const cookieParser = require("cookie-parser"); // 쿠키정보에 접근가능
 const express = require("express"); // express 사용
 const controllers = require("./controllers");
 const app = express();
+const multer = require("multer");
+const { v4: uuid } = require("uuid")
+// console.log("uuid: ", uuid())
+const mime = require("mime-types")
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false })); // 주소형식으로 들어온 요청 파싱 옵션 지정
@@ -41,6 +46,29 @@ app.get("/AllLplist", controllers.AllLplist);
 app.get("/DetailLplist", controllers.DetailLplist);
 //console.log(controllers.Kakao.getToken);
 //app.get('/Kakao', controllers.Kakao.getUserInfo);
+
+
+app.use("/uploads", express.static("uploads"))
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => cb(null, "./uploads"),
+  filename: (req, file, cb) => 
+    cb(null,`${uuid()}.${mime.extension(file.mimetype)}`),
+});
+
+const upload = multer({storage, fileFilter: (req, file, cb) => {
+    if(['image/jpeg', 'image/png'].includes(file.mimetype) ) cb(null, true);
+  else cb(new Error('invalid file type.'), false);
+  },
+  limits: {
+    fileSize: 1024 * 1024 * 5
+  }
+})
+
+app.post('/upload', upload.single("image"), (req, res) => {
+  console.log(req.file);
+  res.json(req.file)
+})
 
 const HTTPS_PORT = process.env.HTTPS_PORT || 4000;
 

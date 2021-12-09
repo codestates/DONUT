@@ -1,63 +1,78 @@
 import { faTags } from '@fortawesome/free-solid-svg-icons';
 import React, { useState } from "react"
 import './PostUploadPage.css'
-import ImageUpload from './ImageUpload'
+import axios from 'axios';
+
 
 
 function PostUploadPage() {
-	const [image, setImage] = useState([]);
-	const [loading, setLoading] = useState(false);
-	const [fileImage, setFileImage] = useState([]);
+	const defaultFileName = "이미지 파일을 업로드 해주세요.";
 	const [content, setContent] = useState("");
+	const [file, setFile] = useState(null);
+	const [imgSrc, setImgSrc] = useState(null);
+	const [fileName, setFileName] = useState(defaultFileName);
+	const [percent, setPercent] = useState(0);
 
-	const deleteFileImage = () => {
-		URL.revokeObjectURL(fileImage);
-		setFileImage("")
-	}
+	const imageSelectHandler = (e) => {
+		const imageFile = e.target.files[0]
+		setFile(imageFile);
+		setFileName(imageFile.name);
+		const fileReader = new FileReader();
+		fileReader.readAsDataURL(imageFile);
+		fileReader.onload = (e) => setImgSrc(e.target.result)
+	};
 
-	const saveFileImage = (e) => {
-		// console.log(e.target.files[0])
-		setFileImage(URL.createObjectURL(e.target.files[0]));
-
-	}
-
-	const fileUploadHandler = (e) => {
-		setImage(console.log("호잇"))
+	const onSubmit = async(e) => {
+		e.preventDefault();
+		const formData = new FormData();
+		formData.append('image', file);
+		// for(let key of formData.keys()){
+		// 	console.log(key)
+		// }
+		// formData.append('content', content)
+		try{
+			const res = await axios.post("https://localhost:4000/upload", formData, 
+			{headers: {"Content-type": "multipart/form-data"},
+			onUploadProgress: (e) => {
+				setPercent(Math.round(100 * e.loaded/e.total))
+			}
+		});
+		setTimeout(() => {
+			setPercent(0);
+			setFileName(defaultFileName);
+			setImgSrc(null)
+		}, 3000)
+			console.log({res})
+		}catch(err){
+			setPercent(0);
+			setFileName(defaultFileName);
+			setImgSrc(null)
+			console.log(err)
+		}
 	}
 
 	const contentChangeHandler = (e) => {
 		setContent(e.target.value)
 	}
 
-	const updateImage = (newImage) => {
-		setImage(newImage)
-	}
-
 
 	return (
 		<div>
-			<div className="picture-upload">
-				<div className="post-title">POST</div>
-				<div className="post-upload-container">
-					{/* DropZone */}
-
-					<ImageUpload refreshFunction={updateImage} />
-
-					{/* <div className="post-image-space">
-					{fileImage && (<img salt="sample" src={fileImage} style={{ margin: "auto"}}/>)}
+			
+			<div className="post-title">POST</div>
+			<form onSubmit={onSubmit}>
+				<img src={imgSrc} className={`image-preview ${imgSrc && "image-preview-show"}`}/>
+				{percent}
+				<div className= "file-dropper">
+					{fileName}
+					<input id="image" type="file" accept="image/*" onChange={imageSelectHandler} />
+					{/* <img src="https://cdn.discordapp.com/attachments/907148581692137515/917214337951727617/imageUp.png" alt="" style={{width: 400, height: 400}}/> */}
 				</div>
-				<label className="post-btn" for="input-file">
-					ChososeFile
-				</label> */}
-
-					<input type="file" id="input-file" placeholder="Upload an image" style={{ display: "none" }} onChange={saveFileImage}>
-					</ input>
-
-					<textarea className="post-text-area" onChange={contentChangeHandler} placeHolder="content">{content}</textarea>
-					<button className="post-btn" onClick={fileUploadHandler}>SHARE</button>
-					<button className="post-btn" onClick={deleteFileImage}>삭제</button>
-				</div>
-			</div>
+				<textarea className="post-text-area" onChange={contentChangeHandler} placeHolder="content">{content}</textarea>
+				<button type="submit" className="post-btn">SHARE</button>
+			</form>
+				
+		
 		</div>
 	);
 }
