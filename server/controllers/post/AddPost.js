@@ -6,6 +6,7 @@ module.exports = (req, res) => {
 	// 내용 작성 후 share 버튼 누르면 내용 추가
   // body에 내용이 담겨 오겠지요?
   // picture, writing 으로 db에 되어있음
+  //console.log(req)
   const authorization = isAuthorized(req);
   const {picture, writing} = req.body;
 
