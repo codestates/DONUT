@@ -19,29 +19,28 @@ app.use(
 
 // 라우터가 제대로 지정되어있어야 함 - 404에러의 주범;
 app.use(cookieParser());
-app.post('/Kakao', controllers.Kakao);
-app.post('/KakaoCallback', controllers.KakaoCallback);
+app.post("/Kakao", controllers.Kakao);
+app.post("/KakaoCallback", controllers.KakaoCallback);
 //app.patch('/UserInfo', controllers.UserInfo);
 
-app.get('/AllPost', controllers.AllPost);
-app.get('/DetailPost', controllers.DetailPost);
-app.post('/CheckCookiePost', controllers.CheckCookiePost);
-app.post('/AddPost', controllers.AddPost);
+app.get("/AllPost", controllers.AllPost);
+app.get("/DetailPost", controllers.DetailPost);
+app.post("/CheckCookiePost", controllers.CheckCookiePost);
+app.post("/AddPost", controllers.AddPost);
 //app.patch('/PostModify', controllers.PostModify);  이부분 왜 에러임? 미완인데 연결되서?
-app.delete('/DeletePost', controllers.DeletePost);
+app.delete("/DeletePost", controllers.DeletePost);
 
-app.get('/AllFreetalk', controllers.AllFreetalk);
-app.get('/DetailFreetalk', controllers.DetailFreetalk);
-app.post('/CheckCookieFreetalk', controllers.CheckCookieFreetalk);
-app.post('/AddFreetalk', controllers.AddFreetalk);
+app.get("/AllFreetalk", controllers.AllFreetalk);
+app.get("/DetailFreetalk", controllers.DetailFreetalk);
+app.post("/CheckCookieFreetalk", controllers.CheckCookieFreetalk);
+app.post("/AddFreetalk", controllers.AddFreetalk);
 //app.patch('/FreetalkModify', controllers.FreetalkModify);
-app.delete('/DeleteFreetalk', controllers.DeleteFreetalk);
+app.delete("/DeleteFreetalk", controllers.DeleteFreetalk);
 
-app.get('/AllLplist', controllers.AllLplist);
-app.get('/DetailLplist', controllers.DetailLplist);
+app.get("/AllLplist", controllers.AllLplist);
+app.get("/DetailLplist", controllers.DetailLplist);
 //console.log(controllers.Kakao.getToken);
 //app.get('/Kakao', controllers.Kakao.getUserInfo);
-
 
 const HTTPS_PORT = process.env.HTTPS_PORT || 4000;
 
@@ -52,7 +51,7 @@ if (fs.existsSync("./key.pem") && fs.existsSync("./cert.pem")) {
   const credentials = { key: privateKey, cert: certificate };
 
   server = https.createServer(credentials, app);
-  server.listen(HTTPS_PORT, () => console.log('https server running', '? 됨?'));
+  server.listen(HTTPS_PORT, () => console.log("https server running", "? 됨?"));
 } else {
   server = app.listen(HTTPS_PORT, () => console.log("http server running"));
 }
