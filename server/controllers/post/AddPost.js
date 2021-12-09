@@ -9,6 +9,7 @@ module.exports = (req, res) => {
   //console.log(req)
   const authorization = isAuthorized(req);
   const {picture, writing} = req.body;
+  console.log(picture)
 
   if(!authorization) {
     res.status(401).send({message: 'Invalid token!'});
