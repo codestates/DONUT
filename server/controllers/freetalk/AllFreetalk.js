@@ -6,7 +6,9 @@ module.exports = async (req, res) => {
   // findAll
 
   try {
-    const wholeFreetalk = await freetalk.findAll({ raw: true });
+    const wholeFreetalk = await freetalk.findAll({
+      order: [["createdAt", "DESC"]],
+    });
     res.status(200).json({ data: wholeFreetalk });
   } catch (err) {
     return res.status(501).json({ message: "서버 에러" });

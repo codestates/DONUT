@@ -7,10 +7,9 @@ const express = require("express"); // express 사용
 const controllers = require("./controllers");
 const app = express();
 const multer = require("multer");
-const { v4: uuid } = require("uuid")
+const { v4: uuid } = require("uuid");
 // console.log("uuid: ", uuid())
-const mime = require("mime-types")
-
+const mime = require("mime-types");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false })); // 주소형식으로 들어온 요청 파싱 옵션 지정
@@ -36,7 +35,7 @@ app.post("/AddPost", controllers.AddPost);
 app.delete("/DeletePost", controllers.DeletePost);
 
 app.get("/AllFreetalk", controllers.AllFreetalk);
-app.get("/DetailFreetalk", controllers.DetailFreetalk);
+app.post("/DetailFreetalk", controllers.DetailFreetalk);
 app.post("/CheckCookieFreetalk", controllers.CheckCookieFreetalk);
 app.post("/AddFreetalk", controllers.AddFreetalk);
 //app.patch('/FreetalkModify', controllers.FreetalkModify);
@@ -47,28 +46,30 @@ app.get("/DetailLplist", controllers.DetailLplist);
 //console.log(controllers.Kakao.getToken);
 //app.get('/Kakao', controllers.Kakao.getUserInfo);
 
-
-app.use("/uploads", express.static("uploads"))
+app.use("/uploads", express.static("uploads"));
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => cb(null, "./uploads"),
-  filename: (req, file, cb) => 
-    cb(null,`${uuid()}.${mime.extension(file.mimetype)}`),
+  filename: (req, file, cb) =>
+    cb(null, `${uuid()}.${mime.extension(file.mimetype)}`),
 });
 
-const upload = multer({storage, fileFilter: (req, file, cb) => {
-    if(['image/jpeg', 'image/png'].includes(file.mimetype) ) cb(null, true);
-  else cb(new Error('invalid file type.'), false);
+const upload = multer({
+  storage,
+  fileFilter: (req, file, cb) => {
+    if (["image/jpeg", "image/png"].includes(file.mimetype)) cb(null, true);
+    else cb(new Error("invalid file type."), false);
   },
   limits: {
-    fileSize: 1024 * 1024 * 5
-  }
-})
+    fileSize: 1024 * 1024 * 5,
+  },
+});
 
-app.post('/upload', upload.single("image"), (req, res) => {
+app.post("/upload", upload.single("image"), (req, res) => {
   console.log(req.file);
   res.json({data: req.file.path})
 })
+
 
 
 

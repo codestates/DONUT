@@ -23,7 +23,7 @@ module.exports = async (req, res) => {
     const { id, nickname, email, image, manager, createdAt, updatedAt } =
       userInfo;
     const userId = id;
-    freetalk.create({ userId, title, article });
+    freetalk.create({ userId, nickname, title, article });
 
     res.status(201).send({ message: "Freetalk created!" });
   }
