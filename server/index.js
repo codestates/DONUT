@@ -66,8 +66,8 @@ const upload = multer({
 });
 
 app.post("/upload", upload.single("image"), (req, res) => {
-  console.log(req.file);
-  res.json({data: req.file.path})
+  //console.log(req.file);
+  res.json({ data: req.file.path})
 })
 
 

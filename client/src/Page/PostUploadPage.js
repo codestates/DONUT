@@ -1,12 +1,14 @@
 import React, { useState } from "react"
 import './PostUploadPage.css'
 import axios from 'axios';
+import qs from "qs";
+axios.defaults.withCredentials = true;
 
 
 function PostUploadPage() {
 	const defaultFileName = "이미지 파일을 업로드 해주세요.";
 	const [file, setFile] = useState(null);
-	const [imgSrc, setImgSrc] = useState(null);
+	const [imgSrc, setImgSrc] = useState([]);
 	const [fileName, setFileName] = useState(defaultFileName);
 	const [allContent, setAllContent] = useState({ 
 		picture: "",
@@ -28,8 +30,14 @@ function PostUploadPage() {
 
 	const postToServer = async (data) => {
 		setAllContent({...allContent, picture: data})
-		//console.log(allContent)
-		await axios.post("http://localhost:4000/AddPost", allContent,
+		
+		// const content = {picture: allContent.picture,
+		// 	writing: allContent.writing}
+
+			console.log(allContent)
+		await axios.post("https://localhost:4000/AddPost", 
+		qs.stringify({picture: allContent.picture,
+			      writing: allContent.writing}),
 		{
 			headers: {
 			  "Content-type": "application/x-www-form-urlencoded;charset=utf-8",
@@ -37,6 +45,7 @@ function PostUploadPage() {
 		})
 		.then(res => console.log(res))
 		.catch(err => console.log(err))
+		// window.location.replace("https://localhost:3000/Post")
 	}
 
 	const onSubmit = async(e) => {
@@ -45,13 +54,13 @@ function PostUploadPage() {
 		const content = {picture: allContent.picture,
 				 writing: allContent.writing}
 
-		// if( !content.picture || !content.writing){
-		// 	alert('이미지를 업로드 하거나 내용을 입력하세요')
-		// }
+		if( !file || !imgSrc){
+			alert('이미지를 업로드 하거나 내용을 입력하세요')
+		}
 
 		const formData = new FormData();
 		formData.append('image', file);
-
+		
 		try{
 			const res = await axios.post("https://localhost:4000/upload", formData, 
 			{headers: {
@@ -59,7 +68,7 @@ function PostUploadPage() {
 			})
 			.then(res => postToServer(res.data.data))
 			.catch(err => console.log(err))
-		//console.log(allContent)
+
 
 		
 
@@ -74,7 +83,7 @@ function PostUploadPage() {
 			setImgSrc(null)
 			console.log(err)
 		}
-		// window.location.replace("https://localhost:3000/Post")
+		
 	}
 
 
