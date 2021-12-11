@@ -27,6 +27,8 @@ function App() {
   const [singlePageId, setSinglePageId] = useState(1);
   const [isLogin, setIsLogin] = useState(false);
 
+  console.log(isLogin);
+
   // axios
   //   .get("https://localhost:4000/")
   //   .then(function (res) {
@@ -39,7 +41,7 @@ function App() {
 
   return (
     <div>
-      <Topbar></Topbar>
+      <Topbar isLogin={isLogin} setIsLogin={setIsLogin}></Topbar>
       <hr></hr>
       <Routes>
         <Route exact path="/" element={<RenderPage />}></Route>
