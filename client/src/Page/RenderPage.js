@@ -26,6 +26,10 @@ function RenderPage({ isLogin, setIsLogin }) {
     return null;
   }
 
+  const loginHandler = (e) => {
+    setIsLogin(e);
+  };
+
   // console.log("렌더페이지", isLogin);
   const url = new URL(window.location.href);
   const authorizationCode = url.searchParams.get("code");
@@ -43,7 +47,7 @@ function RenderPage({ isLogin, setIsLogin }) {
         }
       )
       .then((res) => {
-        console.log(res);
+        loginHandler(res.data.message);
       })
       .catch((err) => console.log(err));
   };
