@@ -6,7 +6,7 @@ import "./PostPage.css";
 import axios from 'axios';
 
 
-function PostPage() {
+function PostPage({ singlePageId, setSinglePageId }) {
 	const [postList, setPostList] = useState([]);
 
 	useEffect(() => {
@@ -15,8 +15,13 @@ function PostPage() {
 	}, []);
 
 	
-	const MoveToSinglePost = () => {
-		
+	const MoveToSinglePost = (e) => {
+		console.log(e)
+		setSinglePageId(e)
+		console.log(singlePageId)
+		window.location.replace(
+			`https://localhost:3000/AllPost/single_post_page/?postId=${e}`
+		)
 	    }
 
   return (
@@ -24,10 +29,10 @@ function PostPage() {
 		
 	    	<span className="post-title">POST</span>
 		    <Link to="./upload">
-	    		<span className="camera-icon"><FontAwesomeIcon icon={faCamera} onClick={MoveToSinglePost} size="2x" /></span>
+	    		<span className="camera-icon"><FontAwesomeIcon icon={faCamera}  size="2x" /></span>
 		    </Link>
 		    <div className="posts">
-			{postList.map((el) => (<div className="post-image"><img src={`https://localhost:4000/${el.picture}`} alt=""/></div>))}
+			{postList.map((e) => (<div className="post-image"><img src={`https://localhost:4000/${e.picture}`} onClick={() => MoveToSinglePost(e.id)} alt=""/></div>))}
 		    </div>	
 		
 	</div>
