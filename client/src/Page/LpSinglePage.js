@@ -1,14 +1,13 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import AddPriceModal from './AddPriceModal';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as regularHeart } from '@fortawesome/free-regular-svg-icons'
 import { faHeart as solidHeart } from '@fortawesome/free-solid-svg-icons';
 import { useParams } from "react-router-dom";
-import LpInfo from "./DummyLpList";
-import LpPriceAddTable from "./DummyRecentPrice"
 import RecentPrice from "./DummyRecentPrice"
+import axios from 'axios';
 
-function LpSinglePage(props) {
+function LpSinglePage({lpAlbum}) {
   const [show, setShow] = useState(false)
   const [likeBtn, setLikeBtn] = useState(false)
   const [likeNum, setLikeNum] = useState(0)
@@ -31,6 +30,15 @@ function LpSinglePage(props) {
   const handlePriceAddClick = () => {
     setTableContent([, ...tableContent])
   }
+
+  useEffect(() => {
+
+    let body = {
+  
+    }
+    axios.post("https:.//localhost:4000/LikeLplist", body)
+    .then(res => console.log(res))
+  },[])
 
   return (
 
