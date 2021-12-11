@@ -26,6 +26,7 @@ app.use(cookieParser());
 app.post("/Kakao", controllers.Kakao);
 app.post("/KakaoCallback", controllers.KakaoCallback);
 //app.patch('/UserInfo', controllers.UserInfo);
+app.post("/SignOut", controllers.SignOut);
 
 app.get("/AllPost", controllers.AllPost);
 app.get("/DetailPost", controllers.DetailPost);
@@ -45,6 +46,9 @@ app.get("/AllLplist", controllers.AllLplist);
 app.get("/DetailLplist", controllers.DetailLplist);
 //console.log(controllers.Kakao.getToken);
 //app.get('/Kakao', controllers.Kakao.getUserInfo);
+
+app.post("/AddFreetalkComment", controllers.AddFreetalkComment);
+app.post("/AddPostComment", controllers.AddPostComment);
 
 app.use("/uploads", express.static("uploads"));
 
