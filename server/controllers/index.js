@@ -2,6 +2,7 @@ module.exports = {
   Kakao: require('./user/Kakao'),
   KakaoCallback: require('./user/KakaoCallback'),
   UserInfo: require('./user/UserInfo'),
+  SignOut: require('./user/SignOut'),
   AllPost: require('./post/AllPost'),
   DetailPost: require('./post/DetailPost'),
   CheckCookiePost: require('./post/CheckCookiePost'),
@@ -15,5 +16,7 @@ module.exports = {
   FreetalkModify: require('./freetalk/FreetalkModify'),
   DeleteFreetalk: require('./freetalk/DeleteFreetalk'),
   AllLplist: require('./lplist/AllLplist'),
-  DetailLplist: require('./lplist/DetailLplist')
-}; 
+  DetailLplist: require('./lplist/DetailLplist'),
+  AddFreetalkComment: require('./comment/AddFreetalkComment'),
+  AddPostComment: require('./comment/AddPostComment')
+};
