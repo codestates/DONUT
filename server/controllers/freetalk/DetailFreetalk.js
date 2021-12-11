@@ -37,12 +37,13 @@ module.exports = async (req, res) => {
     }
     // console.log(comments);
 
-    partFreetalk.user = nickname;
-    partFreetalk.Image = image;
+    partFreetalk.dataValues.user = nickname;
+    partFreetalk.dataValues.Image = image;
+    console.log(partFreetalk.user);
     res.status(200).json({
       data: partFreetalk,
-      message: "found success!",
       comments: comments,
+      message: "found success!",
     });
   }
 };
