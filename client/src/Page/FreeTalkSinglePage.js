@@ -20,6 +20,7 @@ function FreeTalkSinglePage({ singlePageId }) {
   });
 
   const getContent = (data) => {
+    console.log(data);
     setSectTalk(data.data);
     setCommentList(commentList.concat(data.comments));
   };
@@ -55,7 +56,8 @@ function FreeTalkSinglePage({ singlePageId }) {
       <h3>Free Talk</h3>
       <div className="single-free-talk-script-div">
         <div className="single-free-talk-title">{selectTalk.title}</div>
-        <div className="single-free-talk-writer">{selectTalk.writer}</div>
+        <img src={selectTalk.Image} alt="freetalkUserImg" />
+        <div className="single-free-talk-writer">{selectTalk.user}</div>
         <div className="single-free-talk-date">{selectTalk.updateAt}</div>
         <div className="single-free-talk-view">{selectTalk.view}</div>
         <div className="single-free-talk-script">{selectTalk.article}</div>
