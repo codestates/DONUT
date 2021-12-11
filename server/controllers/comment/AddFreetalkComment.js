@@ -1,16 +1,25 @@
 require("dotenv").config();
-const { user, freetalk, comment } = require('../../models');
-const { isAuthorized } = require('../tokenfunction');
+const { user, freetalk, comment } = require("../../models");
+const { isAuthorized } = require("../tokenfunction");
 
-module.exports = (req, res) => {
+module.exports = async (req, res) => {
   // console.log(req.body);
   const authorization = isAuthorized(req);
-
-  if(!authorization) {
-    res.status(401).send({message: 'Invalid token!'});
+  // console.log(authorization);
+  if (!authorization) {
+    res.status(401).send({ message: "Invalid token!" });
   } else {
-    comment.create({userId: req.body.userId, freetalkId: req.body.freetalkId, content: req.body.content});
-    
-    res.status(201).json({message: 'Create freetalkcomment'});
+    const userInfo = await user.findOne({
+      where: { email: authorization.email, nickname: authorization.nickname },
+    });
+    const { id, nickname, email, image, manager, createdAt, updatedAt } =
+      userInfo;
+    const userId = id;
+    comment.create({
+      userId,
+      freetalkId: req.body.talkId,
+      content: req.body.comment,
+    });
+    res.status(201).json({ message: "Create freetalkcomment" });
   }
 };
