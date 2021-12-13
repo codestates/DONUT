@@ -15,11 +15,19 @@ module.exports = async (req, res) => {
     const { id, nickname, email, image, manager, createdAt, updatedAt } =
       userInfo;
     const userId = id;
-    comment.create({
-      userId,
-      freetalkId: req.body.talkId,
-      content: req.body.comment,
-    });
+    if (req.body.talkId) {
+      comment.create({
+        userId,
+        freetalkId: req.body.talkId,
+        content: req.body.comment,
+      });
+    } else if (req.body.postId) {
+      comment.create({
+        userId,
+        postId: req.body.postId,
+        content: req.body.comment,
+      });
+    }
     res.status(201).json({ message: "Create freetalkcomment" });
   }
 };

@@ -25,22 +25,22 @@ app.use(
 app.use(cookieParser());
 app.post("/Kakao", controllers.Kakao);
 app.post("/KakaoCallback", controllers.KakaoCallback);
-app.patch('/UserInfo', controllers.UserInfo);
+app.patch("/UserInfo", controllers.UserInfo);
 app.post("/SignOut", controllers.SignOut);
 app.get("/AuthLogin", controllers.AuthLogin);
 
 app.get("/AllPost", controllers.AllPost);
-app.get("/DetailPost", controllers.DetailPost);
+app.post("/DetailPost", controllers.DetailPost);
 app.post("/CheckCookiePost", controllers.CheckCookiePost);
 app.post("/AddPost", controllers.AddPost);
-app.patch('/PostModify', controllers.PostModify);
+app.patch("/PostModify", controllers.PostModify);
 app.delete("/DeletePost", controllers.DeletePost);
 
 app.get("/AllFreetalk", controllers.AllFreetalk);
 app.post("/DetailFreetalk", controllers.DetailFreetalk);
 app.post("/CheckCookieFreetalk", controllers.CheckCookieFreetalk);
 app.post("/AddFreetalk", controllers.AddFreetalk);
-app.patch('/FreetalkModify', controllers.FreetalkModify);
+app.patch("/FreetalkModify", controllers.FreetalkModify);
 app.delete("/DeleteFreetalk", controllers.DeleteFreetalk);
 
 app.get("/AllLplist", controllers.AllLplist);
@@ -72,11 +72,8 @@ const upload = multer({
 
 app.post("/upload", upload.single("image"), (req, res) => {
   //console.log(req.file);
-  res.json({ data: req.file.path})
-})
-
-
-
+  res.json({ data: req.file.path });
+});
 
 const HTTPS_PORT = process.env.HTTPS_PORT || 4000;
 
