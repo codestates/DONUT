@@ -5,7 +5,7 @@ import axios from "axios";
 import qs from "qs";
 import { comment } from "./DummyLpList";
 
-function SinglePostPage({ singlePostPageId }) {
+function SinglePostPage() {
   const url = new URL(window.location.href);
   const postId = url.searchParams.get("postId");
 

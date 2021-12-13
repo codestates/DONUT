@@ -24,9 +24,7 @@ import FreeTalkWrite from "./Page/FreeTalkWrite";
 import AdminPage from "./Page/AdminPage";
 
 function App() {
-  const [singlePageId, setSinglePageId] = useState("");
   const [isLogin, setIsLogin] = useState(false);
-  const [singlePostPageId, setSinglePostPageId] = useState("");
 
   useEffect(() => {
     axios
@@ -57,37 +55,16 @@ function App() {
         <Route path="/all" element={<LpListPage />}></Route>
         <Route path="/all/lp_single_page/" element={<LpSinglePage />}></Route>
         <Route path="/free_talk/write" element={<FreeTalkWrite />}></Route>
-        <Route
-          path="/post"
-          element={
-            <PostPage
-              singlePostPageId={singlePostPageId}
-              setSinglePostPageId={setSinglePostPageId}
-            />
-          }
-        ></Route>
+        <Route path="/post" element={<PostPage />}></Route>
         <Route exact path="/post/upload" element={<PostUploadPage />}></Route>
         <Route
           path="/post/single_post_page"
-          element={<SinglePostPage singlePostPageId={singlePostPageId} />}
+          element={<SinglePostPage />}
         ></Route>
-        <Route
-          path="/free_talk"
-          element={
-            <FreeTalkPage
-              singlePageId={singlePageId}
-              setSinglePageId={setSinglePageId}
-            />
-          }
-        ></Route>
+        <Route path="/free_talk" element={<FreeTalkPage />}></Route>
         <Route
           path="/free_talk/single"
-          element={
-            <FreeTalkSinglePage
-              singlePageId={singlePageId}
-              setSinglePageId={setSinglePageId}
-            />
-          }
+          element={<FreeTalkSinglePage />}
         ></Route>
         <Route exact path="/administer" element={<AdminPage />}></Route>
       </Routes>

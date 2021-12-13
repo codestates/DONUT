@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./PostPage.css";
 import axios from "axios";
 
-function PostPage({ singlePostPageId, setSinglePostPageId }) {
+function PostPage() {
   const [postList, setPostList] = useState([]);
 
   useEffect(() => {
@@ -15,7 +15,6 @@ function PostPage({ singlePostPageId, setSinglePostPageId }) {
   }, []);
 
   const MoveToSinglePost = (e) => {
-    setSinglePostPageId(e);
     window.location.replace(
       `https://localhost:3000/post/single_post_page/?postId=${e}`
     );
