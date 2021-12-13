@@ -1,18 +1,34 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import AddPriceModal from './AddPriceModal';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as regularHeart } from '@fortawesome/free-regular-svg-icons'
 import { faHeart as solidHeart } from '@fortawesome/free-solid-svg-icons';
 import { useParams } from "react-router-dom";
-import LpInfo from "./DummyLpList";
-import LpPriceAddTable from "./DummyRecentPrice"
 import RecentPrice from "./DummyRecentPrice"
+import axios from 'axios';
+import LpLike from "./LpLike"
+import qs from "qs";
 
-function LpSinglePage(props) {
+function LpSinglePage({lpAlbum}) {
+  const url = new URL(window.location.href);
+  const lpListId = url.searchParams.get("lpListId");
   const [show, setShow] = useState(false)
   const [likeBtn, setLikeBtn] = useState(false)
   const [likeNum, setLikeNum] = useState(0)
   const [tableContent, setTableContent] = useState([RecentPrice])
+  const [selectLp, setSelectLp] = useState({
+    id: "",
+    userId: "",
+    createdAt: "",
+    updatedAt: ""
+  })
+
+  useEffect(() => {
+    axios.post("https://localhost:4000/DetailLplist",
+    qs.stringify({ lpListId: lpListId}))
+    .then((res) => console.log(res.data))
+    .catch((err) => console.log(err))
+  })
   
 
 
@@ -32,6 +48,15 @@ function LpSinglePage(props) {
     setTableContent([, ...tableContent])
   }
 
+  // useEffect(() => {
+
+  //   let body = {
+  
+  //   }
+  //   axios.post("https://localhost:4000/LikeLplist", body)
+  //   .then(res => console.log(res))
+  // },[])
+
   return (
 
     <>
@@ -40,6 +65,12 @@ function LpSinglePage(props) {
       <div>태그들</div>
       <span>가수 이름</span>
       <FontAwesomeIcon like={handleLike} onClick={handledislike} icon={likeBtn? solidHeart : regularHeart} />
+      {/* 좋아요 테스트 */}
+      <div style={{display: 'flex', justifyContent: 'flex-end'}}>
+        <LpLike LpShow={show} lpListId={lpListId}/>
+
+      {/* -------------------- */}
+      </div>
       <span> 0 likes</span>
       <div>
       <span>타이틀</span>

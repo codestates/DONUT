@@ -45,8 +45,16 @@ app.delete("/DeleteFreetalk", controllers.DeleteFreetalk);
 
 app.get("/AllLplist", controllers.AllLplist);
 app.get("/DetailLplist", controllers.DetailLplist);
+
+app.post("/LikeLplist", controllers.LikeLplist);
+app.post("/AddLpPrice", controllers.AddLpPrice);
+
+//console.log(controllers.Kakao.getToken);
+//app.get('/Kakao', controllers.Kakao.getUserInfo);
+
 app.post("/AddLplist", controllers.AddLplist);
 app.post("/AddRecentPrice", controllers.AddRecentPrice);
+
 
 app.post("/AddFreetalkComment", controllers.AddFreetalkComment);
 app.post("/AddPostComment", controllers.AddPostComment);

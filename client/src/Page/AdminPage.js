@@ -1,11 +1,23 @@
+import axios from 'axios';
 import React from "react";
 import { useState } from "react";
+import qs from "qs";
+axios.defaults.withCredentials = true;
 
 function AdminPage() {
   let [inputLpInfo, setInputLpinfo] = useState();
-  let [inputLpimg, setinputLpimg] = useState();
-  const [lpGenre, setLpGenre] = useState("KOREAN");
-  const [result, setResult] = useState([]);
+  const [inputLpimg, setinputLpimg] = useState(null);
+  const [imgSrc, setImgSrc] = useState([])
+  const [fileName, setFileName] = useState("이미지 업로드 하세요")
+  const [result, setResult] = useState({
+    genre: "KOREAN",
+    artist: "",
+    albumTitle: "",
+    sellingPrice: "",
+    image: "",
+  });
+
+  // const {genre, artist, albumTitle, sellingPrice, image} = req.body;
 
   const genre = [
     "KOREAN",
@@ -16,46 +28,88 @@ function AdminPage() {
     "JAPANESE",
   ];
 
-  const handleInputLpInfo = (e) => {
-    setInputLpinfo(e.target.value);
-  };
+  // const handleInputLpInfo = (e) => {
+  //   setInputLpinfo(e.target.value);
+  // };
 
   const handleInputLpimg = (e) => {
-    setinputLpimg(e.target.value);
+    const imageFile = e.target.files[0]
+    setinputLpimg(imageFile);
+    setFileName(imageFile.name);
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(imageFile);
+    fileReader.onload = (e) => setImgSrc(e.target.result)
+    // setinputLpimg(e.target.value);
   };
 
-  const handleInputLpGenre = (e) => {
-    setLpGenre(e.target.value);
-  };
+  // const handleInputLpGenre = (e) => {
+  //   setLpGenre(e.target.value);
+  // };
 
-  const lpInputBtnOn = () => {
-    if (inputLpimg && inputLpInfo) {
-      console.log("돌아간다");
-      // console.log(inputLpimg, inputLpInfo);
-      let infoArr = [];
-      inputLpInfo = inputLpInfo.split("stringend");
-      inputLpimg = inputLpimg.split("stringend");
+  const handleChangeValue = (key) => (e) => {
+    setResult({...result, [key]: e.target.value})
+  }
 
-      inputLpInfo.forEach((e, idx) => {
-        let lpInfoObj = {};
-        let eleArr = e.split(" - ");
-        if (e.length) {
-          lpInfoObj.genre = lpGenre;
-          lpInfoObj.artist = eleArr[0];
-          lpInfoObj.albumName = eleArr[1];
-          lpInfoObj.image = inputLpimg[idx];
-          infoArr.push(lpInfoObj);
-        }
-      });
-      setResult(infoArr);
-    } else {
-      alert("내용을 입력하세요");
+  // const lpInputBtnOn = () => {
+  //   if (inputLpimg && inputLpInfo) {
+  //     console.log("돌아간다");
+  //     // console.log(inputLpimg, inputLpInfo);
+  //     let infoArr = [];
+  //     inputLpInfo = inputLpInfo.split("stringend");
+  //     inputLpimg = inputLpimg.split("stringend");
+
+  //     inputLpInfo.forEach((e, idx) => {
+  //       let lpInfoObj = {};
+  //       let eleArr = e.split(" - ");
+  //       if (e.length) {
+  //         lpInfoObj.genre = lpGenre;
+  //         lpInfoObj.artist = eleArr[0];
+  //         lpInfoObj.albumName = eleArr[1];
+  //         lpInfoObj.image = inputLpimg[idx];
+  //         infoArr.push(lpInfoObj);
+  //       }
+  //     });
+  //     setResult(infoArr);
+  //   } else {
+  //     alert("내용을 입력하세요");
+  //   }
+  // };
+
+  const ImgSubmit = async(e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('image', inputLpimg)
+
+    try {
+      const res = await axios.post("https://localhost:4000/upload", formData,
+      { headers: {
+          "Content-type": "multipart/form-data"
+      }})
+      .then(res => sendIfoDb(res.data.data))
+    }catch (err){
+      alert("실패")
     }
-  };
+  } 
 
-  const sendIfoDb = () => {
-    console.log("작동", result);
-    //!result 배열의 길이만큼 post로 db 내보내기.
+  const sendIfoDb = async(data) => {
+    // console.log("작동", result);
+    setResult({...result, image: data})
+    console.log(result)
+    await axios.post("https://localhost:4000/AddLplist",
+    qs.stringify({    
+    genre: result.genre,
+    artist: result.artist,
+    albumTitle: result.albumTitle,
+    sellingPrice: result.sellingPrice,
+    image: result.image}),
+    {
+			headers: {
+			  "Content-type": "application/x-www-form-urlencoded;charset=utf-8",
+			},
+		})
+		.then(res => console.log(res))
+		.catch(err => console.log(err))
+  
     // result.forEach((e) => {
     //   axios
     //     .post("https://localhost:4000/", { e })
@@ -79,15 +133,9 @@ function AdminPage() {
         </a>
       </div>
       <pre />
-      <select className="genreUl" onChange={handleInputLpGenre}>
-        {genre.map((e, index) => (
-          <option value={e} key={index}>
-            {e}
-          </option>
-        ))}
-      </select>
+      
       <div>
-        <div>
+        {/* <div>
           <div>let arr = document.getElementsByClassName("c333333");</div>
           <div>let infoArrStr= "";</div>
           <div>
@@ -95,8 +143,8 @@ function AdminPage() {
             "stringend") );
           </div>
           <div>copy(infoArrStr)</div>
-        </div>
-        <input
+        </div> */}
+        {/* <input
           type="text"
           onChange={handleInputLpInfo}
           placeholder="상세 정보 입력"
@@ -108,15 +156,38 @@ function AdminPage() {
             arr2.forEach((e) => (imgArrStr += e.currentSrc + "stringend"));
           </div>
           <div>copy(imgArrStr)</div>
+        </div> */}
+        <form onSubmit={ImgSubmit}>
+            <select className="genreUl" onChange={handleChangeValue("genre")}>
+            {genre.map((e, index) => (
+              <option value={e} key={index}>
+                {e}
+              </option>
+            ))}
+            </select>
+            <div>
+              <input type="text" placeholder="가수" onChange = {handleChangeValue('artist')} />
+            </div>
+            <div>
+              <input type="text" placeholder="앨범" onChange = {handleChangeValue('albumTitle')} />
+            </div>
+            <div>
+              <input type="text" placeholder="판매가" onChange = {handleChangeValue('sellingPrice')} />
+            </div>
+
+            <input
+              type="file"
+              accpet="image/*"
+              onChange={handleInputLpimg}
+              placeholder="이미지 입력"
+            ></input>
+            <img src={imgSrc} className={`image-preview ${imgSrc && "image-preview-show"}`}/>
+            {/* <button type="submit">이미지 생성</button> */}
+          {/* <button onClick={lpInputBtnOn} >변환</button> */}
+          
+          <button type="submit">db 보내기</button>
+          </form>
         </div>
-        <input
-          type="text"
-          onChange={handleInputLpimg}
-          placeholder="이미지 입력"
-        ></input>
-      </div>
-      <button onClick={lpInputBtnOn}>변환</button>
-      <button onClick={sendIfoDb}>db 내보내기</button>
     </div>
   );
 }
