@@ -27,6 +27,7 @@ function App() {
   const [singlePageId, setSinglePageId] = useState("");
   const [isLogin, setIsLogin] = useState(false);
   const [singlePostPageId, setSinglePostPageId] = useState("");
+  const [singleLpPageId, setSingleLpPageId] = useState("")
 
   useEffect(() => {
     axios
@@ -55,7 +56,10 @@ function App() {
         <Route path="/my" element={<MyInfoPage />}></Route>
         <Route path="/my/my_info_Edit" element={<MyInfoEdit />}></Route>
         <Route path="/all" element={<LpListPage />}></Route>
-        <Route path="/all/lp_single_page/" element={<LpSinglePage />}></Route>
+        <Route path="/all/lp_single_page/" 
+        element={<LpSinglePage 
+          singleLpPageId={singleLpPageId} 
+          setsingleLpPageId={setSingleLpPageId} />}></Route>
         <Route path="/free_talk/write" element={<FreeTalkWrite />}></Route>
         <Route
           path="/post"
