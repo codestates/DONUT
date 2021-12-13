@@ -1,13 +1,18 @@
+import axios from 'axios';
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { LpInfo } from "./DummyLpList";
 import "./LpListPage.css";
-import AlbumsToRender from "./AlbumsToRender"
 
-function LpListPage() {
+function LpListPage({ singlePageId, setSinglePageId}) {
   const [lpAlbum, setLpAlbum] = useState(LpInfo);
   const [albumShow, setAlbumShow] = useState([]);
   const [next, setNext] = useState(3);
+
+  useEffect(() => {
+    axios.get("https://localhost:4000/AllLplist")
+    .then((res) => setLpAlbum(res.data.data))
+  },[])
 
   const albumsPerPage = 3
   let arrayForHoldingPosts = [];
@@ -27,6 +32,15 @@ function LpListPage() {
     setNext(next + albumsPerPage);
   }
 
+  const lpSinglePageRender = (e) => {
+    console.log(e)
+    setSinglePageId(e);
+    console.log(singlePageId)
+    // window.location.replace(
+    //   `https://localhost:3000/all/lp_single_page/?lpListId=${e}`
+    // )
+  }
+
   return (
     <div>
       <div id="genre-categories">
@@ -39,12 +53,11 @@ function LpListPage() {
         <span className="genre-category">JAPANESE</span>
       </div>
       {console.log(lpAlbum)}
-      <Link to="./lp_single_page">
-        <AlbumsToRender albumsToRender={albumShow} lpAlbum={lpAlbum}/>
-        {/* <div className="album-wrapper">
+      {/* <Link to="./lp_single_page"> */}
+        <div className="album-wrapper">
           {lpAlbum.map((el) => (
             <div className="album-list">
-              <img calssName="album-image" src={el.image} alt={el.albumTitle} />
+              <img calssName="album-image" onClick={() => lpSinglePageRender(el.id)} src={el.image} alt={el.albumTitle} />
               <div className="album-articles">
                 <div className="album-tag">{el.TagName}</div>
                 <div className="artist">{el.artist}</div>
@@ -52,8 +65,8 @@ function LpListPage() {
               </div>
             </div>
           ))}
-        </div> */}
-      </Link>
+        </div>
+      {/* </Link> */}
 
       <button onClick={onLoadMore} className="load-more-button">More</button>
     </div>

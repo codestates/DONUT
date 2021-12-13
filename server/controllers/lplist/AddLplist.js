@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { lplist, user } = require('../../models');
+const { lpList, user } = require('../../models');
 const { isAuthorized } = require('../tokenfunction');
 
 module.exports = async (req, res) => {
@@ -8,20 +8,23 @@ module.exports = async (req, res) => {
   // user의 manager가 true인 사람만 등록이 가능함
 
   // body에 담겨오는 정보들
+ 
+  
   const {genre, artist, albumTitle, sellingPrice, image} = req.body;
+  console.log(genre)
 
   // 토큰확인
   const authorization = isAuthorized(req);
-  
+  //console.log(authorization)
   //유저찾기
-  const findUser = await user.findOne({where: {id: id, nickName: nickname}});
+  const findUser = await user.findOne({where: {email: authorization.email, nickName: authorization.nickname}});
 
   if(!authorization) {
     res.status(401).send({message: 'Invalid token'});
   } else {
     // findUser의 manger권한이 true(1)이면 등록가능
-    if(findUser.manager === true) {
-      lplist.create({genre: genre, artist: artist, albumTitle: albumTitle, sellingPrice: sellingPrice, image: image});
+    if(findUser.manager) {
+      lpList.create({ genre, artist, albumTitle, sellingPrice, image});
 
       res.status(201).send({message: 'created success'});
     } else {
