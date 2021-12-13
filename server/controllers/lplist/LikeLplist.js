@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { lplist, user } = require('../../models');
+const { lpList, user } = require('../../models');
 const { isAuthorized } = require('../tokenfunction');
 
 module.exports = async (req, res) => {
@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
   const authorization = isAuthorized(req);
   
   //유저찾기
-  const findUser = await user.findOne({where: {id: id, nickName: nickname}});
+  const findUser = await user.findOne({where: {email: authorization.email, nickName: authorization.nickname}});
 
   if(!authorization) {
     res.status(401).send({message: 'Invalid token'});

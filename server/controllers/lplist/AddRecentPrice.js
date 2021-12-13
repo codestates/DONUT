@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { lplist, recentprice, user } = require('../../models');
+const { lplist, recentPrice, user } = require('../../models');
 const { isAuthorized } = require('../tokenfunction');
 
 module.exports = async (req, res) => {
@@ -25,7 +25,7 @@ module.exports = async (req, res) => {
     res.status(401).send({message: 'Invalid token'});
   } else {
     // 토큰이 확인되면, 등록!
-    recentprice.create({userId: userId, lpListId: lpId, price: req.body.price, date: req.body.date});
+    recentPrice.create({userId: userId, lpListId: lpId, price: req.body.price, date: req.body.date});
 
     res.status(201).send({message: 'Success add price!'});
   }

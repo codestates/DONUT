@@ -1,8 +1,8 @@
 require('dotenv').config();
-const { lplist } = require('../../models');
+const { lpList } = require('../../models');
 
 module.exports = async (req, res) => {
-  const wholeLplist = await lplist.findAll();
+  const wholeLplist = await lpList.findAll();
 
   res.status(200).json({data: wholeLplist, message: 'whole lplist!'});
 };

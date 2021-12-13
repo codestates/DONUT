@@ -1,10 +1,9 @@
-const LikeLplist = require('./lplist/LikeLplist');
-
 module.exports = {
   Kakao: require('./user/Kakao'),
   KakaoCallback: require('./user/KakaoCallback'),
   UserInfo: require('./user/UserInfo'),
   SignOut: require('./user/SignOut'),
+  Withdrawal: require('./user/Withdrawal'),
   AllPost: require('./post/AllPost'),
   DetailPost: require('./post/DetailPost'),
   CheckCookiePost: require('./post/CheckCookiePost'),
@@ -23,10 +22,9 @@ module.exports = {
   AddPostComment: require('./comment/AddPostComment'),
 
   LikeLplist: require('./lplist/LikeLplist'),
-  AddLpPrice: require('./lplist/AddLpPrice')
+  AddLpPrice: require('./lplist/AddLpPrice'),
 
   AddLplist: require('./lplist/AddLplist'),
   AddRecentPrice: require('./lplist/AddRecentPrice'),
   AuthLogin: require('./user/AuthLogin')
-
 };
