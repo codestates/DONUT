@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faSearch } from "@fortawesome/free-solid-svg-icons";
@@ -29,15 +29,15 @@ function App() {
 
   console.log(isLogin);
 
-  // axios
-  //   .get("https://localhost:4000/")
-  //   .then(function (res) {
-  //     console.log(res);
-  //     // cookie에 "accesstoken" 존재 여부를 확인한 후 로그인 여부 판단.
-  //   })
-  //   .catch(function (error) {
-  //     console.log(error);
-  //   });
+  useEffect(() => {
+    axios
+      .get("https://localhost:4000/AuthLogin")
+      .then(
+        (res) => setIsLogin(res)
+        // cookie에 "accesstoken" 존재 여부를 확인한 후 로그인 여부 판단.
+      )
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <div>
