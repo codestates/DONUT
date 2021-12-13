@@ -5,7 +5,7 @@ import axios from "axios";
 import qs from "qs";
 import { comment } from "./DummyLpList";
 
-function SinglePostPage({ singlePostPageId }) {
+function SinglePostPage() {
   const url = new URL(window.location.href);
   const postId = url.searchParams.get("postId");
 
@@ -20,7 +20,10 @@ function SinglePostPage({ singlePostPageId }) {
   });
 
   const getContent = (data) => {
-    setSelectPost(data);
+    console.log(data);
+    setSelectPost(data.data);
+    setCommentList(commentList.concat(data.data.comments));
+    console.log(commentList);
   };
 
   const submitComment = async () => {
@@ -45,7 +48,7 @@ function SinglePostPage({ singlePostPageId }) {
         "https://localhost:4000/DetailPost",
         qs.stringify({ postId: postId })
       )
-      .then((res) => getContent(res.data.data))
+      .then((res) => getContent(res.data))
       .catch((err) => console.log(err));
   }, []);
 
@@ -67,11 +70,11 @@ function SinglePostPage({ singlePostPageId }) {
       />
       <button onClick={submitComment}>share</button>
       <div className="single-post-comment-div">
-        {comment.map((e) =>
-          e.postId === singlePostPageId ? (
+        {commentList.map((e) =>
+          e ? (
             <div className="single-post-comment-single-div" key={e.id}>
-              <div className="single-post-comment-writer">{e.writer}</div>
-              <div classNmae="single-post-comment-script">{e.script}</div>
+              <div className="single-post-comment-writer">{e.nickname}</div>
+              <div classNmae="single-post-comment-script">{e.content}</div>
             </div>
           ) : null
         )}

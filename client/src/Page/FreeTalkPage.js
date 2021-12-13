@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import "./FreetalkPage.css";
 
-function FreeTalkPage({ singlePageId, setSinglePageId }) {
+function FreeTalkPage() {
   const [talkList, setTalkList] = useState([]);
   const [comment, setComment] = useState([]);
   const talkListHandler = (res) => {
@@ -23,16 +23,13 @@ function FreeTalkPage({ singlePageId, setSinglePageId }) {
 
   console.log(talkList);
 
-  const commentCount = (singleTalkId, commentList) => {
-    let count = 0;
-    commentList.forEach((e) => (e.talkId === singleTalkId ? count++ : null));
-    return count;
-  };
+  // const commentCount = (singleTalkId, commentList) => {
+  //   let count = 0;
+  //   commentList.forEach((e) => (e.talkId === singleTalkId ? count++ : null));
+  //   return count;
+  // };
 
   const talkSinglePageRender = (e) => {
-    console.log(e);
-    setSinglePageId(e);
-    console.log(singlePageId);
     window.location.replace(
       `https://localhost:3000/free_talk/single/?talkId=${e}`
     );
@@ -49,10 +46,10 @@ function FreeTalkPage({ singlePageId, setSinglePageId }) {
           >
             <div className="free-talk-title">{e.title}</div>
             <div className="free-talk-script">{e.article}</div>
-            <div className="free-talk-like">
+            {/* <div className="free-talk-like">
               comment
               <span>{commentCount(e.id, comment)}</span>
-            </div>
+            </div> */}
             <div className="free-talk-date">{e.updateAt}</div>
             <div className="free-talk-view">{e.view}</div>
           </div>

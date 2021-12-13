@@ -1,5 +1,5 @@
 require("dotenv").config();
-const { post, user } = require("../../models");
+const { post, user, comment } = require("../../models");
 
 module.exports = async (req, res) => {
   console.log(req.body.postId);
@@ -20,12 +20,27 @@ module.exports = async (req, res) => {
     const { id, nickname, email, image, manager, createdAt, updatedAt } =
       userInfo;
 
+    const comments = await comment.findAll({
+      where: { postId: req.body.postId },
+    });
+
+    if (comments) {
+      for (let prop of comments) {
+        // console.log(prop.dataValues.userId);
+        const commentUserInfo = await user.findOne({
+          where: { id: prop.dataValues.userId },
+        });
+        prop.dataValues.nickname = commentUserInfo.dataValues.nickname;
+      }
+    }
+
     const postInfo = {
       nickname,
       image,
       picture,
       writing,
       createdAt,
+      comments,
     };
 
     res.status(200).json({ data: postInfo, message: "found success!" });
