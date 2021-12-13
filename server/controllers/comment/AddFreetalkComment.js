@@ -9,7 +9,7 @@ module.exports = (req, res) => {
   if(!authorization) {
     res.status(401).send({message: 'Invalid token!'});
   } else {
-    comment.create({userId: req.body.userId, freetalkId: req.body.freetalkId, content: req.body.content});
+    comment.create({userId: authorization.userId, freetalkId: req.body.freetalkId, content: req.body.content});
     
     res.status(201).json({message: 'Create freetalkcomment'});
   }

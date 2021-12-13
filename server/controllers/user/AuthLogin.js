@@ -1,5 +1,4 @@
-require('dotenv').config();
-const { freetalk } = require('../../models');
+require("dotenv").config();
 const { isAuthorized } = require('../tokenfunction');
 
 module.exports = (req, res) => {
@@ -8,8 +7,7 @@ module.exports = (req, res) => {
   if(!authorization) {
     res.status(401).send({message: 'Invalid token!'});
   } else {
-    // delete 메소드 사용(client)
-    // destroy(sequelize method)
-    
+    // true 값만 넘기기
+    res.status(200).json({data: true, message: 'LoginStatus is true!'});
   }
 };

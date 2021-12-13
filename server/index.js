@@ -25,27 +25,28 @@ app.use(
 app.use(cookieParser());
 app.post("/Kakao", controllers.Kakao);
 app.post("/KakaoCallback", controllers.KakaoCallback);
-//app.patch('/UserInfo', controllers.UserInfo);
+app.patch('/UserInfo', controllers.UserInfo);
 app.post("/SignOut", controllers.SignOut);
+app.get("/AuthLogin", controllers.AuthLogin);
 
 app.get("/AllPost", controllers.AllPost);
 app.get("/DetailPost", controllers.DetailPost);
 app.post("/CheckCookiePost", controllers.CheckCookiePost);
 app.post("/AddPost", controllers.AddPost);
-//app.patch('/PostModify', controllers.PostModify);  이부분 왜 에러임? 미완인데 연결되서?
+app.patch('/PostModify', controllers.PostModify);
 app.delete("/DeletePost", controllers.DeletePost);
 
 app.get("/AllFreetalk", controllers.AllFreetalk);
 app.post("/DetailFreetalk", controllers.DetailFreetalk);
 app.post("/CheckCookieFreetalk", controllers.CheckCookieFreetalk);
 app.post("/AddFreetalk", controllers.AddFreetalk);
-//app.patch('/FreetalkModify', controllers.FreetalkModify);
+app.patch('/FreetalkModify', controllers.FreetalkModify);
 app.delete("/DeleteFreetalk", controllers.DeleteFreetalk);
 
 app.get("/AllLplist", controllers.AllLplist);
 app.get("/DetailLplist", controllers.DetailLplist);
-//console.log(controllers.Kakao.getToken);
-//app.get('/Kakao', controllers.Kakao.getUserInfo);
+app.post("/AddLplist", controllers.AddLplist);
+app.post("/AddRecentPrice", controllers.AddRecentPrice);
 
 app.post("/AddFreetalkComment", controllers.AddFreetalkComment);
 app.post("/AddPostComment", controllers.AddPostComment);
