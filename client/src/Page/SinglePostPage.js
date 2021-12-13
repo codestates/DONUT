@@ -1,57 +1,82 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import "./SinglePostPage.css"
-import axios from 'axios';
-import qs from 'qs';
-import { comment } from './DummyLpList';
+import "./SinglePostPage.css";
+import axios from "axios";
+import qs from "qs";
+import { comment } from "./DummyLpList";
 
-function SinglePostPage({ singlePageId }) {
-	const url = new URL(window.location.href);
-	const postId = url.searchParams.get("postId");
+function SinglePostPage({ singlePostPageId }) {
+  const url = new URL(window.location.href);
+  const postId = url.searchParams.get("postId");
 
-	const [ selectPost, setSelectPost ] = useState({
-		id: "",
-		userId: 1,
-		image: "",
-		nickname: "",
-		picture: "",
-		writing:"",
-		createdAt: "",
-		updatedAt: "",
-	});
+  const [commentList, setCommentList] = useState([]);
+  const [addComment, setAddComment] = useState("");
+  const [selectPost, setSelectPost] = useState({
+    image: "",
+    nickname: "",
+    picture: "",
+    writing: "",
+    createdAt: "",
+  });
 
-	const getContent = (data) => {
-		setSelectPost(data);
-	}
+  const getContent = (data) => {
+    setSelectPost(data);
+  };
 
-	useEffect(() => {
-		axios.post("https://localhost:4000/DetailPost",
-		qs.stringify({ postId: postId}))
-	.then((res) => getContent(res.data.data))
-	.catch((err) => console.log(err));
-	}, []);
+  const submitComment = async () => {
+    console.log(addComment);
+    await axios
+      .post(
+        "https://localhost:4000/AddFreetalkComment",
+        qs.stringify({ postId: postId, comment: addComment })
+      )
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+    window.location.reload(true);
+  };
+
+  const inputComment = (e) => {
+    setAddComment(e.target.value);
+  };
+
+  useEffect(() => {
+    axios
+      .post(
+        "https://localhost:4000/DetailPost",
+        qs.stringify({ postId: postId })
+      )
+      .then((res) => getContent(res.data.data))
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
-	  <>
-	  <h3>post page</h3>
-	<div ClassName="single-post">
-		<img src={selectPost.profilepicture} alt=""/>
-		<span>{selectPost.nickname}</span>
-		<img src={selectPost.picture} alt=""/>
-		<strong>{selectPost.nickname}</strong>{selectPost.writing}
-	</div>
-	<div ClassName="single-post-comment-text">comment</div>
-	<input type="text" placeholder="댓글을 입력해 주세요." />
-	<button>share</button>
-	<div className="single-post-comment-div">
-		{comment.map((e) => e.postId === singlePageId ? (
-			<div className="single-post-comment-single-div" key={e.id}>
-				<div className="single-post-comment-writer">{e.writer}</div>
-				<div classNmae="single-post-comment-script">{e.script}</div>
-			</div>
-		) : null)}
-	</div>
-	</>
+    <>
+      <h3>post page</h3>
+      <div ClassName="single-post">
+        <img src={selectPost.image} alt="" />
+        <span>{selectPost.nickname}</span>
+        <img src={`https://localhost:4000/${selectPost.picture}`} alt="" />
+        <strong>{selectPost.nickname}</strong>
+        {selectPost.writing}
+      </div>
+      <div ClassName="single-post-comment-text">comment</div>
+      <input
+        type="text"
+        placeholder="댓글을 입력해 주세요."
+        onChange={inputComment}
+      />
+      <button onClick={submitComment}>share</button>
+      <div className="single-post-comment-div">
+        {comment.map((e) =>
+          e.postId === singlePostPageId ? (
+            <div className="single-post-comment-single-div" key={e.id}>
+              <div className="single-post-comment-writer">{e.writer}</div>
+              <div classNmae="single-post-comment-script">{e.script}</div>
+            </div>
+          ) : null
+        )}
+      </div>
+    </>
   );
 }
 
