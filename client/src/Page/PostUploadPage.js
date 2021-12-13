@@ -29,24 +29,23 @@ function PostUploadPage() {
 	};
 
 	const postToServer = async (data) => {
-		setAllContent({...allContent, picture: data})
-		
-		// const content = {picture: allContent.picture,
-		// 	writing: allContent.writing}
-
-			console.log(allContent)
-		await axios.post("https://localhost:4000/AddPost", 
-		qs.stringify({picture: allContent.picture,
-			      writing: allContent.writing}),
-		{
-			headers: {
-			  "Content-type": "application/x-www-form-urlencoded;charset=utf-8",
-			},
-		})
-		.then(res => console.log(res))
-		.catch(err => console.log(err))
+		await axios
+		  .post(
+		    "https://localhost:4000/AddPost",
+		    qs.stringify({
+		      picture: data,
+		      writing: allContent.writing,
+		    }),
+		    {
+		      headers: {
+			"Content-type": "application/x-www-form-urlencoded;charset=utf-8",
+		      },
+		    }
+		  )
+		  .then((res) => console.log(res))
+		  .catch((err) => console.log(err));
 		// window.location.replace("https://localhost:3000/Post")
-	}
+	      };
 
 	const onSubmit = async(e) => {
 		e.preventDefault();
@@ -92,12 +91,17 @@ function PostUploadPage() {
 			
 			<div className="post-title">POST</div>
 			<form onSubmit={onSubmit}>
-				<img src={imgSrc} className={`image-preview ${imgSrc && "image-preview-show"}`}/>
+				{!file ? 
 				<div className= "file-dropper">
-					{fileName}
+				{fileName}
 					<input id="image" type="file" accept="image/*" onChange={imageSelectHandler} />
-					{/* <img src="https://cdn.discordapp.com/attachments/907148581692137515/917214337951727617/imageUp.png" alt="" style={{width: 400, height: 400}}/> */}
-				</div>
+					</div>
+					:
+					<img src={imgSrc} className={`image-preview ${imgSrc && "image-preview-show"}`}/> 
+				}
+				
+					
+				
 				<textarea className="post-text-area" onChange={handleChangeValue('writing')} placeHolder="content"></textarea>
 				<button type="submit" className="post-btn">SHARE</button>
 			</form>
