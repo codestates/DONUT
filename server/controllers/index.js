@@ -21,6 +21,12 @@ module.exports = {
   DetailLplist: require('./lplist/DetailLplist'),
   AddFreetalkComment: require('./comment/AddFreetalkComment'),
   AddPostComment: require('./comment/AddPostComment'),
+
   LikeLplist: require('./lplist/LikeLplist'),
   AddLpPrice: require('./lplist/AddLpPrice')
+
+  AddLplist: require('./lplist/AddLplist'),
+  AddRecentPrice: require('./lplist/AddRecentPrice'),
+  AuthLogin: require('./user/AuthLogin')
+
 };

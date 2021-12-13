@@ -22,9 +22,11 @@ module.exports = async (req, res) => {
   if(!authorization) {
     res.status(401).send({message: 'Invalid token'});
   } else {
-    // findUser의 manger권한이 true(1)이면 등록가능
-    if(findUser.manager) {
-      lpList.create({ genre, artist, albumTitle, sellingPrice, image});
+
+    // findUser의 manager권한이 true(1)이면 등록가능
+    if(findUser.manager === true) {
+      lplist.create({genre: genre, artist: artist, albumTitle: albumTitle, sellingPrice: sellingPrice, image: image});
+
 
       res.status(201).send({message: 'created success'});
     } else {
