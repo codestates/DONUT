@@ -28,6 +28,7 @@ app.post("/KakaoCallback", controllers.KakaoCallback);
 app.patch('/UserInfo', controllers.UserInfo);
 app.post("/SignOut", controllers.SignOut);
 app.get("/AuthLogin", controllers.AuthLogin);
+app.delete("/Withdrawal", controllers.Withdrawal);
 
 app.get("/AllPost", controllers.AllPost);
 app.get("/DetailPost", controllers.DetailPost);
