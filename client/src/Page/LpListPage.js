@@ -56,7 +56,7 @@ function LpListPage({ singleLpPageId, setSingleLpPageId}) {
         <div className="album-wrapper">
           {lpAlbum.map((el) => (
             <div className="album-list">
-              <img className="album-image" onClick={() => lpSinglePageRender(el.id)} src={`https://localhost:4000/${el.image}`} alt={el.albumTitle} />
+              <img className="album-image" onClick={() => lpSinglePageRender(el.id)} src={`https://localhost:4000/${el.image}`} alt={el.albumTitle} size={{width:200, height:200}} />
               <div className="album-articles">
                 <div className="album-tag">{el.TagName}</div>
                 <div className="artist">{el.artist}</div>

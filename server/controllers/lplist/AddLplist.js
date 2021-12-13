@@ -8,12 +8,12 @@ module.exports = async (req, res) => {
   // user의 manager가 true인 사람만 등록이 가능함
 
   // body에 담겨오는 정보들
-  console.log(req.body)
+  //console.log(req.body)
   const {genre, artist, albumTitle, sellingPrice, image} = req.body;
 
   // 토큰확인
   const authorization = isAuthorized(req);
-  //console.log(authorization)
+  console.log(authorization)
   //유저찾기
   const findUser = await user.findOne({where: {email: authorization.email, nickName: authorization.nickname}});
 
@@ -22,7 +22,7 @@ module.exports = async (req, res) => {
   } else {
 
     // findUser의 manager권한이 true(1)이면 등록가능
-    if(findUser.manager === true) {
+    if(findUser.manager) {
       lpList.create({genre: genre, artist: artist, albumTitle: albumTitle, sellingPrice: sellingPrice, image: image});
 
 

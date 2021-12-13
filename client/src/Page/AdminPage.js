@@ -101,7 +101,7 @@ function AdminPage() {
     artist: result.artist,
     albumTitle: result.albumTitle,
     sellingPrice: result.sellingPrice,
-    image: result.image}),
+    image: data}),
     {
 			headers: {
 			  "Content-type": "application/x-www-form-urlencoded;charset=utf-8",
@@ -157,7 +157,7 @@ function AdminPage() {
           </div>
           <div>copy(imgArrStr)</div>
         </div> */}
-        <form onSubmit={()=>ImgSubmit}>
+        <form onSubmit={ImgSubmit}>
             <select className="genreUl" onChange={handleChangeValue("genre")}>
             {genre.map((e, index) => (
               <option value={e} key={index}>

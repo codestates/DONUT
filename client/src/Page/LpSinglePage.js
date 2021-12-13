@@ -72,7 +72,7 @@ function LpSinglePage({ singlePageId}) {
     <div className="album-single-infos">
       <div>태그들</div>
       <div>
-        <img src={`https://localhost:4000/${selectLp.image}`}/>
+        <img src={`https://localhost:4000/${selectLp.image}`} style={{height:'200px', width:'200px'}}/>
       </div>
       <span>{selectLp.artist}</span>
       <FontAwesomeIcon like={handleLike} onClick={handledislike} icon={likeBtn? solidHeart : regularHeart} />

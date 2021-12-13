@@ -45,7 +45,7 @@ app.patch("/FreetalkModify", controllers.FreetalkModify);
 app.delete("/DeleteFreetalk", controllers.DeleteFreetalk);
 
 app.get("/AllLplist", controllers.AllLplist);
-app.get("/DetailLplist", controllers.DetailLplist);
+app.post("/DetailLplist", controllers.DetailLplist);
 
 app.post("/LikeLplist", controllers.LikeLplist);
 app.post("/AddLpPrice", controllers.AddLpPrice);
