@@ -8,9 +8,16 @@ module.exports = async (req, res) => {
   // user의 manager가 true인 사람만 등록이 가능함
 
   // body에 담겨오는 정보들
+<<<<<<< Updated upstream
   
   const {genre, artist, albumTitle, sellingPrice, image} = req.body;
   console.log(genre, '여기?');
+=======
+ 
+  console.log(req.body)
+  const {genre, artist, albumTitle, sellingPrice, image} = req.body;
+  
+>>>>>>> Stashed changes
 
   // 토큰확인
   const authorization = isAuthorized(req);
