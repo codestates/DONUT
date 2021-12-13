@@ -4,12 +4,12 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import qs from "qs";
 
-function FreeTalkSinglePage({ singlePageId }) {
+function FreeTalkSinglePage() {
   const url = new URL(window.location.href);
   const talkId = url.searchParams.get("talkId");
   const [commentList, setCommentList] = useState([]);
   const [addComment, setAddComment] = useState("");
-  const [selectTalk, setSectTalk] = useState({
+  const [selectTalk, setSelectTalk] = useState({
     id: "",
     userId: 1,
     title: "",
@@ -21,7 +21,7 @@ function FreeTalkSinglePage({ singlePageId }) {
 
   const getContent = (data) => {
     console.log(data);
-    setSectTalk(data.data);
+    setSelectTalk(data.data);
     setCommentList(commentList.concat(data.comments));
   };
 
