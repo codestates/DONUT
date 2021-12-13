@@ -4,13 +4,14 @@ import "./AddPriceModal.css";
 import qs from "qs";
 axios.defaults.withCredentials = true;
 
-export default function AddPriceModal({addPriceModalClose}){
+export default function AddPriceModal({addPriceModalClose, lpListId}){
 	const [share, setShare] = useState(false);
 	const [alert, setAlert] = useState("")
 
 	const [priceContent, setPriceContent] = useState({
 		price: "",
 		date: "",
+		lpListId: "",
 	});
 
 	const inputContent = (key) => (e) => {
@@ -29,7 +30,8 @@ export default function AddPriceModal({addPriceModalClose}){
 			axios.post("https://localhost:4000/AddLpPrice", 
 			qs.stringify({
 				price: priceContent.price,
-				date: priceContent.date
+				date: priceContent.date,
+				lpListId: lpListId
 			}),
 			{
 				headers: {
@@ -38,6 +40,7 @@ export default function AddPriceModal({addPriceModalClose}){
 			}
 			)
 			.then((res) => console.log(res))
+			addPriceModalClose()
 		}	
 	} 
 
@@ -56,7 +59,7 @@ export default function AddPriceModal({addPriceModalClose}){
 			</div>
 			{alert}
 			{!share ? <button className="price-modal-share-btn" onClick={onChangeBtn} >SHARE</button> :
-			<button type="submit" className="price-modal-check-btn" onClick={addPrice(addPriceModalClose)}>CHECK</button> }
+			<button type="submit" className="price-modal-check-btn" onClick={addPrice}>CHECK</button> }
 			</div>
 		</div>
 	)

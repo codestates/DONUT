@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import { LpInfo } from "./DummyLpList";
 import "./LpListPage.css";
 
-function LpListPage({ singlePageId, setSinglePageId}) {
-  const [lpAlbum, setLpAlbum] = useState(LpInfo);
+function LpListPage({ singleLpPageId, setSingleLpPageId}) {
+  const [lpAlbum, setLpAlbum] = useState([]);
   const [albumShow, setAlbumShow] = useState([]);
   const [next, setNext] = useState(3);
 
@@ -34,11 +34,10 @@ function LpListPage({ singlePageId, setSinglePageId}) {
 
   const lpSinglePageRender = (e) => {
     console.log(e)
-    setSinglePageId(e);
-    console.log(singlePageId)
-    // window.location.replace(
-    //   `https://localhost:3000/all/lp_single_page/?lpListId=${e}`
-    // )
+    // setSingleLpPageId(e);
+     window.location.replace(
+      `https://localhost:3000/all/lp_single_page/?lpListId=${e}`
+     )
   }
 
   return (
@@ -57,7 +56,7 @@ function LpListPage({ singlePageId, setSinglePageId}) {
         <div className="album-wrapper">
           {lpAlbum.map((el) => (
             <div className="album-list">
-              <img calssName="album-image" onClick={() => lpSinglePageRender(el.id)} src={el.image} alt={el.albumTitle} />
+              <img className="album-image" onClick={() => lpSinglePageRender(el.id)} src={`https://localhost:4000/${el.image}`} alt={el.albumTitle} />
               <div className="album-articles">
                 <div className="album-tag">{el.TagName}</div>
                 <div className="artist">{el.artist}</div>
