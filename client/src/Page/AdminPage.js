@@ -157,7 +157,7 @@ function AdminPage() {
           </div>
           <div>copy(imgArrStr)</div>
         </div> */}
-        <form onSubmit={ImgSubmit}>
+        <form onSubmit={()=>ImgSubmit}>
             <select className="genreUl" onChange={handleChangeValue("genre")}>
             {genre.map((e, index) => (
               <option value={e} key={index}>
