@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { recentprice, user } = require('../../models');
+const { recentPrice, user } = require('../../models');
 const { isAuthorized } = require('../tokenfunction');
 
 module.exports = async (req, res) => {
@@ -8,24 +8,26 @@ module.exports = async (req, res) => {
   // user의 manager가 true인 사람만 등록이 가능함
 
   // body에 담겨오는 정보들
-  const {price, date} = req.body;
+  const {price, date, lpListId} = req.body;
+  console.log(req.body)
 
   // 토큰확인
   const authorization = isAuthorized(req);
   
-  //유저찾기
-  const findUser = await user.findOne({where: {id: id, nickName: nickname}});
-
-  if(!authorization) {
-    res.status(401).send({message: 'Invalid token'});
+  if (!authorization) {
+    res.status(401).send({ message: "Invalid token!" });
+  } else if (!price || !date) {
+    res.status(422).send({ message: "Required items not included!" });
   } else {
-    // findUser의 manger권한이 true(1)이면 등록가능
-    if(findUser.manager === true) {
-      recentprice.create({price: price, date: date});
+    // ! 유저아이디 어떻게 채울지 확인요망 !
+    const userInfo = await user.findOne({
+      where: { email: authorization.email, nickname: authorization.nickname },
+    });
+    const { id, nickname, email, image, manager, createdAt, updatedAt } =
+      userInfo;
+    const userId = id;
+    recentPrice.create({ price, date, userId, lpListId});
 
-      res.status(201).send({message: 'created success'});
-    } else {
-      res.status(401).send({message: 'You are not manager'});
-    }
+    res.status(201).send({ message: "Freetalk created!" });
   }
 };
