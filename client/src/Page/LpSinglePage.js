@@ -35,7 +35,7 @@ function LpSinglePage({ singlePageId }) {
   useEffect(() => {
     axios
       .post(
-        "https://localhost:4000/DetailLplist",
+        `${process.env.REACT_APP_API_URL}/DetailLplist`,
         qs.stringify({ lpListId: lpListId })
       )
       .then((res) => getContent(res))
@@ -74,7 +74,7 @@ function LpSinglePage({ singlePageId }) {
         <div>태그들</div>
         <div>
           <img
-            src={`https://localhost:4000/${selectLp.image}`}
+            src={`${process.env.REACT_APP_API_URL}/${selectLp.image}`}
             style={{ height: "200px", width: "200px" }}
             alt=""
           />

@@ -80,7 +80,7 @@ function AdminPage() {
 
     try {
       const res = await axios
-        .post("https://localhost:4000/upload", formData, {
+        .post(`${process.env.REACT_APP_API_URL}/upload`, formData, {
           headers: {
             "Content-type": "multipart/form-data",
           },
@@ -96,7 +96,7 @@ function AdminPage() {
     // console.log(result);
     await axios
       .post(
-        "https://localhost:4000/AddLplist",
+        `${process.env.REACT_APP_API_URL}/AddLplist`,
         qs.stringify({
           genre: result.genre,
           artist: result.artist,

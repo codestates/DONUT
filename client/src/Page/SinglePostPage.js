@@ -30,7 +30,7 @@ function SinglePostPage() {
     console.log(addComment);
     await axios
       .post(
-        "https://localhost:4000/AddFreetalkComment",
+        `${process.env.REACT_APP_API_URL}/AddFreetalkComment`,
         qs.stringify({ postId: postId, comment: addComment })
       )
       .then((res) => console.log(res))
@@ -45,7 +45,7 @@ function SinglePostPage() {
   useEffect(() => {
     axios
       .post(
-        "https://localhost:4000/DetailPost",
+        `${process.env.REACT_APP_API_URL}/DetailPost`,
         qs.stringify({ postId: postId })
       )
       .then((res) => getContent(res.data))
@@ -58,7 +58,10 @@ function SinglePostPage() {
       <div ClassName="single-post">
         <img src={selectPost.image} alt="" />
         <span>{selectPost.nickname}</span>
-        <img src={`https://localhost:4000/${selectPost.picture}`} alt="" />
+        <img
+          src={`${process.env.REACT_APP_API_URL}/${selectPost.picture}`}
+          alt=""
+        />
         <strong>{selectPost.nickname}</strong>
         {selectPost.writing}
       </div>

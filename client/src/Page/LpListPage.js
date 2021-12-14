@@ -27,7 +27,7 @@ function LpListPage({ singleLpPageId, setSingleLpPageId }) {
 
   useEffect(() => {
     axios
-      .get("https://localhost:4000/AllLplist")
+      .get(`${process.env.REACT_APP_API_URL}/AllLplist`)
       .then((res) => setLpAlbum(res.data.data));
   }, []);
 
@@ -53,7 +53,7 @@ function LpListPage({ singleLpPageId, setSingleLpPageId }) {
     console.log(e);
     // setSingleLpPageId(e);
     window.location.replace(
-      `https://localhost:3000/all/lp_single_page/?lpListId=${e}`
+      `${process.env.REACT_APP_REDIRECT_URI}/all/lp_single_page/?lpListId=${e}`
     );
   };
 
@@ -78,7 +78,7 @@ function LpListPage({ singleLpPageId, setSingleLpPageId }) {
             <img
               className="album-image"
               onClick={() => lpSinglePageRender(el.id)}
-              src={`https://localhost:4000/${el.image}`}
+              src={`${process.env.REACT_APP_API_URL}/${el.image}`}
               alt={el.albumTitle}
             />
             <div className="album-articles">
