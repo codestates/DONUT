@@ -17,6 +17,10 @@ module.exports = {
       image: {
         type: Sequelize.STRING
       },
+      manager: {
+        defaultValue: false,
+        type: Sequelize.BOOLEAN
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

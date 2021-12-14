@@ -1,73 +1,125 @@
-import React, {useState} from "react";
-import AddPriceModal from './AddPriceModal';
+import React, { useState, useEffect } from "react";
+import AddPriceModal from "./AddPriceModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart as regularHeart } from '@fortawesome/free-regular-svg-icons'
-import { faHeart as solidHeart } from '@fortawesome/free-solid-svg-icons';
-import { useParams } from "react-router-dom";
-import LpInfo from "./DummyLpList";
-import LpPriceAddTable from "./DummyRecentPrice"
-import RecentPrice from "./DummyRecentPrice"
+import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
+import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
+import qs from "qs";
 
-function LpSinglePage(props) {
-  const [show, setShow] = useState(false)
-  const [likeBtn, setLikeBtn] = useState(false)
-  const [likeNum, setLikeNum] = useState(0)
-  const [tableContent, setTableContent] = useState([RecentPrice])
-  
+function LpSinglePage({ singlePageId }) {
+  const url = new URL(window.location.href);
+  const lpListId = url.searchParams.get("lpListId");
 
+  const [show, setShow] = useState(false);
+  const [likeBtn, setLikeBtn] = useState(false);
+  const [recentPriceList, setRecentPriceList] = useState([]);
+  const [selectLp, setSelectLp] = useState({
+    id: "",
+    userId: "",
+    genre: "",
+    artist: "",
+    albumTitle: "",
+    sellingPrice: "",
+    image: "",
+    price: "",
+    date: "",
+    createdAt: "",
+    updatedAt: "",
+  });
+
+  const getContent = async (res) => {
+    await setRecentPriceList(recentPriceList.concat(res.data.recentPrice));
+    await setSelectLp(res.data.data);
+  };
+
+  useEffect(() => {
+    axios
+      .post(
+        "https://localhost:4000/DetailLplist",
+        qs.stringify({ lpListId: lpListId })
+      )
+      .then((res) => getContent(res))
+      .catch((err) => console.log(err));
+  }, []);
 
   const addPriceModalClose = () => {
-    setShow(false)
-  }
+    setShow(false);
+  };
 
   const handleLike = () => {
-    setLikeBtn(true)
-  }
+    setLikeBtn(true);
+  };
 
   const handledislike = () => {
-    setLikeBtn(!likeBtn)
-  }
+    setLikeBtn(!likeBtn);
+  };
 
-  const handlePriceAddClick = () => {
-    setTableContent([, ...tableContent])
-  }
+  // const handlePriceAddClick = () => {
+  //   setTableContent([, ...tableContent]);
+  // };
+
+  // useEffect(() => {
+
+  //   let body = {
+
+  //   }
+  //   axios.post("https://localhost:4000/LikeLplist", body)
+  //   .then(res => console.log(res))
+  // },[])
 
   return (
-
     <>
-    {/* <img src={"https://contents.sixshop.com/thumbnails/uploadedFiles/99047/product/image_1609498984666_1500.jpg"} al=""/> */}
-    <div className="album-single-infos">
-      <div>태그들</div>
-      <span>가수 이름</span>
-      <FontAwesomeIcon like={handleLike} onClick={handledislike} icon={likeBtn? solidHeart : regularHeart} />
-      <span> 0 likes</span>
-      <div>
-      <span>타이틀</span>
-      <span>노래 링크 연결</span>
-      </div>
-      <div>
-      <button id="add-price-modal-button" onClick={()=>setShow(true)}>거래가격 추가</button>
-      {show ? <AddPriceModal addPriceModalClose={addPriceModalClose} /> : null }
-      </div>
+      {/* <img src={"https://contents.sixshop.com/thumbnails/uploadedFiles/99047/product/image_1609498984666_1500.jpg"} al=""/> */}
+      <div className="album-single-infos">
+        <div>태그들</div>
+        <div>
+          <img
+            src={`https://localhost:4000/${selectLp.image}`}
+            style={{ height: "200px", width: "200px" }}
+            alt=""
+          />
+        </div>
+        <span>{selectLp.artist}</span>
+        <FontAwesomeIcon
+          like={handleLike}
+          onClick={handledislike}
+          icon={likeBtn ? solidHeart : regularHeart}
+        />
+        <div>
+          <span>{selectLp.albumTitle}</span>
+        </div>
+        <div>{selectLp.sellingPrice}</div>
+        <div>
+          <button id="add-price-modal-button" onClick={() => setShow(true)}>
+            거래가격 추가
+          </button>
+          {show ? (
+            <AddPriceModal
+              addPriceModalClose={addPriceModalClose}
+              setShow={setShow}
+              lpListId={lpListId}
+            />
+          ) : null}
+        </div>
 
-      <table>
-			  <thead>
-				  <tr>
-				    <th>최근 구매가</th>
-				    <th>구매일자</th>
-				  </tr>
-			  </thead>
-			<tbody>
-				{RecentPrice.map((el)=>(
-				  <tr>
-				    <td>{el.price}</td>
-				    <td>{el.date}</td> 
-				  </tr>
-				))}
-			</tbody>
-	   </table>
-    </div>
-    </> 
+        <table>
+          <thead>
+            <tr>
+              <th>최근 구매가</th>
+              <th>구매일자</th>
+            </tr>
+          </thead>
+          <tbody>
+            {recentPriceList.map((el) => (
+              <tr key={el.id + 100}>
+                <td>{el.price}</td>
+                <td>{el.date}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </>
   );
 }
 

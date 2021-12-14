@@ -11,8 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      //models.recentprice.belongsTo(models.lplist, {foreignKey: 'lpListId', targetKey: 'id'});
-      //models.recentprice.belongsTo(models.user, {foreignKey: 'userId', targetKey: 'id'});
+      models.recentPrice.belongsTo(models.lpList, {foreignKey: 'lpListId', targetKey: 'id'});
+      models.recentPrice.belongsTo(models.user, {foreignKey: 'userId', targetKey: 'id'});
     }
   };
   recentPrice.init({

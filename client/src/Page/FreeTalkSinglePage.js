@@ -1,28 +1,85 @@
 import React from "react";
-import { talkList, comment } from "./DummyLpList";
+import { useEffect, useState } from "react";
+// import { talkList, comment } from "./DummyLpList";
+import axios from "axios";
+import qs from "qs";
 
-function FreeTalkSinglePage({ singlePageId }) {
-  const selectTalk = talkList.filter((e) => e.id === singlePageId);
+function FreeTalkSinglePage() {
+  const url = new URL(window.location.href);
+  const talkId = url.searchParams.get("talkId");
+  const [commentList, setCommentList] = useState([]);
+  const [addComment, setAddComment] = useState("");
+  const [selectTalk, setSelectTalk] = useState({
+    id: "",
+    userId: 1,
+    title: "",
+    article: "",
+    hashtag: "",
+    createdAt: "",
+    updatedAt: "",
+  });
+
+  const getContent = (data) => {
+    console.log(data);
+    setSelectTalk(data.data);
+    setCommentList(commentList.concat(data.comments));
+  };
+
+  const submitComment = async () => {
+    console.log(addComment);
+    await axios
+      .post(
+        "https://localhost:4000/AddFreetalkComment",
+        qs.stringify({ talkId: talkId, comment: addComment })
+      )
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+    window.location.reload(true);
+  };
+
+  const inputComment = (e) => {
+    setAddComment(e.target.value);
+  };
+
+  useEffect(() => {
+    axios
+      .post(
+        "https://localhost:4000/DetailFreetalk",
+        qs.stringify({ talkId: talkId })
+      )
+      .then((res) => getContent(res.data))
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <div className="single-free-talk-div">
       <h3>Free Talk</h3>
       <div className="single-free-talk-script-div">
-        <div className="single-free-talk-title">{selectTalk[0].title}</div>
-        <div className="single-free-talk-writer">{selectTalk[0].writer}</div>
-        <div className="single-free-talk-date">{selectTalk[0].updateAt}</div>
-        <div className="single-free-talk-view">{selectTalk[0].view}</div>
-        <div className="single-free-talk-script">{selectTalk[0].script}</div>
+        <div className="single-free-talk-title">{selectTalk.title}</div>
+        <img src={selectTalk.Image} alt="freetalkUserImg" />
+        <div className="single-free-talk-writer">{selectTalk.user}</div>
+        <div className="single-free-talk-date">{selectTalk.updateAt}</div>
+        <div className="single-free-talk-view">{selectTalk.view}</div>
+        <div className="single-free-talk-script">{selectTalk.article}</div>
       </div>
       <div className="single-free-talk-comment-text">comment</div>
-      <input type="text" placeholder="댓글을 입력해 주세요." />
-      <button>share</button>
+      <input
+        type="text"
+        placeholder="댓글을 입력해 주세요."
+        onChange={inputComment}
+      />
+      <button onClick={submitComment}>share</button>
       <div className="single-free-talk-comment-div">
-        {comment.map((e) =>
-          e.talkId === singlePageId ? (
-            <div className="single-free-talk-comment-single-div" key={e.id}>
-              <div className="single-free-talk-comment-writer">{e.writer}</div>
-              <div className="single-free-talk-comment-script">{e.script}</div>
+        {commentList.map((e) =>
+          e ? (
+            <div
+              className="single-free-talk-comment-single-div"
+              key={`${e.id}+100`}
+            >
+              <div className="single-free-talk-comment-writer">
+                {e.nickname}
+              </div>
+              <div className="single-free-talk-comment-script">{e.content}</div>
             </div>
           ) : null
         )}

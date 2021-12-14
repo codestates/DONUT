@@ -13,7 +13,9 @@ function Footerbar() {
                     copyright © CodeRefreshed
                 </div>
                 <ul className="footer-menu">
-                    <FontAwesomeIcon icon={faGithub} />
+                    <a href="https://github.com/codestates/DONUT">
+                        <FontAwesomeIcon icon={faGithub} />
+                    </a>
                     <li>이현주</li>
                     <li>박경선</li>
                     <li>이정후</li>

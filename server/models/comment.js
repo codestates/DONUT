@@ -11,9 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      //models.comment.belongsTo(models.user, {foreignKey: 'userId', targerKey: 'id'});
-      //models.comment.belongsTo(models.post, {foreignKey: 'postId', targerKey: 'id'});
-      //models.comment.belongsTo(models.freetalk, {foreignKey: 'freetalkId', targerKey: 'id'});
+      models.comment.belongsTo(models.user, {foreignKey: 'userId', targerKey: 'id'});
+      models.comment.belongsTo(models.post, {foreignKey: 'postId', targerKey: 'id'});
+      models.comment.belongsTo(models.freetalk, {foreignKey: 'freetalkId', targerKey: 'id'});
     }
   };
   comment.init({
