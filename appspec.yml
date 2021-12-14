@@ -5,6 +5,8 @@ files:
     destination: /home/ubuntu/DONUT
 
 hooks:
+  BeforeInstall:
+        - location: scripts/beforeInstall.bash
   ApplicationStop:
     - location: scripts/stop.sh
       runas: root
