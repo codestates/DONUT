@@ -8,7 +8,7 @@ module.exports = async (req, res) => {
   // picture, writing 으로 db에 되어있음
   //console.log(req.body)
   //console.log("실행");
-  const obj = JSON.parse(JSON.stringify(req.body))
+  const obj = JSON.parse(JSON.stringify(req.body));
   const authorization = isAuthorized(req);
   const { picture, writing } = obj;
   console.log(obj);
@@ -22,7 +22,7 @@ module.exports = async (req, res) => {
     // ! 유저아이디 어떻게 채울지 확인요망 !
     console.log("여기");
     const userInfo = await user.findOne({
-      where: { email: authorization.email, nickname: authorization.nickname },
+      where: { email: authorization.email },
     });
     //console.log(userInfo)
 
@@ -32,7 +32,7 @@ module.exports = async (req, res) => {
     console.log(userId);
 
     post.create({ userId, picture, writing });
-    
+
     res.status(201).send({ message: "Post created!" });
   }
 };

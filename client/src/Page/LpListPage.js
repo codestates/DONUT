@@ -53,7 +53,7 @@ function LpListPage({ singleLpPageId, setSingleLpPageId }) {
     console.log(e);
     // setSingleLpPageId(e);
     window.location.replace(
-      `${process.env.REACT_APP_REDIRECT_URI}/all/lp_single_page/?lpListId=${e}`
+      `${process.env.REACT_APP_ORIGIN_URL}/all/lp_single_page/?lpListId=${e}`
     );
   };
 

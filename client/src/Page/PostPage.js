@@ -16,7 +16,7 @@ function PostPage() {
 
   const MoveToSinglePost = (e) => {
     window.location.replace(
-      `${process.env.REACT_APP_REDIRECT_URI}/post/single_post_page/?postId=${e}`
+      `${process.env.REACT_APP_ORIGIN_URL}/post/single_post_page/?postId=${e}`
     );
   };
 
