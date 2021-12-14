@@ -29,7 +29,7 @@ function FreeTalkSinglePage() {
     console.log(addComment);
     await axios
       .post(
-        "https://localhost:4000/AddFreetalkComment",
+        `${process.env.REACT_APP_API_URL}/AddFreetalkComment`,
         qs.stringify({ talkId: talkId, comment: addComment })
       )
       .then((res) => console.log(res))
@@ -44,7 +44,7 @@ function FreeTalkSinglePage() {
   useEffect(() => {
     axios
       .post(
-        "https://localhost:4000/DetailFreetalk",
+        `${process.env.REACT_APP_API_URL}/DetailFreetalk`,
         qs.stringify({ talkId: talkId })
       )
       .then((res) => getContent(res.data))

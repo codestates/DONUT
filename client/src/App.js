@@ -30,7 +30,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("https://localhost:4000/AuthLogin")
+      .get(`${process.env.REACT_APP_API_URL}/AuthLogin`)
       .then(
         (res) => setIsLogin(res)
         // cookie에 "accesstoken" 존재 여부를 확인한 후 로그인 여부 판단.

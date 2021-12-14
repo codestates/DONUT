@@ -15,7 +15,7 @@ function Topbar({ isLogin, setIsLogin }) {
   const logoutHandler = () => {
     console.log("로그아웃 실행");
     axios
-      .post("https://localhost:4000/SignOut")
+      .post(`${process.env.REACT_APP_API_URL}/SignOut`)
       .then(setIsLogin(false))
       .catch((err) => console.log(err));
   };
