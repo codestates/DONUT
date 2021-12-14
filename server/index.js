@@ -56,7 +56,6 @@ app.post("/AddLpPrice", controllers.AddLpPrice);
 app.post("/AddLplist", controllers.AddLplist);
 app.post("/AddRecentPrice", controllers.AddRecentPrice);
 
-
 app.post("/AddFreetalkComment", controllers.AddFreetalkComment);
 app.post("/AddPostComment", controllers.AddPostComment);
 
