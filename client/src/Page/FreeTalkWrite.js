@@ -33,9 +33,7 @@ function FreeTalkWrite() {
         )
         .then(() => console.log("잘 보내짐"))
         .catch((err) => console.log(err));
-      window.location.replace(
-        `${process.env.REACT_APP_REDIRECT_URI}/free_talk`
-      );
+      window.location.replace(`${process.env.REACT_APP_ORIGIN_URL}/free_talk`);
     }
   };
 

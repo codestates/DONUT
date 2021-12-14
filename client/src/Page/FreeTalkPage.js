@@ -31,7 +31,7 @@ function FreeTalkPage() {
 
   const talkSinglePageRender = (e) => {
     window.location.replace(
-      `${process.env.REACT_APP_REDIRECT_URI}/free_talk/single/?talkId=${e}`
+      `${process.env.REACT_APP_ORIGIN_URL}/free_talk/single/?talkId=${e}`
     );
   };
   return (

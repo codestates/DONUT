@@ -18,7 +18,7 @@ module.exports = async (req, res) => {
   } else {
     // ! 유저아이디 어떻게 채울지 확인요망 !
     const userInfo = await user.findOne({
-      where: { email: authorization.email, nickname: authorization.nickname },
+      where: { email: authorization.email },
     });
     const { id, nickname, email, image, manager, createdAt, updatedAt } =
       userInfo;

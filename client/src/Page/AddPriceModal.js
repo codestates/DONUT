@@ -43,6 +43,7 @@ export default function AddPriceModal({ addPriceModalClose, lpListId }) {
         )
         .then((res) => console.log(res));
       addPriceModalClose();
+      window.location.reload(true);
     }
   };
 
