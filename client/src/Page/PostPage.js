@@ -10,13 +10,13 @@ function PostPage() {
 
   useEffect(() => {
     axios
-      .get("https://localhost:4000/AllPost")
+      .get(`${process.env.REACT_APP_API_URL}/AllPost`)
       .then((res) => setPostList(res.data.data));
   }, []);
 
   const MoveToSinglePost = (e) => {
     window.location.replace(
-      `https://localhost:3000/post/single_post_page/?postId=${e}`
+      `${process.env.REACT_APP_ORIGIN_URL}/post/single_post_page/?postId=${e}`
     );
   };
 
@@ -32,7 +32,7 @@ function PostPage() {
         {postList.map((e) => (
           <div className="post-image">
             <img
-              src={`https://localhost:4000/${e.picture}`}
+              src={`${process.env.REACT_APP_API_URL}/${e.picture}`}
               onClick={() => MoveToSinglePost(e.id)}
               alt=""
             />

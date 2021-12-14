@@ -38,7 +38,7 @@ function RenderPage({ isLogin, setIsLogin }) {
     //console.log(authorization); // 잘찍힘
     axios
       .post(
-        "https://localhost:4000/KakaoCallback",
+        `${process.env.REACT_APP_API_URL}/KakaoCallback`,
         qs.stringify({ authorizationCode }),
         {
           headers: {

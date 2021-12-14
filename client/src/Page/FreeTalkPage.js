@@ -17,7 +17,7 @@ function FreeTalkPage() {
 
   useEffect(() => {
     axios
-      .get("https://localhost:4000/AllFreetalk")
+      .get(`${process.env.REACT_APP_API_URL}/AllFreetalk`)
       .then((res) => talkListHandler(res));
   }, []);
 
@@ -31,7 +31,7 @@ function FreeTalkPage() {
 
   const talkSinglePageRender = (e) => {
     window.location.replace(
-      `https://localhost:3000/free_talk/single/?talkId=${e}`
+      `${process.env.REACT_APP_ORIGIN_URL}/free_talk/single/?talkId=${e}`
     );
   };
   return (

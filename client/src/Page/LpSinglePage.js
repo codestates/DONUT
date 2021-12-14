@@ -1,111 +1,101 @@
-import React, {useState, useEffect} from "react";
-import AddPriceModal from './AddPriceModal';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart as regularHeart } from '@fortawesome/free-regular-svg-icons'
-import { faHeart as solidHeart } from '@fortawesome/free-solid-svg-icons';
-import axios from 'axios';
-import qs from "qs";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { LpInfo } from "./DummyLpList";
+import "./LpListPage.css";
 
-function LpSinglePage({ singlePageId}) {
-  const url = new URL(window.location.href);
-  const lpListId = url.searchParams.get("lpListId");
-  const [show, setShow] = useState(false)
-  const [likeBtn, setLikeBtn] = useState(false)
-  const [tableContent, setTableContent] = useState([])
-  const [selectLp, setSelectLp] = useState({
-    id: "",
-    userId: "",
-    genre: "",
-    artist: "",
-    albumTitle: "",
-    sellingPrice: "",
-    image: "",
-    price: "",
-    date: "",
-    createdAt: "",
-    updatedAt: ""
-  })
+function LpListPage({ singleLpPageId, setSingleLpPageId }) {
+  const [lpAlbum, setLpAlbum] = useState([]);
+  const [albumShow, setAlbumShow] = useState([]);
+  const [next, setNext] = useState(3);
+  const [curGenre, setCurGenre] = useState("All");
 
-  const getContent = (res) => {
-    console.log(res)
-    setSelectLp(res.data.data)
-  }
+  const genre = [
+    "All",
+    "HIPHOP / SOUL / R&B",
+    "ROCK / POP / ELECTRONICA",
+    "JAZZ",
+    "OST",
+  ];
+
+  const genreHandler = (e) => {
+    console.log(e);
+    const filterLpList = lpAlbum.filter((el) => el.genre === e);
+    setLpAlbum(filterLpList);
+    console.log(lpAlbum);
+  };
 
   useEffect(() => {
-    axios.post("https://localhost:4000/DetailLplist",
-    qs.stringify({ lpListId: lpListId}))
-    .then((res) => getContent(res))
-    .catch((err) => console.log(err))
-  },[])
-  
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/AllLplist`)
+      .then((res) => setLpAlbum(res.data.data));
+  }, []);
 
+  const albumsPerPage = 3;
+  let arrayForHoldingPosts = [];
 
-  const addPriceModalClose = () => {
-    setShow(false)
-  }
+  const loopWithSlice = (start, end) => {
+    const slicedAlbums = LpInfo.slice(start, end);
+    arrayForHoldingPosts = [...arrayForHoldingPosts, ...slicedAlbums];
+    setAlbumShow(arrayForHoldingPosts);
+  };
 
-  const handleLike = () => {
-    setLikeBtn(true)
-  }
+  useEffect(() => {
+    loopWithSlice(0, albumsPerPage);
+  }, []);
 
-  const handledislike = () => {
-    setLikeBtn(!likeBtn)
-  }
+  const onLoadMore = () => {
+    loopWithSlice(next, next + albumsPerPage);
+    setNext(next + albumsPerPage);
+  };
 
-  const handlePriceAddClick = () => {
-    setTableContent([, ...tableContent])
-  }
-
-  // useEffect(() => {
-
-  //   let body = {
-  
-  //   }
-  //   axios.post("https://localhost:4000/LikeLplist", body)
-  //   .then(res => console.log(res))
-  // },[])
+  const lpSinglePageRender = (e) => {
+    console.log(e);
+    // setSingleLpPageId(e);
+    window.location.replace(
+      `${process.env.REACT_APP_ORIGIN_URL}/all/lp_single_page/?lpListId=${e}`
+    );
+  };
 
   return (
+    <div>
+      <div id="genre-categories">
+        {genre.map((e, idx) => (
+          <span
+            className="genre-category"
+            key={idx + 200}
+            onClick={() => genreHandler(e)}
+          >
+            {e}
+          </span>
+        ))}
+      </div>
+      {console.log(lpAlbum)}
+      {/* <Link to="./lp_single_page"> */}
+      <div className="album-wrapper">
+        {lpAlbum.map((el) => (
+          <div className="album-list">
+            <img
+              className="album-image"
+              onClick={() => lpSinglePageRender(el.id)}
+              src={`${process.env.REACT_APP_API_URL}/${el.image}`}
+              alt={el.albumTitle}
+            />
+            <div className="album-articles">
+              <div className="album-tag">{el.TagName}</div>
+              <div className="artist">{el.artist}</div>
+              <div className="album-title">{el.albumTitle}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+      {/* </Link> */}
 
-    <>
-    {/* <img src={"https://contents.sixshop.com/thumbnails/uploadedFiles/99047/product/image_1609498984666_1500.jpg"} al=""/> */}
-    <div className="album-single-infos">
-      <div>태그들</div>
-      <div>
-        <img src={`https://localhost:4000/${selectLp.image}`} style={{height:'200px', width:'200px'}}/>
-      </div>
-      <span>{selectLp.artist}</span>
-      <FontAwesomeIcon like={handleLike} onClick={handledislike} icon={likeBtn? solidHeart : regularHeart} />
-      <div>
-      <span>{selectLp.albumTitle}</span>
-      </div>
-      <div>
-        {selectLp.sellingPrice}
-      </div>
-      <div>
-      <button id="add-price-modal-button" onClick={()=>setShow(true)}>거래가격 추가</button>
-      {show ? <AddPriceModal addPriceModalClose={addPriceModalClose} setShow={setShow} lpListId={lpListId}/> : null }
-      </div>
-
-      <table>
-			  <thead>
-				  <tr>
-				    <th>최근 구매가</th>
-				    <th>구매일자</th>
-				  </tr>
-			  </thead>
-			<tbody>
-				{/* {selectLp.price.map((el)=>(
-				  <tr>
-				    <td>{el.price}</td>
-				    <td>{el.date}</td> 
-				  </tr>
-				))} */}
-			</tbody>
-	   </table>
+      <button onClick={onLoadMore} className="load-more-button">
+        More
+      </button>
     </div>
-    </> 
   );
 }
 
-export default LpSinglePage;
+export default LpListPage;

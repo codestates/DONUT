@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 import React from "react";
 import { useState } from "react";
 import qs from "qs";
@@ -7,10 +7,10 @@ axios.defaults.withCredentials = true;
 function AdminPage() {
   let [inputLpInfo, setInputLpinfo] = useState();
   const [inputLpimg, setinputLpimg] = useState(null);
-  const [imgSrc, setImgSrc] = useState([])
-  const [fileName, setFileName] = useState("이미지 업로드 하세요")
+  const [imgSrc, setImgSrc] = useState([]);
+  const [fileName, setFileName] = useState("이미지 업로드 하세요");
   const [result, setResult] = useState({
-    genre: "KOREAN",
+    genre: "HIPHOP / SOUL / R&B",
     artist: "",
     albumTitle: "",
     sellingPrice: "",
@@ -20,12 +20,10 @@ function AdminPage() {
   // const {genre, artist, albumTitle, sellingPrice, image} = req.body;
 
   const genre = [
-    "KOREAN",
     "HIPHOP / SOUL / R&B",
     "ROCK / POP / ELECTRONICA",
     "JAZZ",
     "OST",
-    "JAPANESE",
   ];
 
   // const handleInputLpInfo = (e) => {
@@ -33,12 +31,12 @@ function AdminPage() {
   // };
 
   const handleInputLpimg = (e) => {
-    const imageFile = e.target.files[0]
+    const imageFile = e.target.files[0];
     setinputLpimg(imageFile);
     setFileName(imageFile.name);
     const fileReader = new FileReader();
     fileReader.readAsDataURL(imageFile);
-    fileReader.onload = (e) => setImgSrc(e.target.result)
+    fileReader.onload = (e) => setImgSrc(e.target.result);
     // setinputLpimg(e.target.value);
   };
 
@@ -47,8 +45,8 @@ function AdminPage() {
   // };
 
   const handleChangeValue = (key) => (e) => {
-    setResult({...result, [key]: e.target.value})
-  }
+    setResult({ ...result, [key]: e.target.value });
+  };
 
   // const lpInputBtnOn = () => {
   //   if (inputLpimg && inputLpInfo) {
@@ -75,41 +73,46 @@ function AdminPage() {
   //   }
   // };
 
-  const ImgSubmit = async(e) => {
+  const ImgSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append('image', inputLpimg)
+    formData.append("image", inputLpimg);
 
     try {
-      const res = await axios.post("https://localhost:4000/upload", formData,
-      { headers: {
-          "Content-type": "multipart/form-data"
-      }})
-      .then(res => sendIfoDb(res.data.data))
-    }catch (err){
-      alert("실패")
+      const res = await axios
+        .post(`${process.env.REACT_APP_API_URL}/upload`, formData, {
+          headers: {
+            "Content-type": "multipart/form-data",
+          },
+        })
+        .then((res) => sendIfoDb(res.data.data));
+    } catch (err) {
+      alert("실패");
     }
-  } 
+  };
 
-  const sendIfoDb = async(data) => {
-    // console.log("작동", result);
-    setResult({...result, image: data})
-    console.log(result)
-    await axios.post("https://localhost:4000/AddLplist",
-    qs.stringify({    
-    genre: result.genre,
-    artist: result.artist,
-    albumTitle: result.albumTitle,
-    sellingPrice: result.sellingPrice,
-    image: data}),
-    {
-			headers: {
-			  "Content-type": "application/x-www-form-urlencoded;charset=utf-8",
-			},
-		})
-		.then(res => console.log(res))
-		.catch(err => console.log(err))
-  
+  const sendIfoDb = async (data) => {
+    setResult({ ...result, image: data });
+    // console.log(result);
+    await axios
+      .post(
+        `${process.env.REACT_APP_API_URL}/AddLplist`,
+        qs.stringify({
+          genre: result.genre,
+          artist: result.artist,
+          albumTitle: result.albumTitle,
+          sellingPrice: result.sellingPrice,
+          image: data,
+        }),
+        {
+          headers: {
+            "Content-type": "application/x-www-form-urlencoded;charset=utf-8",
+          },
+        }
+      )
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+
     // result.forEach((e) => {
     //   axios
     //     .post("https://localhost:4000/", { e })
@@ -133,7 +136,7 @@ function AdminPage() {
         </a>
       </div>
       <pre />
-      
+
       <div>
         {/* <div>
           <div>let arr = document.getElementsByClassName("c333333");</div>
@@ -158,36 +161,51 @@ function AdminPage() {
           <div>copy(imgArrStr)</div>
         </div> */}
         <form onSubmit={ImgSubmit}>
-            <select className="genreUl" onChange={handleChangeValue("genre")}>
+          <select className="genreUl" onChange={handleChangeValue("genre")}>
             {genre.map((e, index) => (
               <option value={e} key={index}>
                 {e}
               </option>
             ))}
-            </select>
-            <div>
-              <input type="text" placeholder="가수" onChange = {handleChangeValue('artist')} />
-            </div>
-            <div>
-              <input type="text" placeholder="앨범" onChange = {handleChangeValue('albumTitle')} />
-            </div>
-            <div>
-              <input type="text" placeholder="판매가" onChange = {handleChangeValue('sellingPrice')} />
-            </div>
-
+          </select>
+          <div>
             <input
-              type="file"
-              accpet="image/*"
-              onChange={handleInputLpimg}
-              placeholder="이미지 입력"
-            ></input>
-            <img src={imgSrc} className={`image-preview ${imgSrc && "image-preview-show"}`}/>
-            {/* <button type="submit">이미지 생성</button> */}
+              type="text"
+              placeholder="가수"
+              onChange={handleChangeValue("artist")}
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              placeholder="앨범"
+              onChange={handleChangeValue("albumTitle")}
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              placeholder="판매가"
+              onChange={handleChangeValue("sellingPrice")}
+            />
+          </div>
+
+          <input
+            type="file"
+            accpet="image/*"
+            onChange={handleInputLpimg}
+            placeholder="이미지 입력"
+          ></input>
+          <img
+            src={imgSrc}
+            className={`image-preview ${imgSrc && "image-preview-show"}`}
+          />
+          {/* <button type="submit">이미지 생성</button> */}
           {/* <button onClick={lpInputBtnOn} >변환</button> */}
-          
+
           <button type="submit">db 보내기</button>
-          </form>
-        </div>
+        </form>
+      </div>
     </div>
   );
 }

@@ -16,7 +16,7 @@ module.exports = async (req, res) => {
   console.log(authorization)
   //유저찾기
   const findUser = await user.findOne({
-    where: { email: authorization.email, nickName: authorization.nickname },
+    where: { email: authorization.email },
   });
 
   if (!authorization) {
