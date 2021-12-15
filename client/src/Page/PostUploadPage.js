@@ -5,7 +5,7 @@ import qs from "qs";
 axios.defaults.withCredentials = true;
 
 function PostUploadPage() {
-  const defaultFileName = "이미지 파일을 업로드 해주세요.";
+  const defaultFileName = "Uploading an image";
   const [file, setFile] = useState(null);
   const [imgSrc, setImgSrc] = useState([]);
   const [fileName, setFileName] = useState(defaultFileName);
@@ -43,7 +43,7 @@ function PostUploadPage() {
       )
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
-    // window.location.replace("https://localhost:3000/Post")
+     window.location.replace(`${process.env.REACT_APP_ORIGIN_URL}/Post`)
   };
 
   const onSubmit = async (e) => {
@@ -84,23 +84,28 @@ function PostUploadPage() {
 
   return (
     <div>
-      <div className="post-title">POST</div>
+      <div className="post-title-section">
+        <span className="post-title-text">POST</span>
+      <div></div></div>
       <form onSubmit={onSubmit}>
-        <img
+        {file ? <img
           src={imgSrc}
           className={`image-preview ${imgSrc && "image-preview-show"}`}
           alt=""
-        />
+        /> : 
         <div className="file-dropper">
-          {fileName}
-          <input
-            id="image"
-            type="file"
-            accept="image/*"
-            onChange={imageSelectHandler}
-          />
-          {/* <img src="https://cdn.discordapp.com/attachments/907148581692137515/917214337951727617/imageUp.png" alt="" style={{width: 400, height: 400}}/> */}
+          <span className="upload-text">{fileName}</span>
+        <input
+          id="image"
+          type="file"
+          accept="image/*"
+          onChange={imageSelectHandler}
+        >
+        </input>
         </div>
+        }
+        
+        
         <textarea
           className="post-text-area"
           onChange={handleChangeValue("writing")}
