@@ -54,30 +54,42 @@ function SinglePostPage() {
 
   return (
     <>
-      <h3>post page</h3>
-      <div ClassName="single-post">
-        <img src={selectPost.image} alt="" />
-        <span>{selectPost.nickname}</span>
-        <img
-          src={`${process.env.REACT_APP_API_URL}/${selectPost.picture}`}
-          alt=""
-        />
-        <strong>{selectPost.nickname}</strong>
-        {selectPost.writing}
+      <div className="post-title">
+        <h3 className="title">POST PAGE</h3>
       </div>
-      <div ClassName="single-post-comment-text">comment</div>
+      <div className="single-post">
+        <div className="post-user">
+          <div className="post-user-profile-image">
+            <img src={selectPost.image} alt="" />
+          </div>
+        <div className="post-user-nickname">
+          <span>{selectPost.nickname}</span>
+        </div>
+        </div>
+        <div className="post-img">
+          <img
+            src={`${process.env.REACT_APP_API_URL}/${selectPost.picture}`}
+            alt=""
+          />
+        </div>
+        <div className="post-caption">
+          <span>{selectPost.nickname}</span>
+          <span>{selectPost.writing}</span>
+        </div>
+      </div>
       <input
         type="text"
-        placeholder="댓글을 입력해 주세요."
+        placeholder="Add a comment..."
+        className="comment-input"
         onChange={inputComment}
       />
-      <button onClick={submitComment}>share</button>
+      <button className="comment-share-btn" onClick={submitComment}>SHARE</button>
       <div className="single-post-comment-div">
         {commentList.map((e) =>
           e ? (
-            <div className="single-post-comment-single-div" key={e.id}>
-              <div className="single-post-comment-writer">{e.nickname}</div>
-              <div classNmae="single-post-comment-script">{e.content}</div>
+            <div className="post-comment" key={e.id}>
+              <span className="post-comment-writer">{e.nickname}</span>
+              <span className="post-comment-script">{e.content}</span>
             </div>
           ) : null
         )}

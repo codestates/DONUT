@@ -22,22 +22,26 @@ function PostPage() {
 
   return (
     <div>
-      <span className="post-title">POST</span>
-      <Link to="./upload">
-        <span className="camera-icon">
-          <FontAwesomeIcon icon={faCamera} size="2x" />
-        </span>
-      </Link>
-      <div className="posts">
-        {postList.map((e) => (
-          <div className="post-image">
-            <img
-              src={`${process.env.REACT_APP_API_URL}/${e.picture}`}
-              onClick={() => MoveToSinglePost(e.id)}
-              alt=""
-            />
-          </div>
-        ))}
+      <div className="post-title-section">
+        <span className="post-title-text">POST</span>
+        <Link to="./upload">
+          <span className="camera-icon">
+            <FontAwesomeIcon icon={faCamera} size="2x" />
+          </span>
+        </Link>
+      </div>
+      <div className="posts-section">
+        <div className="posts">
+          {postList.map((e) => (
+            <div className="post-image">
+              <img
+                src={`${process.env.REACT_APP_API_URL}/${e.picture}`}
+                onClick={() => MoveToSinglePost(e.id)}
+                alt=""
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
