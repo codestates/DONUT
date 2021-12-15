@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import qs from "qs";
 import axios from "axios";
-import Swiper from "swiper";
-
 import PostList from "./DummyPostList";
 import { LpInfo } from "./DummyLpList";
 import "./RenderPage.css";
