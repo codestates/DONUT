@@ -41,7 +41,6 @@ function App() {
   return (
     <div>
       <Topbar isLogin={isLogin} setIsLogin={setIsLogin}></Topbar>
-      <hr></hr>
       <Routes>
         <Route exact path="/" element={<RenderPage />}></Route>
         <Route
@@ -70,7 +69,6 @@ function App() {
         ></Route>
         <Route exact path="/administer" element={<AdminPage />}></Route>
       </Routes>
-      <hr></hr>
       <Footer></Footer>
     </div>
   );
