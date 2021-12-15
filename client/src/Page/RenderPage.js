@@ -129,7 +129,7 @@ function RenderPage({ isLogin, setIsLogin }) {
         <section className="render-third">
           <div className="render-title">video</div>
           <video autoPlay loop muted>
-            <source calssName="video" src={LpVideo} type="video/mp4" />
+            <source className="video" src={LpVideo} type="video/mp4" />
           </video>
         </section>
       </div>
