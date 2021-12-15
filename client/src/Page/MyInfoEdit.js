@@ -43,7 +43,7 @@ function MyInfoEdit() {
       <h4>NickName</h4>
       <form onSubmit={onSubmit}>
         <input
-          type="palceholder"
+          type="placeholder"
           className="nickname-box"
           onChange={nickNameInput}
         ></input>

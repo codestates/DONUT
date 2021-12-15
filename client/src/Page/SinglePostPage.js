@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import "./SinglePostPage.css";
 import axios from "axios";
 import qs from "qs";
-import { comment } from "./DummyLpList";
+// import { comment } from "./DummyLpList";
 
 function SinglePostPage() {
   const url = new URL(window.location.href);
@@ -55,7 +55,7 @@ function SinglePostPage() {
   return (
     <>
       <h3>post page</h3>
-      <div ClassName="single-post">
+      <div className="single-post">
         <img src={selectPost.image} alt="" />
         <span>{selectPost.nickname}</span>
         <img
@@ -65,7 +65,7 @@ function SinglePostPage() {
         <strong>{selectPost.nickname}</strong>
         {selectPost.writing}
       </div>
-      <div ClassName="single-post-comment-text">comment</div>
+      <div className="single-post-comment-text">comment</div>
       <input
         type="text"
         placeholder="댓글을 입력해 주세요."
@@ -77,7 +77,7 @@ function SinglePostPage() {
           e ? (
             <div className="single-post-comment-single-div" key={e.id}>
               <div className="single-post-comment-writer">{e.nickname}</div>
-              <div classNmae="single-post-comment-script">{e.content}</div>
+              <div className="single-post-comment-script">{e.content}</div>
             </div>
           ) : null
         )}
