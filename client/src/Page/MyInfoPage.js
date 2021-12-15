@@ -9,9 +9,13 @@ function MyInfoPage() {
 
     return <section>
         <h1 className="myinfo-name">MY INFORMATION</h1>
-        <Link to="/my/my_info_Edit">
-            <button className="edit-button">Edit</button>
-        </Link>
+        <div className="myinfo-kakao-profile">
+            <div>프로필 사진</div>
+            <div>닉네임</div>
+        </div>
+            <Link to="/my/my_info_Edit">
+                <button className="edit-button">Edit Profile</button>
+            </Link>
 
         <div className="myinfo-post">
             <h1>POST</h1>
