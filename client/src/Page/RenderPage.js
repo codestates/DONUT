@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import qs from "qs";
 import axios from "axios";
 
-import PostList from "./DummyPostList";
-import { LpInfo } from "./DummyLpList";
+// import PostList from "./DummyPostList";
+// import { LpInfo } from "./DummyLpList";
 import "./RenderPage.css";
 import LpVideo from "./LpVideo.mp4";
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from "react-icons/fa";
@@ -129,7 +129,7 @@ function RenderPage({ isLogin, setIsLogin }) {
         <section className="render-third">
           <div className="render-title">video</div>
           <video autoPlay loop muted>
-            <source calssName="video" src={LpVideo} type="video/mp4" />
+            <source className="video" src={LpVideo} type="video/mp4" />
           </video>
         </section>
       </div>
