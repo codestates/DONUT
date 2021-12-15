@@ -43,7 +43,7 @@ function PostUploadPage() {
       )
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
-     window.location.replace(`${process.env.REACT_APP_ORIGIN_URL}/Post`)
+    window.location.replace(`${process.env.REACT_APP_ORIGIN_URL}/Post`)
   };
 
   const onSubmit = async (e) => {
@@ -104,8 +104,6 @@ function PostUploadPage() {
         </input>
         </div>
         }
-        
-        
         <textarea
           className="post-text-area"
           onChange={handleChangeValue("writing")}

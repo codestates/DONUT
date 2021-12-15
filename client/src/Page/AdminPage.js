@@ -192,7 +192,7 @@ function AdminPage() {
 
           <input
             type="file"
-            accpet="image/*"
+            accept="image/*"
             onChange={handleInputLpimg}
             placeholder="이미지 입력"
           ></input>

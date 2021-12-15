@@ -36,7 +36,7 @@
   text-align: center;
 }
 
-.recnet-price-input {
+.recent-price-input {
   display: block;
   width: 100%;
   padding: 0.5rem 0.8rem 0.5rem 0.8rem;
@@ -45,7 +45,7 @@
   border-radius: 5px;
 }
 
-.recnet-date-input {
+.recent-date-input {
   display: block;
   width: 100%;
   padding: 0.5rem 0.8rem 0.5rem 0.8rem;
