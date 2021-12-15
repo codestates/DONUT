@@ -8,6 +8,7 @@ const Auth = () => {
   const REST_API_KEY = process.env.REACT_APP_REST_API_KEY;
   const REDIRECT_URI = "http://localhost:3000/oauth/kakao/callback";
   const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET;
+  const API_URL = process.env.REACT_APP_API_URL;
 
   console.log(process.env);
 
@@ -18,7 +19,7 @@ const Auth = () => {
   const getAccessToken = (code) => {
     console.log(code);
     axios
-      .post("https://localhost:4000/Kakao", { authorizationCode: code })
+      .post(`${API_URL}/Kakao`, { authorizationCode: code })
       .then((data) => {
         console.log(data);
       });

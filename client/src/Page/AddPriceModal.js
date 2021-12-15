@@ -67,7 +67,7 @@ export default function AddPriceModal({ addPriceModalClose, lpListId }) {
         <div className="recent-date-part">
           구매 일자
           <input
-            className="recnet-date-input"
+            className="recent-date-input"
             placeholder="date"
             onChange={inputContent("date")}
           />
