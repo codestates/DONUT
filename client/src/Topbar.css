@@ -29,8 +29,7 @@ a {
 
 .logo {
   width: 150px;
-  padding-right: 1em;
-  padding-top: 3px;
+  padding: auto;
   margin: auto;
 }
 
