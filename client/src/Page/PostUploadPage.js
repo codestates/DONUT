@@ -83,7 +83,7 @@ function PostUploadPage() {
   };
 
   return (
-    <div>
+    <div className="post-upload-page">
       <div className="post-title-section">
         <span className="post-title-text">POST</span>
       <div></div></div>

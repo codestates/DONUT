@@ -25,9 +25,9 @@ function PostPage() {
       <div className="post-title-section">
         <span className="post-title-text">POST</span>
         <Link to="./upload">
-          <span className="camera-icon">
+          <div className="camera-icon">
             <FontAwesomeIcon icon={faCamera} size="2x" />
-          </span>
+          </div>
         </Link>
       </div>
       <div className="posts-section">
