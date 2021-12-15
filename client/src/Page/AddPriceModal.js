@@ -1,5 +1,3 @@
-
-   
 import axios from "axios";
 import React, { useState } from "react";
 import "./AddPriceModal.css";
@@ -59,7 +57,7 @@ export default function AddPriceModal({ addPriceModalClose, lpListId }) {
         <div className="recent-price-part">
           최근 구매가
           <input
-            className="recnet-price-input"
+            className="recent-price-input"
             placeholder="price"
             onChange={inputContent("price")}
           />
