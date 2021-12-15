@@ -1,13 +1,30 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.post-upload-page {
+  margin: 25px auto 0px;
+  padding: 0px 10px;
+  max-width: 700px;
+  box-sizing: border-box;
+}
+
 .file-dropper {
-  border: 1px dashed black;
-  height: 200px;
-  background-color: bisque;
+  width: 100%;
+  padding: 0px 0px 60%;
+  font: inherit;
+  background-color: #f5f5f6;
   border-radius: 10px;
   margin-bottom: 20px;
-  display: flex;
+  display: block;
+  box-sizing: border-box;
   position: relative;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
 }
 
 .file-dropper input {
@@ -16,12 +33,23 @@
   opacity: 0;
   position: absolute;
   cursor: pointer;
+  display: flex;
 }
 
 .file-dropper:hover {
-  background-color: grey;
+  background-color: #c2c2c3;
   color: white;
   transition: 0.5%;
+}
+
+.upload-text {
+  display: inline-block;
+  width: 100%;
+  margin: 0px 0px 4px;
+  font-size: 15px;
+  line-height: 22px;
+  font-weight: normal;
+  color: rgb(130, 140, 148);
 }
 
 .image-preview {
@@ -39,34 +67,51 @@
 }
 
 .post-btn {
-  width: 150px;
-  height: 45px;
-  margin: 10px;
+  width: 5rem;
+  height: 2rem;
   border: none;
   background-color: black;
   color: white;
   border-radius: 30px;
-  font-size: 25px;
+  font-size: 1rem;
+  letter-spacing: -0.33px;
   cursor: pointer;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  margin-left: 83%;
 }
 
 .post-text-area {
-  width: 50%;
+  width: 100%;
+  display: inline-block;
+  font-size: 15px;
+  line-height: 21px;
+  resize: none;
+  appearance: none;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(219, 219, 219);
+  border-image: initial;
+  border-radius: 4px;
   overflow: hidden;
   overflow-wrap: break-word;
   height: 145px;
   padding: 8px 15px 9px;
   display: inline-block;
   box-sizing: border-box;
-  border-color: rgb(219, 219, 219);
-  appearance: none;
 }
 
-@media screen and (min-width: 768px) {
+/* @media (max-width: 991px) {
   .post-upload-container {
     margin: 30px auto 0px;
     padding: 0px 30px;
     max-width: 1003px;
     box-sizing: border-box;
   }
-}
+} */
+/* 
+@media (max-width: 480px) {
+  .post-btn {
+    margin-left: 70%;
+  }
+} */
