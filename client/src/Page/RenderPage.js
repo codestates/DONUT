@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import qs from "qs";
 import axios from "axios";
 
-import PostList from "./DummyPostList";
-import { LpInfo } from "./DummyLpList";
+// import PostList from "./DummyPostList";
+// import { LpInfo } from "./DummyLpList";
 import "./RenderPage.css";
 import LpVideo from "./LpVideo.mp4";
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from "react-icons/fa";
