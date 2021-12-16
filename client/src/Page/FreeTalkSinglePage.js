@@ -1,10 +1,11 @@
 import React from "react";
 import { useEffect, useState } from "react";
-// import { talkList, comment } from "./DummyLpList";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import qs from "qs";
+import "./FreetalkPage.css";
 
-function FreeTalkSinglePage() {
+function FreeTalkSinglePage({ isLogin, setIsLogin }) {
   const url = new URL(window.location.href);
   const talkId = url.searchParams.get("talkId");
   const [commentList, setCommentList] = useState([]);
@@ -52,37 +53,56 @@ function FreeTalkSinglePage() {
   }, []);
 
   return (
-    <div className="single-free-talk-div">
+    <div className="single-free-talk">
       <h3>Free Talk</h3>
-      <div className="single-free-talk-script-div">
-        <div className="single-free-talk-title">{selectTalk.title}</div>
-        <img src={selectTalk.Image} alt="freetalkUserImg" />
-        <div className="single-free-talk-writer">{selectTalk.user}</div>
-        <div className="single-free-talk-date">{selectTalk.updateAt}</div>
-        <div className="single-free-talk-view">{selectTalk.view}</div>
-        <div className="single-free-talk-script">{selectTalk.article}</div>
-      </div>
-      <div className="single-free-talk-comment-text">comment</div>
-      <input
-        type="text"
-        placeholder="댓글을 입력해 주세요."
-        onChange={inputComment}
-      />
-      <button onClick={submitComment}>share</button>
-      <div className="single-free-talk-comment-div">
-        {commentList.map((e) =>
-          e ? (
-            <div
-              className="single-free-talk-comment-single-div"
-              key={`${e.id}+100`}
-            >
-              <div className="single-free-talk-comment-writer">
-                {e.nickname}
+      <div className="single-free-talk-div">
+        <div className="single-free-talk-script-div">
+          <div className="single-free-talk-title">{selectTalk.title}</div>
+          <div className="single-free-talk-user-div">
+            <img
+              className="single-free-talk-user-img"
+              src={selectTalk.Image}
+              alt="freetalkUserImg"
+            />
+            <div className="single-free-talk-writer">{selectTalk.user}</div>
+          </div>
+          <div className="single-free-talk-date">{selectTalk.updateAt}</div>
+          <div className="single-free-talk-view">{selectTalk.view}</div>
+          <div className="single-free-talk-script">{selectTalk.article}</div>
+        </div>
+        <div className="single-free-talk-comment-input-div">
+          <div className="single-free-talk-comment-text">comment</div>
+          <input
+            className="single-free-talk-comment-input"
+            type="text"
+            placeholder="댓글을 입력해 주세요."
+            onChange={inputComment}
+          />
+          {isLogin ? (
+            <button onClick={submitComment}>SHARE</button>
+          ) : (
+            <Link to="/login">
+              <button>LOGIN</button>
+            </Link>
+          )}
+        </div>
+        <div className="single-free-talk-comment-div">
+          {commentList.map((e) =>
+            e ? (
+              <div
+                className="single-free-talk-comment-single-div"
+                key={`${e.id}+100`}
+              >
+                <div className="single-free-talk-comment-writer">
+                  {e.nickname}
+                </div>
+                <div className="single-free-talk-comment-script">
+                  {e.content}
+                </div>
               </div>
-              <div className="single-free-talk-comment-script">{e.content}</div>
-            </div>
-          ) : null
-        )}
+            ) : null
+          )}
+        </div>
       </div>
     </div>
   );

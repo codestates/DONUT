@@ -14,9 +14,11 @@ function Topbar({ isLogin, setIsLogin }) {
     console.log("로그아웃 실행");
     axios
       .post(`${process.env.REACT_APP_API_URL}/SignOut`)
-      .then(setIsLogin(false))
+      .then((res) => setIsLogin(false))
       .catch((err) => console.log(err));
   };
+
+  console.log(isLogin);
 
   const menuList = [
     { ALL: "all" },
@@ -24,8 +26,6 @@ function Topbar({ isLogin, setIsLogin }) {
     { "FREE-TALK": "free_talk" },
     { MY: "my" },
   ];
-
-  menuList.map((e) => console.log(Object.keys(e)));
   return (
     <nav>
       <div className="topbar-div">

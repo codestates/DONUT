@@ -50,6 +50,7 @@ a {
 
 .web-menuList {
   float: right !important;
+  padding-top: 1em;
 }
 
 .mobile-menu {

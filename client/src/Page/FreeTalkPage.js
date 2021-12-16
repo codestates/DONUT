@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import "./FreetalkPage.css";
 
-function FreeTalkPage() {
+function FreeTalkPage({ isLogin, setIsLogin }) {
   const [talkList, setTalkList] = useState([]);
   const [comment, setComment] = useState([]);
   const talkListHandler = (res) => {
@@ -36,7 +36,7 @@ function FreeTalkPage() {
   };
   return (
     <section>
-      <h3>Free Talk</h3>
+      <div className="free-talk-name">FREE TALK</div>
       <div className="free-talk-section-div">
         {talkList.map((e) => (
           <div
@@ -54,9 +54,15 @@ function FreeTalkPage() {
             <div className="free-talk-view">{e.view}</div>
           </div>
         ))}
-        <Link to="/free_talk/write">
-          <button>버튼</button>
-        </Link>
+        {isLogin ? (
+          <Link to="/free_talk/write">
+            <button>WRITE</button>
+          </Link>
+        ) : (
+          <Link to="/login">
+            <button>LOGIN</button>
+          </Link>
+        )}
       </div>
     </section>
   );
