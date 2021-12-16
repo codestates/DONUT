@@ -39,25 +39,29 @@ function MyInfoEdit() {
 
   return (
     <div>
-      <h1 className="myinfo-name">MY INFORMATION</h1>
-      <h4>NickName</h4>
-      <form onSubmit={onSubmit}>
-        <input
-          type="placeholder"
-          className="nickname-box"
-          onChange={nickNameInput}
-        ></input>
-        <h4>E-Mail</h4>
-        <button type="submit" className="edit-button">
-          Edit
-        </button>
-      </form>
-      <button className="out-member-modal" onClick={() => setModalIsOpen(true)}>
-        회원탈퇴
-      </button>
+      <h1 className="myinfo-title">MY INFORMATION</h1>
+      <div className="change-spot">
+          <form onSubmit={onSubmit}>
+            <div className="nickname-change">NickName</div>
+            <input
+              type="placeholder"
+              className="nickname-box"
+              onChange={nickNameInput}
+              placeholder="변경할 닉네임을 입력하세요"
+            ></input>
+            <div className="email-show">E-Mail</div>
+            <div className="kakao-email">coding@gmail.com</div>
+            <button type="submit" className="edit-button">
+              Edit
+            </button>
+          </form>
+          <div className="out-member-modal" onClick={() => setModalIsOpen(true)}>
+            회원탈퇴
+          </div>
+      </div>
+
       <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
-        <h2>🔥주의🔥</h2>
-        <p>정말 탈퇴 하시겠습니까?</p>
+        <p>정말 도넛을 떠나겠습니까?</p>
         <div>
           <button className="close-modal" onClick={() => setModalIsOpen(false)}>
             X

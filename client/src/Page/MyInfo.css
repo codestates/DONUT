@@ -1,10 +1,44 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  position: relative;
+  display: bolck;
+}
+
+.myinfo-title {
+  font-size: 2rem;
+  text-align: left;
+  letter-spacing: -0.12px;
+  padding-left: 5%;
+  margin-top: 5%;
+  font-weight: bold;
 }
 
 .myinfo-kakao-profile {
+  margin-top: 1rem;
+  height: 100px;
   float: right;
+  margin-right: 3rem;
+}
+
+.myinfo-content {
+  margin: 10rem 5rem 3rem;
+}
+
+.myinfo-content-title {
+  font-size: 24px;
+  text-align: left;
+  overflow: hidden;
+  padding-bottom: 28px;
+  letter-spacing: -0.12px;
+  white-space: nowrap;
+  font-weight: bold;
+}
+
+.myinfo-post-image img {
+  width: 400px;
+  height: 400px;
 }
 
 .edit-button {
@@ -12,6 +46,7 @@
   padding: 11px 32px;
   justify-content: flex-end;
   outline: 0;
+  margin-top: 3rem;
   margin-left: auto;
   text-align: center;
   font-size: 16px;
@@ -20,22 +55,49 @@
   border-radius: 12px;
 }
 
-.myinfo-name {
-  padding: 8px 12px;
+@media (max-width: 480px) {
+  .myinfo-post-image img {
+    width: 200px;
+    height: 200px;
+  }
+
+  .myinfo-kakao-profile {
+    margin-top: 1rem;
+    height: 100px;
+    float: right;
+    margin-right: 0;
+  }
 }
 
-.myinfo-post {
-  padding: 8px 12px;
-  width: 2%;
+/* -------------------myinfoedit------------- */
+
+.nickname-change {
+  font-size: 24px;
+  padding-bottom: 5%;
 }
 
-.free-talk {
-  padding: 8px 12px;
+.change-spot {
+  width: 500px;
+  height: 500px;
+  margin-top: 5%;
+  padding-left: 5%;
+}
+
+.email-show {
+  font-size: 24px;
+  padding-top: 5%;
+}
+
+.kakao-email {
+  font-size: 18px;
+  margin-left: 5%;
+  padding-top: 3%;
 }
 
 .nickname-box {
   border: none;
   border-bottom: solid 2px black;
+  margin-left: 5%;
 }
 .nickname-box:focus {
   outline: none;
@@ -46,4 +108,15 @@
   color: grey;
   outline: none;
   border: 0;
+}
+
+.out-member-modal {
+  font-size: 12px;
+  float: right;
+  margin-top: 1%;
+}
+
+.out-member-modal:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }

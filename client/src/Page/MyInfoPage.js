@@ -3,27 +3,39 @@ import React from "react";
 import "./MyInfo.css"
 import been from "./been.png";
 import { Link, Route, Routes } from "react-router-dom";
+import axios from 'axios';
+import qs from 'qs';
 
 
 function MyInfoPage() {
+    const url = new URL(window.location.href);
+    const nickname = url.searchParams.get("userId")
+
+    axios.get(`${process.env.REACT_APP_API_URL}/UserInfo`,
+    qs.stringify({nickname: nickname})
+    )
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
 
     return <section>
-        <h1 className="myinfo-name">MY INFORMATION</h1>
+        <div className="myinfo-title">MY INFORMATION</div>
         <div className="myinfo-kakao-profile">
             <div>프로필 사진</div>
             <div>닉네임</div>
-        </div>
             <Link to="/my/my_info_Edit">
                 <button className="edit-button">Edit Profile</button>
             </Link>
+            </div>
 
-        <div className="myinfo-post">
-            <h1>POST</h1>
-            <img src={been} alt="been" className="mock-img"></img>
+        <div className="myinfo-content">
+            <div className="myinfo-content-title">POST</div>
+            <div className="myinfo-post-image">
+                <img src={been} alt="been" className="mock-img"></img>
+            </div>
         </div>
-        <div className="free-talk">
-            <h1>FREE TALK</h1>
-            <h6>난 빈지노 LP를 가지고 있다!!</h6>
+        <div className="myinfo-content">
+            <div className="myinfo-content-title">FREE TALK</div>
+            <div className="free-talk-writing">내가 쓴 글들</div>
         </div>
     </section>
 }

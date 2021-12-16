@@ -61,47 +61,35 @@ function RenderPage({ isLogin, setIsLogin }) {
       <div>
         <section className="render-first">
           <div className="first-items">
-            <div className="render-title">HOTTEST</div>
-            <div className="hottest-albums">
-              {screenSize >= 768 ? (
-                <div className="hottest-albums-track">
+            <div className="title-container">
+              <div className="render-title">NEW</div>
+            </div>
+
+            <div className="albums-container">
+              <div className="album-content">
                   {LpInfo.map((el) => (
-                    <div className="hottest-album">
+                    <div className="album-single">
+                      <div className="album-single-img">
                       <img
                         src={el.image}
-                        className="hottest-img"
                         alt={el.albumTitle}
                       />
-                      <div className="hottest-info">
-                        <div>{el.artist}</div>
-                        <div>{el.albumTitle}</div>
                       </div>
+                      <div className="album-single-info">
+                        <div className="album-artist">{el.artist}</div>
+                        <div className="album-title">{el.albumTitle}</div>
+                    </div>
                     </div>
                   ))}
                 </div>
-              ) : (
-                <div className="hottest-album">
-                  <div className="hottest-img-div">
-                    <img
-                      src={LpInfo[currentPost].image}
-                      className="hottest-img"
-                      alt={LpInfo[currentPost].albumTitle}
-                    />
-                  </div>
-                  <div className="hottest-info">
-                    <div>{LpInfo[currentPost].artist}</div>
-                    <div>{LpInfo[currentPost].albumTitle}</div>
-                  </div>
-                </div>
-              )}
-            </div>
+              </div>
           </div>
         </section>
       </div>
 
       <div>
         <section className="render-second">
-          <div className="render-title">POST</div>
+          <div className="second-render-title">POST</div>
           <div className="second-items">
             <div className="slider">
               <div className="track-slider">
@@ -127,10 +115,12 @@ function RenderPage({ isLogin, setIsLogin }) {
 
       <div>
         <section className="render-third">
-          <div className="render-title">VIDEO</div>
-          <video className="video" autoPlay loop muted>
-            <source src={LpVideo} type="video/mp4" />
-          </video>
+          {/* <video className="video" autoPlay loop muted> */}
+          <div className="video-box">
+            <video controls autoPlay loop>
+              <source src={LpVideo} type="video/mp4" />
+            </video>
+          </div>
         </section>
       </div>
     </>
