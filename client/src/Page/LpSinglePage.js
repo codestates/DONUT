@@ -71,14 +71,15 @@ function LpSinglePage({ singlePageId }) {
     <>
       {/* <img src={"https://contents.sixshop.com/thumbnails/uploadedFiles/99047/product/image_1609498984666_1500.jpg"} al=""/> */}
       <div className="album-single-infos">
-        <div>태그들</div>
-        <div>
+        <div className="album-single-image">
           <img
             src={`${process.env.REACT_APP_API_URL}/${selectLp.image}`}
             style={{ height: "200px", width: "200px" }}
             alt=""
           />
         </div>
+
+        <div className="single-detail-infos">
         <span>{selectLp.artist}</span>
         <FontAwesomeIcon
           like={handleLike}
@@ -119,6 +120,7 @@ function LpSinglePage({ singlePageId }) {
           </tbody>
         </table>
       </div>
+    </div>
     </>
   );
 }
