@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 // import MyInfoEdit from "./Page/MyInfoEdit"
 import "./MyInfo.css"
 import been from "./been.png";
@@ -8,36 +8,39 @@ import qs from 'qs';
 
 
 function MyInfoPage() {
-    const url = new URL(window.location.href);
-    const nickname = url.searchParams.get("userId")
+  const [myInfo, setMyInfo] = useState({
+    image: "",
+    nickname: ""
+  });
 
-    axios.get(`${process.env.REACT_APP_API_URL}/UserInfo`,
-    qs.stringify({nickname: nickname})
-    )
-    .then(res => console.log(res))
-    .catch(err => console.log(err))
+  useEffect(() => {
+    axios.get(`${process.env.REACT_APP_API_URL}/MyInfo`)
+      .then((res) => setMyInfo({image: res.data.data.image, nickname: res.data.data.nickname}))
+      .catch((err) => console.log(err));
+  }, []);
+  //console.log("이거", myInfo);
 
-    return <section>
-        <div className="myinfo-title">MY INFORMATION</div>
-        <div className="myinfo-kakao-profile">
-            <div>프로필 사진</div>
-            <div>닉네임</div>
-            <Link to="/my/my_info_Edit">
-                <button className="edit-button">Edit Profile</button>
-            </Link>
-            </div>
+  return <section>
+    <div className="myinfo-title">MY INFORMATION</div>
+    <div className="myinfo-kakao-profile">
+      <div className="profile-image"><img src={myInfo.image}/></div>
+      <div>{myInfo.nickname}</div>
+      <Link to="/my/my_info_Edit">
+        <button className="edit-button">Edit Profile</button>
+      </Link>
+    </div>
 
-        <div className="myinfo-content">
-            <div className="myinfo-content-title">POST</div>
-            <div className="myinfo-post-image">
-                <img src={been} alt="been" className="mock-img"></img>
-            </div>
+    <div className="myinfo-content">
+      <div className="myinfo-content-title">POST</div>
+        <div className="myinfo-post-image">
+            <img src={been} alt="been" className="mock-img"></img>
         </div>
-        <div className="myinfo-content">
-            <div className="myinfo-content-title">FREE TALK</div>
-            <div className="free-talk-writing">내가 쓴 글들</div>
-        </div>
-    </section>
+    </div>
+    <div className="myinfo-content">
+      <div className="myinfo-content-title">FREE TALK</div>
+        <div className="free-talk-writing">내가 쓴 글들</div>
+    </div>
+  </section>
 }
 
 export default MyInfoPage;

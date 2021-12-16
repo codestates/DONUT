@@ -59,7 +59,7 @@ function LpListPage({ singleLpPageId, setSingleLpPageId }) {
 
   return (
     <div>
-      <div id="genre-categories">
+      <div className="genre-categories">
         {genre.map((e, idx) => (
           <span
             className="genre-category"
@@ -70,26 +70,27 @@ function LpListPage({ singleLpPageId, setSingleLpPageId }) {
           </span>
         ))}
       </div>
-      {console.log(lpAlbum)}
-      {/* <Link to="./lp_single_page"> */}
+
+
       <div className="album-wrapper">
+        <div className="album-inner">
         {lpAlbum.map((el) => (
           <div className="album-list">
-            <img
-              className="album-image"
-              onClick={() => lpSinglePageRender(el.id)}
-              src={`${process.env.REACT_APP_API_URL}/${el.image}`}
-              alt={el.albumTitle}
-            />
+            <div className="album-image">
+              <img
+                onClick={() => lpSinglePageRender(el.id)}
+                src={`${process.env.REACT_APP_API_URL}/${el.image}`}
+                alt={el.albumTitle}
+              />
+            </div>
             <div className="album-articles">
-              <div className="album-tag">{el.TagName}</div>
               <div className="artist">{el.artist}</div>
               <div className="album-title">{el.albumTitle}</div>
             </div>
           </div>
         ))}
+        </div>
       </div>
-      {/* </Link> */}
 
       <button onClick={onLoadMore} className="load-more-button">
         More

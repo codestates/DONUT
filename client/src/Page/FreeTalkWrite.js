@@ -72,7 +72,7 @@ function FreeTalkWrite({ isLogin, setIsLogin }) {
             </div>
             <div className="button-div">
               <button className="submit-button" onClick={uploadContentHandler}>
-                완료
+                SHARE
               </button>
             </div>
           </div>
@@ -84,3 +84,4 @@ function FreeTalkWrite({ isLogin, setIsLogin }) {
 }
 
 export default FreeTalkWrite;
+
