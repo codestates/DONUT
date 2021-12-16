@@ -2,7 +2,6 @@ import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import qs from "qs";
-import SendLoginPage from "./SendLoginPage";
 import "./FreetalkPage.css";
 axios.defaults.withCredentials = true;
 
@@ -41,7 +40,6 @@ function FreeTalkWrite({ isLogin, setIsLogin }) {
 
   return (
     <>
-      {isLogin ? (
         <div className="write-board">
           <h1>FreeTalk</h1>
           {/* <div className="wirte-container">
@@ -83,9 +81,7 @@ function FreeTalkWrite({ isLogin, setIsLogin }) {
             </div>
           </div>
         </div>
-      ) : (
-        <SendLoginPage />
-      )}
+      ) 
     </>
   );
 }
