@@ -1,6 +1,6 @@
 import React from "react";
 import turntable from "./turntable.gif";
-import "./LoginPage.css"
+//import "./LoginPage.css"
 
 function LoginPage({ isLogin, setIsLogin }) {
   const REST_API_KEY = process.env.REACT_APP_REST_API_KEY;
