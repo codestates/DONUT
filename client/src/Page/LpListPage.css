@@ -1,41 +1,60 @@
-#genre-categories {
-  font-size: 15px;
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.genre-categories {
+  font-size: 16px;
   display: inline-block;
-  margin-top: 1em;
-  margin-bottom: 1em;
+  margin-top: 3em;
+  padding-bottom: 5em;
   position: flex;
-  width: 90%;
+  width: 100%;
   max-width: 1240px;
+  text-align: center;
+  color: #9b9b9b;
 }
 
 .genre-category {
-  text-align: center;
   margin-right: 1em;
   padding: 0.5rem 1rem;
   cursor: pointer;
+  transition: 0.2s;
+  text-align: left;
 }
 
+.genre-category:hover {
+  top: -2px;
+}
+
+/* ------------------앨범 부분----------------- */
+
 .album-wrapper {
-  width: 90%;
-  max-width: 1240px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto;
-  grid-gap: 20px;
+  width: 100vw;
+  margin-top: 7px;
+  margin-bottom: 40px;
 }
 
 .album-list {
-  background: #fff;
-  color: #444;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  display: flex;
-  min-height: 100%;
-  flex-direction: column;
-  justify-content: space-between;
+  -webkit-column-count: 4;
+  -moz-column-count: 4;
+  column-count: 4;
+  -webkit-column-width: 40%;
+  -moz-column-width: 40%;
+  column-width: 40%;
+  margin-left: 3em;
+  margin-right: 3em;
+  padding-top: 1em;
   position: relative;
-  top: 0;
-  transition: 0.2s;
+  align-items: center;
+  text-align: center;
+
+  display: inline-block;
+  padding: 0 8px;
+}
+
+.album-inner {
+  display: block;
 }
 
 .album-list:hover {
@@ -43,20 +62,25 @@
 }
 
 .album-image {
-  padding-bottom: 60%;
-  background-size: cover;
-  background-position: center center;
+  overflow: hidden;
+  position: relative;
+  padding-top: 5%;
+}
+
+.album-image img {
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 200px;
+  float: left;
 }
 
 .album-articles {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  padding-top: 10%;
+  float: left;
 }
 
 .album-title {
-  flex: 1;
 }
 
 .load-more-button {
@@ -73,14 +97,8 @@
 
 /* 2등분 */
 @media screen and (max-width: 500px) {
-  .album-wrapper {
-    grid-template-columns: 1fr 1fr;
-  }
 }
 
 /* 4등분 */
 @media screen and (min-width: 850px) {
-  .album-wrapper {
-    grid-template-columns: repeat(4, 1fr);
-  }
 }
