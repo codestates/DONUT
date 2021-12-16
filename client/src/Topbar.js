@@ -24,7 +24,7 @@ function Topbar({ isLogin, setIsLogin }) {
     { ALL: "all" },
     { POST: "post" },
     { "FREE-TALK": "free_talk" },
-    { MY: "my" },
+    // { MY: "my" },
   ];
   return (
     <nav>
@@ -44,6 +44,11 @@ function Topbar({ isLogin, setIsLogin }) {
                   {Object.keys(e)}
                 </Link>
               ))}
+              {!isLogin ? (
+                <Link className="list-item" to="./login">MY</Link>
+              ) : (
+                <Link className="list-item" to="./my">MY</Link>
+              )}
 
               {!isLogin ? (
                 <Link className="list-item" to="./login">
