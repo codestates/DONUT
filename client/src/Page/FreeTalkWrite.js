@@ -2,7 +2,6 @@ import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import qs from "qs";
-import SendLoginPage from "./SendLoginPage";
 import "./FreetalkPage.css";
 axios.defaults.withCredentials = true;
 
@@ -41,10 +40,9 @@ function FreeTalkWrite({ isLogin, setIsLogin }) {
 
   return (
     <>
-      {isLogin ? (
-        <div className="write-board">
-          <h1>FreeTalk</h1>
-          {/* <div className="wirte-container">
+      <div className="write-board">
+        <div className="free-talk-name">FREE TALK</div>
+        {/* <div className="wirte-container">
         {saveContent.map((element) => (
           <div>
             <h2>{element.title}</h2>
@@ -52,40 +50,35 @@ function FreeTalkWrite({ isLogin, setIsLogin }) {
           </div>
         ))}
       </div> */}
-          <div className="form-wrapper">
+        <div className="form-wrapper">
+          <div className="free-talk-wirte-div">
             <div className="free-talk-wirte-div">
-              <div className="free-talk-wirte-div">
-                <input
-                  className="title-input"
-                  type="text"
-                  placeholder="제목"
-                  onChange={inputContent("title")}
-                  name="title"
-                />
-              </div>
-              <div className="free-talk-wirte-div">
-                <textarea
-                  type="text"
-                  className="text-area"
-                  placeholder="글을 적어주세요"
-                  onChange={inputContent("content")}
-                  style={{ fontsize: "1em" }}
-                ></textarea>
-              </div>
-              <div className="free-talk-wirte-div button">
-                <button
-                  className="submit-button"
-                  onClick={uploadContentHandler}
-                >
-                  완료
-                </button>
-              </div>
+              <input
+                className="title-input"
+                type="text"
+                placeholder="제목"
+                onChange={inputContent("title")}
+                name="title"
+              />
+            </div>
+            <div className="free-talk-wirte-div">
+              <textarea
+                type="text"
+                className="text-area"
+                placeholder="글을 적어주세요"
+                onChange={inputContent("content")}
+                style={{ fontsize: "1em" }}
+              ></textarea>
+            </div>
+            <div className="button-div">
+              <button className="submit-button" onClick={uploadContentHandler}>
+                완료
+              </button>
             </div>
           </div>
         </div>
-      ) : (
-        <SendLoginPage />
-      )}
+      </div>
+      )
     </>
   );
 }

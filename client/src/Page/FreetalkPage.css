@@ -39,8 +39,11 @@ span {
 
 /* 싱글 프리톡 */
 
+.single-free-talk-script-div {
+}
+
 .single-free-talk-title {
-  font-size: 2.5em;
+  font-size: 2.3em;
   font-weight: bold;
   margin-top: 1em;
   margin-bottom: 0.5em;
@@ -52,34 +55,50 @@ span {
 }
 
 .single-free-talk-user-img {
-  width: 5em;
-  margin-left: 0;
+  width: 3em;
+  margin: 0;
   border-radius: 2.5em;
   margin-bottom: 0.5em;
 }
 .single-free-talk-user-div {
+  display: flex;
+  align-items: left;
   margin-bottom: 1em;
   margin-left: 0.5em;
 }
 .single-free-talk-writer {
-  color: gray;
-  font-size: 1em;
+  margin: auto;
+  margin-left: 0.5em;
+  font-weight: lighter;
+  color: rgb(88, 88, 88);
+  font-size: 1.3em;
 }
 .single-free-talk-script {
-  font-size: 1.2em;
+  font-size: 1.5em;
+  font-weight: light;
   margin-bottom: 2em;
+  color: rgb(63, 63, 63);
 }
 .single-free-talk-comment-div {
   margin-top: 1em;
+  display: flex;
+}
+.single-free-talk-comment-text {
+  font-size: 1.3em;
+  color: rgb(88, 88, 88);
 }
 .single-free-talk-comment-input {
-  margin-top: 0.5em;
-  width: 80%;
+  width: 95%;
   height: 2.5em;
   margin-right: 1em;
+  padding: 0.5rem 1rem;
+  margin-top: 0.5em;
+  font-size: 1.1em;
 }
 .single-free-talk-comment-div {
+  padding-top: 0.5em;
   margin-bottom: 1em;
+  width: 100%;
 }
 .free-talk-wirte-div {
   display: block;
@@ -109,8 +128,55 @@ span {
 
 .button {
   display: inline-block;
+  margin: auto;
 }
 
 .submit-button {
+  margin-top: 1em;
+  margin-right: 13%;
   float: right;
+  width: 5rem;
+  height: 2rem;
+  border: none;
+  background-color: black;
+  color: white;
+  border-radius: 30px;
+  font-size: 1rem;
+  letter-spacing: -0.33px;
+  cursor: pointer;
+}
+
+.submit-button-div {
+  margin: 0;
+  margin-right: 13%;
+  float: right;
+  padding: 0;
+}
+
+.comment-submit-button-div {
+  margin-top: 0.5em;
+  margin-right: 0;
+  float: right;
+  padding: 0;
+  float: right;
+  width: 5rem;
+  height: 2.5rem;
+  border: none;
+  background-color: black;
+  color: white;
+  border-radius: 30px;
+  font-size: 1rem;
+  letter-spacing: -0.33px;
+  cursor: pointer;
+}
+
+.single-free-talk-comment-div {
+  margin: auto;
+  float: right;
+  width: 100%;
+}
+
+.free-talk-like {
+  float: right;
+  padding-right: 1em;
 }
