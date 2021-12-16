@@ -2,6 +2,7 @@ module.exports = {
   Kakao: require('./user/Kakao'),
   KakaoCallback: require('./user/KakaoCallback'),
   UserInfo: require('./user/UserInfo'),
+  UserWrite: require('./user/UserWrite'),
   SignOut: require('./user/SignOut'),
   Withdrawal: require('./user/Withdrawal'),
   AllPost: require('./post/AllPost'),
