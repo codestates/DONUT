@@ -54,7 +54,7 @@ function FreeTalkSinglePage({ isLogin, setIsLogin }) {
 
   return (
     <div className="single-free-talk">
-      <h3>Free Talk</h3>
+      <div className="free-talk-name">FREE TALK</div>
       <div className="single-free-talk-div">
         <div className="single-free-talk-script-div">
           <div className="single-free-talk-title">{selectTalk.title}</div>
@@ -72,19 +72,29 @@ function FreeTalkSinglePage({ isLogin, setIsLogin }) {
         </div>
         <div className="single-free-talk-comment-input-div">
           <div className="single-free-talk-comment-text">comment</div>
-          <input
-            className="single-free-talk-comment-input"
-            type="text"
-            placeholder="댓글을 입력해 주세요."
-            onChange={inputComment}
-          />
-          {isLogin ? (
-            <button onClick={submitComment}>SHARE</button>
-          ) : (
-            <Link to="/login">
-              <button>LOGIN</button>
-            </Link>
-          )}
+          <div className="single-free-talk-comment-div">
+            <input
+              className="single-free-talk-comment-input"
+              type="text"
+              placeholder="댓글을 입력해 주세요."
+              onChange={inputComment}
+            />
+            {/* {isLogin ? (
+              <button className="submit-button" onClick={submitComment}>
+                SHARE
+              </button>
+            ) : (
+              <Link to="/login">
+                <button className="submit-button">LOGIN</button>
+              </Link>
+            )} */}
+            <button
+              className="comment-submit-button-div"
+              onClick={submitComment}
+            >
+              SHARE
+            </button>
+          </div>
         </div>
         <div className="single-free-talk-comment-div">
           {commentList.map((e) =>
