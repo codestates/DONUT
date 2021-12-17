@@ -81,7 +81,7 @@ function LpListPage({ singleLpPageId, setSingleLpPageId }) {
             <div className="lp-album-articles">
               <div className="lp-album-artist" onClick={() => lpSinglePageRender(el.id)}>{el.artist}</div>
               <div className="lp-album-title" onClick={() => lpSinglePageRender(el.id)}>{el.albumTitle}</div>
-
+              </div>
             </div>
           ))}
         </div>
