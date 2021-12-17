@@ -62,42 +62,46 @@ function LpListPage({ singleLpPageId, setSingleLpPageId }) {
   };
 
   return (
-    <div>
-      <div className="genre-categories">
-        {genre.map((e, idx) => (
-          <span
-            className="genre-category"
-            key={idx + 200}
-            onClick={() => genreHandler(e)}
-          >
-            {e}
-          </span>
-        ))}
-      </div>
-
-      <div className="album-wrapper">
-        <div className="album-inner">
-          {curGenreList.map((el) => (
-            <div className="album-list">
-              <div className="album-image">
-                <img
-                  onClick={() => lpSinglePageRender(el.id)}
-                  src={`${process.env.REACT_APP_API_URL}/${el.image}`}
-                  alt={el.albumTitle}
-                />
-              </div>
-              <div className="album-articles">
-                <div className="artist">{el.artist}</div>
-                <div className="album-title">{el.albumTitle}</div>
-              </div>
-            </div>
+    <div id="lp-single-page">
+      <div className="genre-container">
+        <div className="genre-categories">
+          {genre.map((e, idx) => (
+            <span
+              className="genre-category"
+              key={idx + 200}
+              onClick={() => genreHandler(e)}
+            >
+              {e}
+            </span>
           ))}
         </div>
       </div>
 
-      <button onClick={onLoadMore} className="load-more-button">
-        More
-      </button>
+
+      <section className="album-container">
+        <div className="lp-album-content">
+        {curGenreList.map((el) => (
+          <div className="album-single-container">
+            <div className="album-image">
+              <img
+                onClick={() => lpSinglePageRender(el.id)}
+                src={`${process.env.REACT_APP_API_URL}/${el.image}`}
+                alt={el.albumTitle}
+                // style={{width: "200px", height:"200px"}}
+              />
+
+            </div>
+          ))}
+        </div>
+
+      </section>
+      
+      <div className="load-more-btn">
+        <button onClick={onLoadMore}>
+          More 
+        </button>
+      </div>
+
     </div>
   );
 }
