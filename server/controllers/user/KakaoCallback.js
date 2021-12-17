@@ -13,11 +13,11 @@ module.exports = async (req, res) => {
     const result = await axios.post(
       `https://kauth.kakao.com/oauth/token?grant_type=authorization_code&client_id=${process.env.REST_API_KEY}&redirect_uri=${process.env.REDIRECT_URI}&code=${code}`
     );
-    //console.log(result, "이거 맞음?");
+    console.log(result, "이거 맞음?");
 
     const userInfo = await axios.get(`https://kapi.kakao.com/v2/user/me`, {
       headers: {
-        Authorization: `Bearer ${result.data.access_token}`,
+        Authorization: `${result.data.token_type} ${result.data.access_token}`,
       },
     });
 
