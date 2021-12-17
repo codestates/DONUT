@@ -8,7 +8,7 @@ function LpListPage({ singleLpPageId, setSingleLpPageId }) {
   const [lpAlbum, setLpAlbum] = useState([]);
   const [albumShow, setAlbumShow] = useState([]);
   const [next, setNext] = useState(3);
-  const [curGenre, setCurGenre] = useState("All");
+  const [curGenreList, setCurGenreList] = useState(lpAlbum);
 
   const genre = [
     "All",
@@ -19,11 +19,15 @@ function LpListPage({ singleLpPageId, setSingleLpPageId }) {
   ];
 
   const genreHandler = (e) => {
-    console.log(e);
-    const filterLpList = lpAlbum.filter((el) => el.genre === e);
-    setLpAlbum(filterLpList);
-    console.log(lpAlbum);
+    if (e !== "All") {
+      const filterLpList = lpAlbum.filter((el) => el.genre === e);
+      setCurGenreList(filterLpList);
+    } else setCurGenreList(lpAlbum);
   };
+
+  useEffect(() => {
+    setCurGenreList(lpAlbum);
+  }, [lpAlbum]);
 
   useEffect(() => {
     axios
@@ -71,24 +75,23 @@ function LpListPage({ singleLpPageId, setSingleLpPageId }) {
         ))}
       </div>
 
-
       <div className="album-wrapper">
         <div className="album-inner">
-        {lpAlbum.map((el) => (
-          <div className="album-list">
-            <div className="album-image">
-              <img
-                onClick={() => lpSinglePageRender(el.id)}
-                src={`${process.env.REACT_APP_API_URL}/${el.image}`}
-                alt={el.albumTitle}
-              />
+          {curGenreList.map((el) => (
+            <div className="album-list">
+              <div className="album-image">
+                <img
+                  onClick={() => lpSinglePageRender(el.id)}
+                  src={`${process.env.REACT_APP_API_URL}/${el.image}`}
+                  alt={el.albumTitle}
+                />
+              </div>
+              <div className="album-articles">
+                <div className="artist">{el.artist}</div>
+                <div className="album-title">{el.albumTitle}</div>
+              </div>
             </div>
-            <div className="album-articles">
-              <div className="artist">{el.artist}</div>
-              <div className="album-title">{el.albumTitle}</div>
-            </div>
-          </div>
-        ))}
+          ))}
         </div>
       </div>
 

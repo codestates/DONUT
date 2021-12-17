@@ -70,20 +70,22 @@ export default function AddPriceModal({ addPriceModalClose, lpListId }) {
             onChange={inputContent("date")}
           />
         </div>
-        {alert}
-        {!share ? (
-          <button className="price-modal-share-btn" onClick={onChangeBtn}>
-            SHARE
-          </button>
-        ) : (
-          <button
-            type="submit"
-            className="price-modal-check-btn"
-            onClick={addPrice}
-          >
-            CHECK
-          </button>
-        )}
+        <div className="price-modal-btn-div">
+          {alert}
+          {!share ? (
+            <button className="price-modal-share-btn" onClick={onChangeBtn}>
+              SHARE
+            </button>
+          ) : (
+            <button
+              type="submit"
+              className="price-modal-check-btn"
+              onClick={addPrice}
+            >
+              CHECK
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );
