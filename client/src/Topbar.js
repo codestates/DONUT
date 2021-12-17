@@ -24,7 +24,6 @@ function Topbar({ isLogin, setIsLogin }) {
     { ALL: "all" },
     { POST: "post" },
     { "FREE-TALK": "free_talk" },
-    { MY: "my" },
   ];
   return (
     <nav>
