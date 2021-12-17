@@ -113,7 +113,7 @@ img {
 
 .album-title {
   margin: auto;
-  margin-top: 0.2rem;
+  margin-top: 0.5rem;
 }
 
 @media screen and (max-width: 991px) {
@@ -138,7 +138,13 @@ img {
     -webkit-column-width: 100%;
     -moz-column-width: 100%;
     column-width: 100%;
+    -ms-overflow-style: none;
   }
+
+  .album-content::-webkit-scrollbar {
+    display: none;
+  }
+
   .album-single {
     display: block;
   }
@@ -287,30 +293,17 @@ img {
 /* -------------video------------ */
 
 .video-box {
+  padding-top: 7em;
+  width: 100vw;
+}
+
+video {
   width: 100%;
-  /* max-width: 700px; */
-  position: relative;
-  display: flex;
-  justify-content: center;
-  overflow: hidden;
-  height: 78%;
 }
 
-@media (max-width: 991px) {
-  .video-box {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 950px;
-    height: 500px;
-  }
-}
-
-@media (max-width: 480px) {
-  .video-box {
-    top: 0;
-    left: 0;
-    width: 375px;
-    height: 210px;
+@media screen and (min-width: 1370px) {
+  video {
+    width: 80%;
+    margin-left: 10%;
   }
 }

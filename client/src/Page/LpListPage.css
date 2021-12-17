@@ -98,6 +98,10 @@
   height: auto;
 }
 
+.lp-album-title {
+  margin-top: 0.5rem;
+}
+
 .lp-album-artist {
   font-weight: bold;
   text-decoration: underline;

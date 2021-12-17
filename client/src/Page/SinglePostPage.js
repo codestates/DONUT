@@ -73,7 +73,6 @@ function SinglePostPage() {
           />
         </div>
         <div className="post-caption">
-          <span>{selectPost.nickname}</span>
           <span>{selectPost.writing}</span>
         </div>
       </div>
