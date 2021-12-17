@@ -60,21 +60,23 @@ function LpListPage({ singleLpPageId, setSingleLpPageId }) {
 
   return (
     <div id="lp-single-page">
-      <div className="genre-categories">
-        {genre.map((e, idx) => (
-          <span
-            className="genre-category"
-            key={idx + 200}
-            onClick={() => genreHandler(e)}
-          >
-            {e}
-          </span>
-        ))}
+      <div className="genre-container">
+        <div className="genre-categories">
+          {genre.map((e, idx) => (
+            <span
+              className="genre-category"
+              key={idx + 200}
+              onClick={() => genreHandler(e)}
+            >
+              {e}
+            </span>
+          ))}
+        </div>
       </div>
 
 
       <section className="album-container">
-        <div className="album-content">
+        <div className="lp-album-content">
         {lpAlbum.map((el) => (
           <div className="album-single-container">
             <div className="album-image">
@@ -93,10 +95,12 @@ function LpListPage({ singleLpPageId, setSingleLpPageId }) {
         ))}
         </div>
       </section>
-
-      <button onClick={onLoadMore} className="load-more-button">
-        More 
-      </button>
+      
+      <div className="load-more-btn">
+        <button onClick={onLoadMore}>
+          More 
+        </button>
+      </div>
     </div>
   );
 }
