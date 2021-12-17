@@ -89,10 +89,15 @@ function LpListPage({ singleLpPageId, setSingleLpPageId }) {
                 alt={el.albumTitle}
                 // style={{width: "200px", height:"200px"}}
               />
-
+              </div>
+            <div className="album-articles">
+              <div className="album-artist">{el.artist}</div>
+              <div className="album-title">{el.albumTitle}</div>
             </div>
+          </div>
           ))}
         </div>
+  
 
       </section>
       
