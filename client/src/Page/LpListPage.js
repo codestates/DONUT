@@ -8,7 +8,7 @@ function LpListPage({ singleLpPageId, setSingleLpPageId }) {
   const [lpAlbum, setLpAlbum] = useState([]);
   const [albumShow, setAlbumShow] = useState([]);
   const [next, setNext] = useState(3);
-  const [curGenre, setCurGenre] = useState("All");
+  const [curGenreList, setCurGenreList] = useState(lpAlbum);
 
   const genre = [
     "All",
@@ -19,11 +19,15 @@ function LpListPage({ singleLpPageId, setSingleLpPageId }) {
   ];
 
   const genreHandler = (e) => {
-    console.log(e);
-    const filterLpList = lpAlbum.filter((el) => el.genre === e);
-    setLpAlbum(filterLpList);
-    console.log(lpAlbum);
+    if (e !== "All") {
+      const filterLpList = lpAlbum.filter((el) => el.genre === e);
+      setCurGenreList(filterLpList);
+    } else setCurGenreList(lpAlbum);
   };
+
+  useEffect(() => {
+    setCurGenreList(lpAlbum);
+  }, [lpAlbum]);
 
   useEffect(() => {
     axios
@@ -45,7 +49,6 @@ function LpListPage({ singleLpPageId, setSingleLpPageId }) {
   }, []);
 
   const onLoadMore = () => {
-    console.log("더보여줘")
     loopWithSlice(next, next + albumsPerPage);
     setNext(next + albumsPerPage);
   };
@@ -59,7 +62,7 @@ function LpListPage({ singleLpPageId, setSingleLpPageId }) {
   };
 
   return (
-    <div id="lp-single-page">
+    <div>
       <div className="genre-categories">
         {genre.map((e, idx) => (
           <span
@@ -72,30 +75,28 @@ function LpListPage({ singleLpPageId, setSingleLpPageId }) {
         ))}
       </div>
 
-
-      <section className="album-container">
-        <div className="album-content">
-        {lpAlbum.map((el) => (
-          <div className="album-single-container">
-            <div className="album-image">
-              <img
-                onClick={() => lpSinglePageRender(el.id)}
-                src={`${process.env.REACT_APP_API_URL}/${el.image}`}
-                alt={el.albumTitle}
-                // style={{width: "200px", height:"200px"}}
-              />
+      <div className="album-wrapper">
+        <div className="album-inner">
+          {curGenreList.map((el) => (
+            <div className="album-list">
+              <div className="album-image">
+                <img
+                  onClick={() => lpSinglePageRender(el.id)}
+                  src={`${process.env.REACT_APP_API_URL}/${el.image}`}
+                  alt={el.albumTitle}
+                />
+              </div>
+              <div className="album-articles">
+                <div className="artist">{el.artist}</div>
+                <div className="album-title">{el.albumTitle}</div>
+              </div>
             </div>
-            <div className="album-articles">
-              <div className="album-artist">{el.artist}</div>
-              <div className="album-title">{el.albumTitle}</div>
-            </div>
-          </div>
-        ))}
+          ))}
         </div>
-      </section>
+      </div>
 
       <button onClick={onLoadMore} className="load-more-button">
-        More 
+        More
       </button>
     </div>
   );
