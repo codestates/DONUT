@@ -1,25 +1,35 @@
 .price-modal-container {
-  width: 400px;
-  height: 300px;
-  border-radius: 12px;
+  z-index: 1000;
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  display: flex;
-  flex-direction: column;
-  padding: 25px;
+  width: 500px;
+  height: 300px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 .price-modal-close-btn {
+  float: right;
+  margin: 1em;
   display: flex;
   justify-content: flex-end;
   background-color: transparent;
   border: none;
-  font-size: 25px;
+  font-size: 20px;
+  color: rgb(99, 99, 99);
   cursor: pointer;
 }
 
 .recent-price-part {
+  margin-top: 2em;
   flex: 50%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,21 +47,25 @@
 }
 
 .recent-price-input {
+  text-align: center;
   display: block;
-  width: 100%;
+  width: 70%;
   padding: 0.5rem 0.8rem 0.5rem 0.8rem;
-  margin: 0.9vw 0;
+  margin: 0.9vw;
+  margin-left: 1em;
   border: 0;
-  border-radius: 5px;
+  border-bottom: 1px solid rgb(202, 202, 202);
 }
 
 .recent-date-input {
+  text-align: center;
   display: block;
-  width: 100%;
+  width: 70%;
   padding: 0.5rem 0.8rem 0.5rem 0.8rem;
-  margin: 0.9vw 0;
+  margin: 0.9vw;
+  margin-left: 2em;
   border: 0;
-  border-radius: 5px;
+  border-bottom: 1px solid rgb(202, 202, 202);
 }
 
 .price-modal-share-btn {
@@ -76,4 +90,11 @@
   border-radius: 8px;
   font-size: 20px;
   cursor: pointer;
+}
+.price-modal-btn-div {
+  width: 100%;
+  margin: auto;
+  padding: auto;
+  margin-top: 1em;
+  text-align: center;
 }

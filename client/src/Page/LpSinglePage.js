@@ -5,6 +5,7 @@ import { faHeart as regularHeart } from "@fortawesome/free-regular-svg-icons";
 import { faHeart as solidHeart } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import qs from "qs";
+import "./LpSinglePage.css";
 
 function LpSinglePage({ singlePageId }) {
   const url = new URL(window.location.href);
@@ -68,60 +69,65 @@ function LpSinglePage({ singlePageId }) {
   // },[])
 
   return (
-    <>
+    <div className="album-single-container">
+      {show ? (
+        <AddPriceModal
+          addPriceModalClose={addPriceModalClose}
+          setShow={setShow}
+          lpListId={lpListId}
+        />
+      ) : null}
       {/* <img src={"https://contents.sixshop.com/thumbnails/uploadedFiles/99047/product/image_1609498984666_1500.jpg"} al=""/> */}
       <div className="album-single-infos">
-        <div className="album-single-image">
+        <div className="album-single-image-div">
           <img
+            className="album-single-image"
             src={`${process.env.REACT_APP_API_URL}/${selectLp.image}`}
-            style={{ height: "200px", width: "200px" }}
             alt=""
           />
         </div>
 
         <div className="single-detail-infos">
-        <span>{selectLp.artist}</span>
-        <FontAwesomeIcon
-          like={handleLike}
-          onClick={handledislike}
-          icon={likeBtn ? solidHeart : regularHeart}
-        />
-        <div>
-          <span>{selectLp.albumTitle}</span>
-        </div>
-        <div>{selectLp.sellingPrice}</div>
-        <div>
-          <button id="add-price-modal-button" onClick={() => setShow(true)}>
-            거래가격 추가
-          </button>
-          {show ? (
-            <AddPriceModal
-              addPriceModalClose={addPriceModalClose}
-              setShow={setShow}
-              lpListId={lpListId}
-            />
-          ) : null}
-        </div>
+          <div className="single-detail-artist">{selectLp.artist}</div>
+          {/* <FontAwesomeIcon
+            like={handleLike}
+            onClick={handledislike}
+            icon={likeBtn ? solidHeart : regularHeart}
+          /> */}
 
-        <table>
-          <thead>
-            <tr>
-              <th>최근 구매가</th>
-              <th>구매일자</th>
-            </tr>
-          </thead>
-          <tbody>
-            {recentPriceList.map((el) => (
-              <tr key={el.id + 100}>
-                <td>{el.price}</td>
-                <td>{el.date}</td>
+          <div className="single-detail-title">
+            <div>{selectLp.albumTitle}</div>
+          </div>
+
+          <div className="single-detail-price-div">
+            <span className="single-detail-price-word">발매가</span>
+            <span className="single-detail-price">{selectLp.sellingPrice}</span>
+          </div>
+          <div>
+            <div id="add-price-modal-button" onClick={() => setShow(true)}>
+              + 거래가격 추가
+            </div>
+          </div>
+
+          <table className="single-detail-add-price-div">
+            <thead>
+              <tr>
+                <th className="single-detail-add-price-word">최근 구매가</th>
+                <th>구매일자</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {recentPriceList.map((el) => (
+                <tr key={el.id + 100}>
+                  <td>{el.price}</td>
+                  <td>{el.date}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
-    </>
   );
 }
 
