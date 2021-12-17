@@ -2,7 +2,7 @@ export const LpInfo = [
   {
     id: 1,
     genre: "KOREAN",
-    artist: "전람",
+    artist: "전람회",
     albumTitle:
       "졸업",
     sellingPrice: "51,000원",

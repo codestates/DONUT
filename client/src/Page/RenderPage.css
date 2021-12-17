@@ -101,7 +101,19 @@ img {
 }
 
 .album-single-info {
-  padding-top: 10%;
+  padding-top: 2rem;
+  width: 100%;
+  height: auto;
+}
+
+.album-artist {
+  font-weight: bold;
+  margin: auto;
+}
+
+.album-title {
+  margin: auto;
+  margin-top: 0.2rem;
 }
 
 @media screen and (max-width: 991px) {

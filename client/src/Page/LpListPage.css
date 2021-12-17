@@ -74,6 +74,7 @@
 
 .album-single-container:hover {
   cursor: pointer;
+  top: -2px;
 }
 
 .album-image {
@@ -89,14 +90,17 @@
   height: 100%;
 }
 
-.album-articles {
-  padding-top: 2rem;
+.lp-album-articles {
+  padding-top: 1rem;
   padding-bottom: 1rem;
   float: left;
+  width: 100%;
+  height: auto;
 }
 
-.album-artist {
+.lp-album-artist {
   font-weight: bold;
+  text-decoration: underline;
 }
 
 .load-more-btn {
