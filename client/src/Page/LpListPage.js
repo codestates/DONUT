@@ -9,6 +9,7 @@ function LpListPage({ singleLpPageId, setSingleLpPageId }) {
   const [albumShow, setAlbumShow] = useState([]);
   const [next, setNext] = useState(3);
   const [curGenreList, setCurGenreList] = useState(lpAlbum);
+  const [curGenreIdx, setCurGenreIdx] = useState(0);
 
   const genre = [
     "All",
@@ -19,6 +20,10 @@ function LpListPage({ singleLpPageId, setSingleLpPageId }) {
   ];
 
   const genreHandler = (e) => {
+    const index = genre.indexOf(e);
+    document.getElementById(`category${curGenreIdx}`).classList.remove("bold");
+    document.getElementById(`category${index}`).classList.add("bold");
+    setCurGenreIdx(index);
     if (e !== "All") {
       const filterLpList = lpAlbum.filter((el) => el.genre === e);
       setCurGenreList(filterLpList);
@@ -68,6 +73,7 @@ function LpListPage({ singleLpPageId, setSingleLpPageId }) {
           {genre.map((e, idx) => (
             <span
               className="genre-category"
+              id={`category${idx}`}
               key={idx + 200}
               onClick={() => genreHandler(e)}
             >
@@ -77,36 +83,29 @@ function LpListPage({ singleLpPageId, setSingleLpPageId }) {
         </div>
       </div>
 
-
       <section className="album-container">
         <div className="lp-album-content">
-        {curGenreList.map((el) => (
-          <div className="album-single-container">
-            <div className="album-image">
-              <img
-                onClick={() => lpSinglePageRender(el.id)}
-                src={`${process.env.REACT_APP_API_URL}/${el.image}`}
-                alt={el.albumTitle}
-                // style={{width: "200px", height:"200px"}}
-              />
+          {curGenreList.map((el) => (
+            <div className="album-single-container">
+              <div className="album-image">
+                <img
+                  onClick={() => lpSinglePageRender(el.id)}
+                  src={`${process.env.REACT_APP_API_URL}/${el.image}`}
+                  alt={el.albumTitle}
+                />
               </div>
-            <div className="album-articles">
-              <div className="album-artist">{el.artist}</div>
-              <div className="album-title">{el.albumTitle}</div>
+              <div className="album-articles">
+                <div className="album-artist">{el.artist}</div>
+                <div className="album-title">{el.albumTitle}</div>
+              </div>
             </div>
-          </div>
           ))}
         </div>
-  
-
       </section>
-      
-      <div className="load-more-btn">
-        <button onClick={onLoadMore}>
-          More 
-        </button>
-      </div>
 
+      <div className="load-more-btn">
+        <button onClick={onLoadMore}>More</button>
+      </div>
     </div>
   );
 }

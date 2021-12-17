@@ -11,7 +11,6 @@ import Footer from "./Footer";
 import LoginPage from "./Page/LoginPage";
 import RenderPage from "./Page/RenderPage";
 import MyInfoPage from "./Page/MyInfoPage";
-import MyInfoEdit from "./Page/MyInfoEdit";
 import LpListPage from "./Page/LpListPage";
 import PostPage from "./Page/PostPage";
 import FreeTalkPage from "./Page/FreeTalkPage";
@@ -57,7 +56,6 @@ function App() {
             element={<LoginPage isLogin={isLogin} setIsLogin={setIsLogin} />}
           ></Route>
           <Route path="/my" element={<MyInfoPage />}></Route>
-          <Route path="/my/my_info_Edit" element={<MyInfoEdit />}></Route>
           <Route path="/all" element={<LpListPage />}></Route>
           <Route path="/all/lp_single_page/" element={<LpSinglePage />}></Route>
           <Route path="/free_talk/write" element={<FreeTalkWrite />}></Route>

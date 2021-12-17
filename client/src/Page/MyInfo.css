@@ -5,7 +5,6 @@
   position: relative;
   display: bolck;
 }
-
 .myinfo-title {
   font-size: 36px;
   font-weight: bold;
@@ -32,13 +31,19 @@
   padding: 2em;
   padding-top: 3em;
   padding-bottom: 3em;
-  border: 1px solid rgb(68, 68, 68);
+
   align-items: center;
   display: flex;
 }
 
+.edit-button-div {
+  width: 100%;
+  align-items: center;
+  margin: auto;
+  text-align: center;
+}
+
 .my-page-user-info {
-  padding-left: 1em;
   padding-bottom: 0.5em;
 }
 
@@ -53,8 +58,9 @@
 }
 
 .profile-image img {
-  width: 200px;
-  height: 200px;
+  width: 250px;
+  height: 250px;
+  border-radius: 150px;
 }
 
 .myinfo-content {
@@ -71,6 +77,39 @@
   font-weight: bold;
 }
 
+.input-nickName {
+  margin-left: 1em;
+  margin: auto;
+  font-size: 1em;
+  height: 1.2em;
+  width: 10em;
+  border: none;
+  margin-bottom: 0.5em;
+}
+
+.input-nickName::placeholder {
+  margin: auto;
+  font-size: 1em;
+  color: rgb(0, 0, 0);
+}
+.input-nickName:focus {
+  outline: none;
+  border-bottom: 1px solid gray;
+  color: rgb(0, 0, 0);
+}
+
+.input-nickName:focus::placeholder {
+  outline: none;
+  color: rgb(138, 138, 138);
+}
+
+.nick-name-change-message {
+  font-size: 0.5em;
+  color: gray;
+  margin-bottom: 1em;
+  width: 20em;
+}
+
 .myinfo-post-image img {
   width: 400px;
   height: 400px;
@@ -82,15 +121,16 @@
   justify-content: flex-end;
   outline: 0;
   margin-top: 3rem;
-  margin-left: auto;
   text-align: center;
+  align-items: center;
   font-size: 16px;
   background-color: black;
   color: white;
   border-radius: 12px;
+  cursor: pointer;
 }
 
-@media (max-width: 480px) {
+/* @media (max-width: 768px) {
   .myinfo-post-image img {
     width: 200px;
     height: 200px;
@@ -98,6 +138,7 @@
 
   .myinfo-kakao-profile {
     margin-top: 1rem;
+    margin: 0;
     height: 100px;
     float: right;
     margin-right: 0;
@@ -112,6 +153,7 @@
 }
 
 .change-spot {
+  margin: auto;
   width: 500px;
   height: 500px;
   margin-top: 5%;
@@ -125,17 +167,18 @@
 
 .kakao-email {
   font-size: 18px;
-  margin-left: 5%;
+  margin-left: 0.5em;
   padding-top: 3%;
 }
 
 .nickname-box {
   border: none;
-  border-bottom: solid 2px black;
-  margin-left: 5%;
+  height: 3em;
+  margin-left: 0.5em;
 }
 .nickname-box:focus {
   outline: none;
+  border-bottom: 1px solid black;
 }
 
 .out-member-btn {
@@ -154,4 +197,71 @@
 .out-member-modal:hover {
   cursor: pointer;
   text-decoration: underline;
+}
+@media screen and (max-width: 768px) {
+  .edit-button-div {
+    width: 100%;
+    margin: auto;
+    align-items: center;
+    text-align: center;
+  }
+  .myinfo-kakao-profile-div {
+    margin: 0;
+    border: none;
+    width: 100vw;
+    padding: 2em;
+    padding-bottom: 3em;
+    display: block;
+  }
+  .profile-image img {
+    margin-top: 2em;
+    width: 250px;
+    height: 250px;
+  }
+
+  .my-page-nickname {
+    width: 100%;
+    margin-left: 0;
+    text-align: center;
+    align-items: center;
+  }
+  .my-page-user-info {
+    margin: 0;
+    align-items: center;
+    text-align: center;
+  }
+
+  .edit-button {
+    display: flex;
+    outline: 0;
+    font-size: 16px;
+    background-color: black;
+    color: white;
+    border-radius: 12px;
+    margin: auto;
+    margin-top: 3em;
+  }
+
+  .input-nickName {
+    width: 100%;
+    text-align: center;
+    align-items: center;
+    margin: auto;
+    font-size: 1em;
+    height: 1.2em;
+    width: 10em;
+    border: none;
+    margin-bottom: 0.5em;
+  }
+  .nick-name-change-message {
+    width: 20em;
+    margin: auto;
+    padding: auto;
+    align-items: center;
+    text-align: center;
+    font-size: 0.5em;
+    color: gray;
+    margin-bottom: 1em;
+    width: 20em;
+  }
 }
