@@ -45,6 +45,7 @@ function LpListPage({ singleLpPageId, setSingleLpPageId }) {
   }, []);
 
   const onLoadMore = () => {
+    console.log("더보여줘")
     loopWithSlice(next, next + albumsPerPage);
     setNext(next + albumsPerPage);
   };
@@ -58,7 +59,7 @@ function LpListPage({ singleLpPageId, setSingleLpPageId }) {
   };
 
   return (
-    <div>
+    <div id="lp-single-page">
       <div className="genre-categories">
         {genre.map((e, idx) => (
           <span
@@ -72,28 +73,29 @@ function LpListPage({ singleLpPageId, setSingleLpPageId }) {
       </div>
 
 
-      <div className="album-wrapper">
-        <div className="album-inner">
+      <section className="album-container">
+        <div className="album-content">
         {lpAlbum.map((el) => (
-          <div className="album-list">
+          <div className="album-single-container">
             <div className="album-image">
               <img
                 onClick={() => lpSinglePageRender(el.id)}
                 src={`${process.env.REACT_APP_API_URL}/${el.image}`}
                 alt={el.albumTitle}
+                // style={{width: "200px", height:"200px"}}
               />
             </div>
             <div className="album-articles">
-              <div className="artist">{el.artist}</div>
+              <div className="album-artist">{el.artist}</div>
               <div className="album-title">{el.albumTitle}</div>
             </div>
           </div>
         ))}
         </div>
-      </div>
+      </section>
 
       <button onClick={onLoadMore} className="load-more-button">
-        More
+        More 
       </button>
     </div>
   );
