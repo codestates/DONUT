@@ -17,7 +17,7 @@ module.exports = async (req, res) => {
 
     const userInfo = await axios.get(`https://kapi.kakao.com/v2/user/me`, {
       headers: {
-        Authorization: `Bearer ${result.data.access_token}`,
+        Authorization: `${result.data.token_type} ${result.data.access_token}`,
       },
     });
 

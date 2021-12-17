@@ -45,9 +45,13 @@ function Topbar({ isLogin, setIsLogin }) {
                 </Link>
               ))}
               {!isLogin ? (
-                <Link className="list-item" to="./login">MY</Link>
+                <Link className="list-item" to="./login">
+                  MY
+                </Link>
               ) : (
-                <Link className="list-item" to="./my">MY</Link>
+                <Link className="list-item" to="./my">
+                  MY
+                </Link>
               )}
 
               {!isLogin ? (
@@ -83,6 +87,15 @@ function Topbar({ isLogin, setIsLogin }) {
               </div>
             ))}
             <div>
+              {!isLogin ? (
+                <Link className="list-item" to="./login">
+                  MY
+                </Link>
+              ) : (
+                <Link className="list-item" to="./my">
+                  MY
+                </Link>
+              )}
               {!isLogin ? (
                 <Link className="list-item" to="./login">
                   LOGIN

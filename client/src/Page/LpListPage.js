@@ -8,6 +8,7 @@ function LpListPage({ singleLpPageId, setSingleLpPageId }) {
   const [lpAlbum, setLpAlbum] = useState([]);
   const [albumShow, setAlbumShow] = useState(false);
   const [curGenreList, setCurGenreList] = useState(lpAlbum);
+  const [curGenreIdx, setCurGenreIdx] = useState(0);
 
   const genre = [
     "All",
@@ -18,6 +19,10 @@ function LpListPage({ singleLpPageId, setSingleLpPageId }) {
   ];
 
   const genreHandler = (e) => {
+    const index = genre.indexOf(e);
+    document.getElementById(`category${curGenreIdx}`).classList.remove("bold");
+    document.getElementById(`category${index}`).classList.add("bold");
+    setCurGenreIdx(index);
     if (e !== "All") {
       const filterLpList = lpAlbum.filter((el) => el.genre === e);
       setCurGenreList(filterLpList);
@@ -51,6 +56,7 @@ function LpListPage({ singleLpPageId, setSingleLpPageId }) {
           {genre.map((e, idx) => (
             <span
               className="genre-category"
+              id={`category${idx}`}
               key={idx + 200}
               onClick={() => genreHandler(e)}
             >
@@ -60,9 +66,9 @@ function LpListPage({ singleLpPageId, setSingleLpPageId }) {
         </div>
       </div>
 
-
       <section className="album-container">
         <div className="lp-album-content">
+
         {curGenreList.slice(0, albumsPerPage).map((el) => (
           <div className="album-single-container">
             <div className="album-image">
@@ -75,21 +81,18 @@ function LpListPage({ singleLpPageId, setSingleLpPageId }) {
             <div className="lp-album-articles">
               <div className="lp-album-artist" onClick={() => lpSinglePageRender(el.id)}>{el.artist}</div>
               <div className="lp-album-title" onClick={() => lpSinglePageRender(el.id)}>{el.albumTitle}</div>
+
             </div>
-          </div>
           ))}
         </div>
-  
-
       </section>
-      
+
       <div className="load-more-btn">
 
         <button onClick={()=>setAlbumShow(!albumShow)}>
           {albumShow ? "LESS" : "MORE"} 
         </button>
       </div>
-
     </div>
   );
 }

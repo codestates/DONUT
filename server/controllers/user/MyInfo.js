@@ -8,9 +8,9 @@ module.exports = async (req, res) => {
   if(!authorization) {
     res.status(401).send({message: 'Invalid token!'});
   } else {
-    const userInfo = await user.findOne({Where: authorization.email});
+    const userInfo = await user.findOne({where: {email: authorization.email}});
 
-    console.log('여기?',userInfo.dataValues);
+    //console.log('여기?',userInfo.dataValues);
     res.status(200).json({data: userInfo.dataValues, message: 'Success find user!'});
   }
 };
