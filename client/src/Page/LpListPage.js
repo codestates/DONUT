@@ -6,8 +6,7 @@ import "./LpListPage.css";
 
 function LpListPage({ singleLpPageId, setSingleLpPageId }) {
   const [lpAlbum, setLpAlbum] = useState([]);
-  const [albumShow, setAlbumShow] = useState([]);
-  const [next, setNext] = useState(3);
+  const [albumShow, setAlbumShow] = useState(false);
   const [curGenreList, setCurGenreList] = useState(lpAlbum);
 
   const genre = [
@@ -35,24 +34,6 @@ function LpListPage({ singleLpPageId, setSingleLpPageId }) {
       .then((res) => setLpAlbum(res.data.data));
   }, []);
 
-  const albumsPerPage = 3;
-  let arrayForHoldingPosts = [];
-
-  const loopWithSlice = (start, end) => {
-    const slicedAlbums = LpInfo.slice(start, end);
-    arrayForHoldingPosts = [...arrayForHoldingPosts, ...slicedAlbums];
-    setAlbumShow(arrayForHoldingPosts);
-  };
-
-  useEffect(() => {
-    loopWithSlice(0, albumsPerPage);
-  }, []);
-
-  const onLoadMore = () => {
-    loopWithSlice(next, next + albumsPerPage);
-    setNext(next + albumsPerPage);
-  };
-
   const lpSinglePageRender = (e) => {
     console.log(e);
     // setSingleLpPageId(e);
@@ -60,6 +41,8 @@ function LpListPage({ singleLpPageId, setSingleLpPageId }) {
       `${process.env.REACT_APP_ORIGIN_URL}/all/lp_single_page/?lpListId=${e}`
     );
   };
+
+  const albumsPerPage = albumShow ? curGenreList.length : 8
 
   return (
     <div id="lp-single-page">
@@ -80,19 +63,18 @@ function LpListPage({ singleLpPageId, setSingleLpPageId }) {
 
       <section className="album-container">
         <div className="lp-album-content">
-        {curGenreList.map((el) => (
+        {curGenreList.slice(0, albumsPerPage).map((el) => (
           <div className="album-single-container">
             <div className="album-image">
               <img
                 onClick={() => lpSinglePageRender(el.id)}
                 src={`${process.env.REACT_APP_API_URL}/${el.image}`}
                 alt={el.albumTitle}
-                // style={{width: "200px", height:"200px"}}
               />
               </div>
-            <div className="album-articles">
-              <div className="album-artist">{el.artist}</div>
-              <div className="album-title">{el.albumTitle}</div>
+            <div className="lp-album-articles">
+              <div className="lp-album-artist" onClick={() => lpSinglePageRender(el.id)}>{el.artist}</div>
+              <div className="lp-album-title" onClick={() => lpSinglePageRender(el.id)}>{el.albumTitle}</div>
             </div>
           </div>
           ))}
@@ -102,8 +84,9 @@ function LpListPage({ singleLpPageId, setSingleLpPageId }) {
       </section>
       
       <div className="load-more-btn">
-        <button onClick={onLoadMore}>
-          More 
+
+        <button onClick={()=>setAlbumShow(!albumShow)}>
+          {albumShow ? "LESS" : "MORE"} 
         </button>
       </div>
 
