@@ -123,6 +123,7 @@ function AdminPage() {
     // });
     //!내보내기 실행 시 몇개나 진행되었는지 확인해주는 모달창 띄워주기
     //!내보내기 완료 되면 페이지 리렌더
+    window.location.reload(true);
   };
 
   return (
