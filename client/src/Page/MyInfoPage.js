@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-// import MyInfoEdit from "./Page/MyInfoEdit"
 import "./MyInfo.css";
 import been from "./been.png";
 import { Link, Route, Routes } from "react-router-dom";
@@ -12,7 +11,30 @@ function MyInfoPage() {
     nickname: "",
     email: "",
   });
+  const [reNickName, setReNickName] = useState("");
 
+  const nickNameInput = (e) => {
+    setReNickName(e.target.value);
+  };
+
+  const nickNameHandler = async (e) => {
+    // console.log("작동중")
+    e.preventDefault();
+    await axios
+      .patch(
+        `${process.env.REACT_APP_API_URL}/UserInfo`,
+        qs.stringify({
+          nickName: reNickName,
+        }),
+        {
+          headers: {
+            "Content-type": "application/x-www-form-urlencoded;charset=utf-8",
+          },
+        }
+      )
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  };
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/MyInfo`)
@@ -35,11 +57,21 @@ function MyInfoPage() {
           <img src={myInfo.image} alt="" />
         </div>
         <div className="my-page-nickname">
-          <div className="my-page-user-info">{myInfo.nickname}</div>
+          <input
+            type="text"
+            className=" input-nickName"
+            placeholder={myInfo.nickname}
+            onChange={nickNameInput}
+          ></input>
+          <div className="nick-name-change-message">
+            * 닉네임 클릭 시 새로운 닉네임 입력이 가능합니다.
+          </div>
           <div className="my-page-user-info">{myInfo.email}</div>
-          <Link to="/my/my_info_Edit">
-            <button className="edit-button">Edit Profile</button>
-          </Link>
+          <div className="edit-button-div">
+            <button className="edit-button" onClick={nickNameHandler}>
+              Edit Profile
+            </button>
+          </div>
         </div>
       </div>
 
