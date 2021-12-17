@@ -70,6 +70,7 @@ function FreeTalkSinglePage({ isLogin, setIsLogin }) {
           <div className="single-free-talk-view">{selectTalk.view}</div>
           <div className="single-free-talk-script">{selectTalk.article}</div>
         </div>
+
         <div className="single-free-talk-comment-input-div">
           <div className="single-free-talk-comment-text">comment</div>
           <div className="single-free-talk-comment-div">
@@ -88,30 +89,31 @@ function FreeTalkSinglePage({ isLogin, setIsLogin }) {
                 <button className="submit-button">LOGIN</button>
               </Link>
             )} */}
-            <button
-              className="comment-submit-button-div"
-              onClick={submitComment}
-            >
+
+            <button className="submit-button" onClick={submitComment}>
               SHARE
             </button>
           </div>
         </div>
-        <div className="single-free-talk-comment-div">
-          {commentList.map((e) =>
-            e ? (
-              <div
-                className="single-free-talk-comment-single-div"
-                key={`${e.id}+100`}
-              >
-                <div className="single-free-talk-comment-writer">
-                  {e.nickname}
+
+        <div className="single-free-talk-comment-container">
+          <div className="single-free-talk-comment-div">
+            {commentList.map((e) =>
+              e ? (
+                <div
+                  className="single-free-talk-comment-single-div"
+                  key={`${e.id}+100`}
+                >
+                  <div className="single-free-talk-comment-writer">
+                    {e.nickname}
+                  </div>
+                  <div className="single-free-talk-comment-script">
+                    {e.content}
+                  </div>
                 </div>
-                <div className="single-free-talk-comment-script">
-                  {e.content}
-                </div>
-              </div>
-            ) : null
-          )}
+              ) : null
+            )}
+          </div>
         </div>
       </div>
     </div>

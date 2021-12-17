@@ -71,7 +71,10 @@ function FreeTalkWrite({ isLogin, setIsLogin }) {
               ></textarea>
             </div>
             <div className="button-div">
-              <button className="submit-button" onClick={uploadContentHandler}>
+              <button
+                className="submit-button button-margin"
+                onClick={uploadContentHandler}
+              >
                 SHARE
               </button>
             </div>
@@ -84,4 +87,3 @@ function FreeTalkWrite({ isLogin, setIsLogin }) {
 }
 
 export default FreeTalkWrite;
-
