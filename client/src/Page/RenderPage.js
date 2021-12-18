@@ -24,6 +24,20 @@ function RenderPage({ isLogin, setIsLogin }) {
   //   return null;
   // }
 
+  const lpSinglePageRender = (e) => {
+    console.log(e);
+    // setSingleLpPageId(e);
+    window.location.replace(
+      `https://localhost:3000/all/lp_single_page/?lpListId=${e}`
+    );
+  };
+
+  const MoveToSinglePost = (e) => {
+    window.location.replace(
+      `${process.env.REACT_APP_ORIGIN_URL}/post/single_post_page/?postId=${e}`
+    );
+  };
+
   const loginHandler = (e) => {
     setIsLogin(e);
   };
@@ -90,7 +104,11 @@ function RenderPage({ isLogin, setIsLogin }) {
                 {lpList.slice(0, 5).map((el, idx) => (
                   <div className="album-single" key={idx * 2700}>
                     <div className="album-single-img">
-                      <img src={el.image} alt={el.albumTitle} />
+                      <img
+                        src={el.image}
+                        alt={el.albumTitle}
+                        onClick={() => lpSinglePageRender(el.id)}
+                      />
                     </div>
                     <div className="album-single-info">
                       <div className="album-artist">{el.artist}</div>
@@ -118,6 +136,7 @@ function RenderPage({ isLogin, setIsLogin }) {
                           className="slide-img"
                           src={post.picture}
                           alt={post.id}
+                          onClick={() => MoveToSinglePost(post.id)}
                         ></img>
                       </div>
                     );
