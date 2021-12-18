@@ -18,7 +18,7 @@ function Topbar({ isLogin, setIsLogin }) {
       .catch((err) => console.log(err));
   };
 
-  console.log(isLogin);
+  // console.log(isLogin);
 
   const menuList = [
     { ALL: "all" },
@@ -38,16 +38,16 @@ function Topbar({ isLogin, setIsLogin }) {
           <div className="web-menu">
             {" "}
             <ul className="web-menuList">
-              {menuList.map((e) => (
-                <Link className="list-item" to={`./${Object.values(e)}`}>
+              {menuList.map((e, idx) => (
+                <Link
+                  className="list-item"
+                  to={`./${Object.values(e)}`}
+                  key={idx * 3100}
+                >
                   {Object.keys(e)}
                 </Link>
               ))}
-              {!isLogin ? (
-                <Link className="list-item" to="./login">
-                  MY
-                </Link>
-              ) : (
+              {!isLogin ? null : (
                 <Link className="list-item" to="./my">
                   MY
                 </Link>
@@ -78,19 +78,15 @@ function Topbar({ isLogin, setIsLogin }) {
         </div>
         {isOpen ? (
           <div className="navbar-toggle-open-menu">
-            {menuList.map((e) => (
-              <div>
+            {menuList.map((e, idx) => (
+              <div key={idx * 2100}>
                 <Link className="list-item" to={`./${Object.values(e)}`}>
                   {Object.keys(e)}
                 </Link>
               </div>
             ))}
             <div>
-              {!isLogin ? (
-                <Link className="list-item" to="./login">
-                  MY
-                </Link>
-              ) : (
+              {!isLogin ? null : (
                 <Link className="list-item" to="./my">
                   MY
                 </Link>

@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./PostPage.css";
 import axios from "axios";
 
-function PostPage() {
+function PostPage({ isLogin, setIsLogin }) {
   const [postList, setPostList] = useState([]);
 
   useEffect(() => {
@@ -26,7 +26,7 @@ function PostPage() {
         <span className="post-title-text">POST</span>
         <Link to="./upload">
           <div className="camera-icon">
-            <FontAwesomeIcon icon={faCamera} size="2x" />
+            {isLogin ? <FontAwesomeIcon icon={faCamera} size="2x" /> : null}
           </div>
         </Link>
       </div>

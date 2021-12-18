@@ -54,7 +54,7 @@ function FreeTalkPage({ isLogin, setIsLogin }) {
           </div>
         ))}
         <div className="button-div">
-          {/* {isLogin ? (
+          {isLogin ? (
             <Link className="submit-button-div" to="/free_talk/write">
               <button className="submit-button">WRITE</button>
             </Link>
@@ -62,10 +62,7 @@ function FreeTalkPage({ isLogin, setIsLogin }) {
             <Link className="submit-button-div" to="/login">
               <button className="submit-button">LOGIN</button>
             </Link>
-          )} */}
-          <Link className="submit-button-div" to="/free_talk/write">
-            <button className="submit-button">WRITE</button>
-          </Link>
+          )}
         </div>
       </div>
     </section>

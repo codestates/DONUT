@@ -27,16 +27,14 @@ function App() {
   // const [singlePostPageId, setSinglePostPageId] = useState("");
   // const [singleLpPageId, setSingleLpPageId] = useState("")
 
-  console.log(process.env.REACT_APP_API_URL);
-
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/AuthLogin`)
       .then(
-        (res) => setIsLogin(res)
+        (res) => setIsLogin(res.data.login)
         // cookie에 "accesstoken" 존재 여부를 확인한 후 로그인 여부 판단.
       )
-      .catch((err) => console.log(err));
+      .catch((err) => null);
   }, []);
 
   return (
@@ -58,17 +56,30 @@ function App() {
           <Route path="/my" element={<MyInfoPage />}></Route>
           <Route path="/all" element={<LpListPage />}></Route>
           <Route path="/all/lp_single_page/" element={<LpSinglePage />}></Route>
+          {/* 로그인 안 했을 시 렌더해주지 않음 sendToRoginPage 컴포넌트 추가하기*/}
+          {/* routes matched location 콘솔 메세지 방어하기 위해 해당 컴포넌트 각 페이지에서 받아서 렌더 */}
           <Route path="/free_talk/write" element={<FreeTalkWrite />}></Route>
-          <Route path="/post" element={<PostPage />}></Route>
+          <Route
+            path="/post"
+            element={<PostPage isLogin={isLogin} setIsLogin={setIsLogin} />}
+          ></Route>
+          {/* routes matched location 콘솔 메세지 방어하기 위해 해당 컴포넌트 각 페이지에서 받아서 렌더 */}
           <Route exact path="/post/upload" element={<PostUploadPage />}></Route>
           <Route
             path="/post/single_post_page"
-            element={<SinglePostPage />}
+            element={
+              <SinglePostPage isLogin={isLogin} setIsLogin={setIsLogin} />
+            }
           ></Route>
-          <Route path="/free_talk" element={<FreeTalkPage />}></Route>
+          <Route
+            path="/free_talk"
+            element={<FreeTalkPage isLogin={isLogin} setIsLogin={setIsLogin} />}
+          ></Route>
           <Route
             path="/free_talk/single"
-            element={<FreeTalkSinglePage />}
+            element={
+              <FreeTalkSinglePage isLogin={isLogin} setIsLogin={setIsLogin} />
+            }
           ></Route>
           <Route exact path="/administer" element={<AdminPage />}></Route>
         </Routes>

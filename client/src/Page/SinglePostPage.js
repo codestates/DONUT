@@ -1,11 +1,11 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "./SinglePostPage.css";
 import axios from "axios";
 import qs from "qs";
-import { comment } from "./DummyLpList";
 
-function SinglePostPage() {
+function SinglePostPage({ isLogin, setIsLogin }) {
   const url = new URL(window.location.href);
   const postId = url.searchParams.get("postId");
 
@@ -20,10 +20,10 @@ function SinglePostPage() {
   });
 
   const getContent = (data) => {
-    console.log(data);
+    // console.log(data);
     setSelectPost(data.data);
     setCommentList(commentList.concat(data.data.comments));
-    console.log(commentList);
+    // console.log(commentList);
   };
 
   const submitComment = async () => {
@@ -62,9 +62,9 @@ function SinglePostPage() {
           <div className="post-user-profile-image">
             <img src={selectPost.image} alt="" />
           </div>
-        <div className="post-user-nickname">
-          <span>{selectPost.nickname}</span>
-        </div>
+          <div className="post-user-nickname">
+            <span>{selectPost.nickname}</span>
+          </div>
         </div>
         <div className="post-img">
           <img
@@ -82,7 +82,15 @@ function SinglePostPage() {
         className="comment-input"
         onChange={inputComment}
       />
-      <button className="comment-share-btn" onClick={submitComment}>SHARE</button>
+      {isLogin ? (
+        <button className="comment-share-btn" onClick={submitComment}>
+          SHARE
+        </button>
+      ) : (
+        <Link className="comment-share-btn" to="/login">
+          LOGIN
+        </Link>
+      )}
       <div className="single-post-comment-div">
         {commentList.map((e) =>
           e ? (

@@ -9,26 +9,46 @@ import LpVideo from "./LpVideo.mp4";
 axios.defaults.withCredentials = true;
 
 function RenderPage({ isLogin, setIsLogin }) {
+  const [lpList, setLpList] = useState(LpInfo);
+  const [postList, setPostList] = useState(PostList);
   const [currentPost, setCurrentPost] = useState(0);
   const PostLength = PostList.length;
 
-  const screenSize = window.screen.width;
-
-  const nextSlide = () => {
-    setCurrentPost(currentPost === PostLength - 1 ? 0 : currentPost + 1);
-  };
-
-  const prevSlide = () => {
-    setCurrentPost(currentPost === 0 ? PostLength - 1 : currentPost - 1);
-  };
-
-  if (!Array.isArray(PostList) || PostList.length <= 0) {
-    return null;
-  }
+  // const nextSlide = () => {
+  //   setCurrentPost(currentPost === PostLength - 1 ? 0 : currentPost + 1);
+  // };
+  // const prevSlide = () => {
+  //   setCurrentPost(currentPost === 0 ? PostLength - 1 : currentPost - 1);
+  // };
+  // if (!Array.isArray(PostList) || PostList.length <= 0) {
+  //   return null;
+  // }
 
   const loginHandler = (e) => {
     setIsLogin(e);
   };
+
+  const contentHandler = (data) => {
+    const dataLp = data.lp;
+    const dataPost = data.post;
+
+    // 더미데이터와 일치 시켜주기 위해서 ${process.env.REACT_APP_API_URL} 추가 실행, 추후 수정 예정
+    dataLp.forEach(
+      (e) => (e.image = `${process.env.REACT_APP_API_URL}/${e.image}`)
+    );
+    dataPost.forEach(
+      (e) => (e.picture = `${process.env.REACT_APP_API_URL}/${e.picture}`)
+    );
+    setLpList(dataLp.concat(lpList));
+    setPostList(dataPost.concat(postList));
+  };
+
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/RenderPage`)
+      .then((res) => contentHandler(res.data))
+      .catch((err) => err);
+  }, []);
 
   // console.log("렌더페이지", isLogin);
   const url = new URL(window.location.href);
@@ -67,22 +87,19 @@ function RenderPage({ isLogin, setIsLogin }) {
 
             <div className="albums-container">
               <div className="album-content">
-                  {LpInfo.map((el) => (
-                    <div className="album-single">
-                      <div className="album-single-img">
-                      <img
-                        src={el.image}
-                        alt={el.albumTitle}
-                      />
-                      </div>
-                      <div className="album-single-info">
-                        <div className="album-artist">{el.artist}</div>
-                        <div className="album-title">{el.albumTitle}</div>
+                {lpList.slice(0, 5).map((el, idx) => (
+                  <div className="album-single" key={idx * 2700}>
+                    <div className="album-single-img">
+                      <img src={el.image} alt={el.albumTitle} />
                     </div>
+                    <div className="album-single-info">
+                      <div className="album-artist">{el.artist}</div>
+                      <div className="album-title">{el.albumTitle}</div>
                     </div>
-                  ))}
-                </div>
+                  </div>
+                ))}
               </div>
+            </div>
           </div>
         </section>
       </div>
@@ -94,12 +111,12 @@ function RenderPage({ isLogin, setIsLogin }) {
             <div className="slider">
               <div className="track-slider">
                 <div className="slide-track">
-                  {PostList.map((post, idx) => {
+                  {postList.map((post, idx) => {
                     return (
-                      <div>
+                      <div key={idx * 2800}>
                         <img
                           className="slide-img"
-                          src={post.image}
+                          src={post.picture}
                           alt={post.id}
                         ></img>
                       </div>

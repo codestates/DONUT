@@ -20,6 +20,8 @@ function FreeTalkSinglePage({ isLogin, setIsLogin }) {
     updatedAt: "",
   });
 
+  // console.log(isLogin);
+
   const getContent = (data) => {
     console.log(data);
     setSelectTalk(data.data);
@@ -70,7 +72,6 @@ function FreeTalkSinglePage({ isLogin, setIsLogin }) {
           <div className="single-free-talk-view">{selectTalk.view}</div>
           <div className="single-free-talk-script">{selectTalk.article}</div>
         </div>
-
         <div className="single-free-talk-comment-input-div">
           <div className="single-free-talk-comment-text">comment</div>
           <div className="single-free-talk-comment-div">
@@ -80,22 +81,17 @@ function FreeTalkSinglePage({ isLogin, setIsLogin }) {
               placeholder="댓글을 입력해 주세요."
               onChange={inputComment}
             />
-            {/* {isLogin ? (
+            {isLogin ? (
               <button className="submit-button" onClick={submitComment}>
                 SHARE
               </button>
             ) : (
-              <Link to="/login">
-                <button className="submit-button">LOGIN</button>
+              <Link className="submit-button" to="/login">
+                LOGIN
               </Link>
-            )} */}
-
-            <button className="submit-button" onClick={submitComment}>
-              SHARE
-            </button>
+            )}
           </div>
         </div>
-
         <div className="single-free-talk-comment-container">
           <div className="single-free-talk-comment-div">
             {commentList.map((e) =>
