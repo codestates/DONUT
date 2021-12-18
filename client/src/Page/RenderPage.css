@@ -87,6 +87,11 @@ img {
   display: block;
 }
 
+.album-single:hover {
+  top: -2px;
+  cursor: pointer;
+}
+
 .album-single-img {
   overflow: hidden;
   position: relative;
@@ -176,6 +181,11 @@ img {
   width: auto;
   height: 100%;
   margin: 0px;
+}
+
+.slide-img:hover {
+  filter: opacity(0.8);
+  cursor: pointer;
 }
 
 .right-arrow {
