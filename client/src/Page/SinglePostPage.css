@@ -1,0 +1,139 @@
+.post-title {
+  text-align: center;
+  overflow: hidden;
+  font-size: 24px;
+  padding-bottom: 16px;
+  letter-spacing: -0.12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.title {
+  display: block;
+  font-size: 1.5em;
+  margin-block-start: 0.83em;
+  margin-block-end: 0.83em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+
+.single-post {
+  margin-bottom: 1%;
+  margin-left: 30%;
+  margin-right: 30%;
+}
+
+.post-user {
+  display: flex;
+  padding: 16px;
+  align-items: center;
+}
+
+.post-user-profile-image {
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 100%;
+}
+
+.post-user-profile-image img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.post-user-nickname {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.33px;
+}
+
+.post-img {
+  position: relative;
+}
+
+.post-img img {
+  width: 100%;
+  height: auto;
+}
+
+.post-caption {
+  padding: 16px 16px;
+}
+
+.post-caption strong {
+  display: inline-flex;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.33px;
+  font-weight: bold;
+}
+
+.comment-input {
+  width: 45%;
+  padding: 12px 12px;
+  margin: 10px 0;
+  box-sizing: border-size;
+  border: 1px solid #ccc;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+  margin-left: 27%;
+  margin-right: 3%;
+}
+
+.comment-input:focus {
+  border: 1px solid #555;
+}
+
+.comment-share-btn {
+  width: 5rem;
+  height: 2rem;
+  border: none;
+  background-color: black;
+  color: white;
+  border-radius: 30px;
+  font-size: 1rem;
+  letter-spacing: -0.33px;
+  cursor: pointer;
+}
+
+.post-comment {
+  margin-bottom: 1%;
+  margin-left: 27%;
+  margin-right: 20%;
+}
+
+.post-comment-writer {
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+.post-comment-script {
+  letter-spacing: 3px;
+}
+
+@media screen and (max-width: 500px) {
+  .single-post {
+    margin-left: 20%;
+    margin-right: 20%;
+  }
+
+  .post-comment {
+    margin-left: 20%;
+    margin-right: 20%;
+  }
+
+  .comment-input {
+    margin-left: 20%;
+  }
+}

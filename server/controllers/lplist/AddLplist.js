@@ -13,10 +13,10 @@ module.exports = async (req, res) => {
 
   // 토큰확인
   const authorization = isAuthorized(req);
-  //console.log(authorization)
+  console.log(authorization)
   //유저찾기
   const findUser = await user.findOne({
-    where: { email: authorization.email, nickName: authorization.nickname },
+    where: { email: authorization.email },
   });
 
   if (!authorization) {

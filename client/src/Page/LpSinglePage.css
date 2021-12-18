@@ -1,0 +1,160 @@
+@media screen and (min-width: 769px) {
+  .single-detail-infos {
+    display: flex;
+    height: 100vh;
+  }
+
+  .album-single-image-div {
+    display: inline;
+    width: 50vw;
+    height: 50vw;
+    margin: 0;
+    float: left;
+  }
+
+  .album-single-image {
+    margin: auto;
+    margin-top: 120px;
+    align-items: center;
+    width: 80%;
+    height: 80%;
+  }
+
+  .single-detail-infos {
+    padding-left: 50px;
+    display: inline-block;
+    width: 50vw;
+    height: 50vw;
+  }
+  .single-detail-artist {
+    margin-top: 140px;
+    font-size: 3em;
+    font-weight: bold;
+    margin-bottom: 0.4em;
+  }
+
+  .single-detail-title {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 2em;
+  }
+
+  .single-detail-price-word {
+    font-size: 1.7em;
+    font-weight: bold;
+    padding-left: 0;
+    margin-left: 0;
+    margin-right: 0.3em;
+  }
+  .single-detail-price {
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-bottom: 1em;
+  }
+
+  .single-detail-price-div {
+    margin-bottom: 5em;
+  }
+
+  .single-detail-add-price-div {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    border-spacing: 7px;
+    margin-top: 0.5em;
+    width: 80%;
+    padding-left: 0;
+    font-size: 1.2em;
+    text-align: center;
+    border-top: 0.5px solid rgb(77, 77, 77);
+    border-bottom: 0.5px solid rgb(77, 77, 77);
+  }
+
+  #add-price-modal-button {
+    background-color: none;
+    font-size: 1.2em;
+    color: rgb(100, 100, 100);
+    margin-left: auto;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .single-detail-infos {
+    display: block;
+    height: 140vh;
+    margin-bottom: 7em;
+  }
+
+  .album-single-image-div {
+    display: inline;
+    width: 100vw;
+    height: 100vw;
+    margin: 0;
+    float: left;
+  }
+
+  .album-single-image {
+    margin: auto;
+    margin-top: 120px;
+    align-items: center;
+    width: 80%;
+    height: 80%;
+  }
+
+  .single-detail-infos {
+    padding-left: 80px;
+    padding-right: 80px;
+    display: inline-block;
+    width: 100vw;
+    height: 100vw;
+  }
+  .single-detail-artist {
+    margin-top: 140px;
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-bottom: 0.4em;
+  }
+
+  .single-detail-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 1.4em;
+  }
+
+  .single-detail-price-word {
+    font-size: 1.6em;
+    font-weight: bold;
+    padding-left: 0;
+    margin-left: 0;
+    margin-right: 0.3em;
+  }
+  .single-detail-price {
+    font-size: 2.2em;
+    font-weight: bold;
+    margin-bottom: 1em;
+  }
+
+  .single-detail-price-div {
+    margin-bottom: 5em;
+    width: 100%;
+  }
+
+  .single-detail-add-price-div {
+    width: 100%;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    border-spacing: 7px;
+    margin-top: 0.5em;
+    padding-left: 0;
+    font-size: 1.2em;
+    text-align: center;
+    border-top: 0.5px solid rgb(77, 77, 77);
+    border-bottom: 0.5px solid rgb(77, 77, 77);
+  }
+
+  #add-price-modal-button {
+    background-color: none;
+    font-size: 1.2em;
+    color: rgb(100, 100, 100);
+    margin-left: auto;
+  }
+}

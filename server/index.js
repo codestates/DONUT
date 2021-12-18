@@ -26,6 +26,8 @@ app.use(cookieParser());
 app.post("/Kakao", controllers.Kakao);
 app.post("/KakaoCallback", controllers.KakaoCallback);
 app.patch("/UserInfo", controllers.UserInfo);
+app.get("/MyInfo", controllers.MyInfo);
+app.get("/UserWrite", controllers.UserWrite);
 app.post("/SignOut", controllers.SignOut);
 app.get("/AuthLogin", controllers.AuthLogin);
 app.delete("/Withdrawal", controllers.Withdrawal);

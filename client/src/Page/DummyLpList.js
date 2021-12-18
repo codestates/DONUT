@@ -2,12 +2,12 @@ export const LpInfo = [
   {
     id: 1,
     genre: "KOREAN",
-    artist: "선우정아",
+    artist: "전람회",
     albumTitle:
-      "3집 Serenade",
-    sellingPrice: "66,000원",
+      "졸업",
+    sellingPrice: "51,000원",
     image:
-      "https://contents.sixshop.com/thumbnails/uploadedFiles/99047/product/image_1609498984666_1500.jpg",
+      "https://contents.sixshop.com/thumbnails/uploadedFiles/99047/product/image_1627375194380_1000.jpg",
     TagName: "BLACK",
     price: "150,000원",
     date: "2021.9.13",
@@ -15,11 +15,11 @@ export const LpInfo = [
   {
     id: 2,
     genre: "KOREAN",
-    artist: "선우정아",
-    albumTitle: "3집 Serenade",
-    sellingPrice: "66,000원",
+    artist: "아리아나 그란데",
+    albumTitle: "Dangerous Woman",
+    sellingPrice: "55,000원",
     image:
-      "https://contents.sixshop.com/thumbnails/uploadedFiles/99047/product/image_1609498984666_1500.jpg",
+      "https://contents.sixshop.com/thumbnails/uploadedFiles/99047/product/image_1639566739940_1000.jpg",
     TagName: "BLACK",
     price: "150,000원",
     date: "2021.9.13",
@@ -27,11 +27,11 @@ export const LpInfo = [
   {
     id: 3,
     genre: "KOREAN",
-    artist: "선우정아",
-    albumTitle: "3집 Serenade",
-    sellingPrice: "66,000원",
+    artist: "존 레전드",
+    albumTitle: "Get Lifted",
+    sellingPrice: "35,000원",
     image:
-      "https://contents.sixshop.com/thumbnails/uploadedFiles/99047/product/image_1609498984666_1500.jpg",
+      "https://contents.sixshop.com/thumbnails/uploadedFiles/99047/product/image_1608545788876_1000.jpg",
     TagName: "BLACK",
     price: "150,000원",
     date: "2021.9.13",
@@ -39,11 +39,11 @@ export const LpInfo = [
   {
     id: 4,
     genre: "KOREAN",
-    artist: "선우정아",
-    albumTitle: "3집 Serenade",
-    sellingPrice: "66,000원",
+    artist: "토이",
+    albumTitle: "내 마음속에 (deep purple color)",
+    sellingPrice: "47,500원",
     image:
-      "https://contents.sixshop.com/thumbnails/uploadedFiles/99047/product/image_1609498984666_1500.jpg",
+      "	https://contents.sixshop.com/thumbnails/uploadedFiles/99047/product/image_1615546239434_1000.jpg",
     TagName: "BLACK",
     price: "150,000원",
     date: "2021.9.13",
@@ -51,28 +51,16 @@ export const LpInfo = [
   {
     id: 5,
     genre: "KOREAN",
-    artist: "선우정아",
-    albumTitle: "3집 Serenade",
-    sellingPrice: "66,000원",
+    artist: "블랙핑크",
+    albumTitle: "BLACKPINK 1st [THE ALMUB]",
+    sellingPrice: "37,500원",
     image:
-      "https://contents.sixshop.com/thumbnails/uploadedFiles/99047/product/image_1609498984666_1500.jpg",
+      "https://contents.sixshop.com/thumbnails/uploadedFiles/99047/product/image_1607764167766_1000.jpg",
     TagName: "BLACK",
     price: "150,000원",
     date: "2021.9.13",
-  },
-  {
-    id: 6,
-    genre: "KOREAN",
-    artist: "선우정아",
-    albumTitle: "3집 Serenade",
-    sellingPrice: "66,000원",
-    image:
-      "https://contents.sixshop.com/thumbnails/uploadedFiles/99047/product/image_1609498984666_1500.jpg",
-    TagName: "BLACK",
-    price: "150,000원",
-    date: "2021.9.13",
-  },
-];
+  }
+]
 
 export const talkList = [
   {

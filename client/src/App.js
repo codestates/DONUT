@@ -11,7 +11,6 @@ import Footer from "./Footer";
 import LoginPage from "./Page/LoginPage";
 import RenderPage from "./Page/RenderPage";
 import MyInfoPage from "./Page/MyInfoPage";
-import MyInfoEdit from "./Page/MyInfoEdit";
 import LpListPage from "./Page/LpListPage";
 import PostPage from "./Page/PostPage";
 import FreeTalkPage from "./Page/FreeTalkPage";
@@ -28,9 +27,11 @@ function App() {
   // const [singlePostPageId, setSinglePostPageId] = useState("");
   // const [singleLpPageId, setSingleLpPageId] = useState("")
 
+  console.log(process.env.REACT_APP_API_URL);
+
   useEffect(() => {
     axios
-      .get("https://localhost:4000/AuthLogin")
+      .get(`${process.env.REACT_APP_API_URL}/AuthLogin`)
       .then(
         (res) => setIsLogin(res)
         // cookie에 "accesstoken" 존재 여부를 확인한 후 로그인 여부 판단.
@@ -39,39 +40,41 @@ function App() {
   }, []);
 
   return (
-    <div>
-      <Topbar isLogin={isLogin} setIsLogin={setIsLogin}></Topbar>
-      <hr></hr>
-      <Routes>
-        <Route exact path="/" element={<RenderPage />}></Route>
-        <Route
-          path="/main"
-          element={<RenderPage isLogin={isLogin} setIsLogin={setIsLogin} />}
-        ></Route>
-        <Route
-          path="/login"
-          element={<LoginPage isLogin={isLogin} setIsLogin={setIsLogin} />}
-        ></Route>
-        <Route path="/my" element={<MyInfoPage />}></Route>
-        <Route path="/my/my_info_Edit" element={<MyInfoEdit />}></Route>
-        <Route path="/all" element={<LpListPage />}></Route>
-        <Route path="/all/lp_single_page/" element={<LpSinglePage />}></Route>
-        <Route path="/free_talk/write" element={<FreeTalkWrite />}></Route>
-        <Route path="/post" element={<PostPage />}></Route>
-        <Route exact path="/post/upload" element={<PostUploadPage />}></Route>
-        <Route
-          path="/post/single_post_page"
-          element={<SinglePostPage />}
-        ></Route>
-        <Route path="/free_talk" element={<FreeTalkPage />}></Route>
-        <Route
-          path="/free_talk/single"
-          element={<FreeTalkSinglePage />}
-        ></Route>
-        <Route exact path="/administer" element={<AdminPage />}></Route>
-      </Routes>
-      <hr></hr>
-      <Footer></Footer>
+    <div className="main-body">
+      <section className="topbar-section">
+        <Topbar isLogin={isLogin} setIsLogin={setIsLogin}></Topbar>
+      </section>
+      <section className="content-section">
+        <Routes>
+          <Route exact path="/" element={<RenderPage />}></Route>
+          <Route
+            path="/main"
+            element={<RenderPage isLogin={isLogin} setIsLogin={setIsLogin} />}
+          ></Route>
+          <Route
+            path="/login"
+            element={<LoginPage isLogin={isLogin} setIsLogin={setIsLogin} />}
+          ></Route>
+          <Route path="/my" element={<MyInfoPage />}></Route>
+          <Route path="/all" element={<LpListPage />}></Route>
+          <Route path="/all/lp_single_page/" element={<LpSinglePage />}></Route>
+          <Route path="/free_talk/write" element={<FreeTalkWrite />}></Route>
+          <Route path="/post" element={<PostPage />}></Route>
+          <Route exact path="/post/upload" element={<PostUploadPage />}></Route>
+          <Route
+            path="/post/single_post_page"
+            element={<SinglePostPage />}
+          ></Route>
+          <Route path="/free_talk" element={<FreeTalkPage />}></Route>
+          <Route
+            path="/free_talk/single"
+            element={<FreeTalkSinglePage />}
+          ></Route>
+          <Route exact path="/administer" element={<AdminPage />}></Route>
+        </Routes>
+      </section>
+      {/* <hr></hr> */}
+      {/* <Footer></Footer> */}
     </div>
   );
 }

@@ -6,9 +6,9 @@ import "./LpListPage.css";
 
 function LpListPage({ singleLpPageId, setSingleLpPageId }) {
   const [lpAlbum, setLpAlbum] = useState([]);
-  const [albumShow, setAlbumShow] = useState([]);
-  const [next, setNext] = useState(3);
-  const [curGenre, setCurGenre] = useState("All");
+  const [albumShow, setAlbumShow] = useState(false);
+  const [curGenreList, setCurGenreList] = useState(lpAlbum);
+  const [curGenreIdx, setCurGenreIdx] = useState(0);
 
   const genre = [
     "All",
@@ -19,83 +19,84 @@ function LpListPage({ singleLpPageId, setSingleLpPageId }) {
   ];
 
   const genreHandler = (e) => {
-    console.log(e);
-    const filterLpList = lpAlbum.filter((el) => el.genre === e);
-    setLpAlbum(filterLpList);
-    console.log(lpAlbum);
+    const index = genre.indexOf(e);
+    document.getElementById(`category${curGenreIdx}`).classList.remove("bold");
+    document.getElementById(`category${index}`).classList.add("bold");
+    setCurGenreIdx(index);
+    if (e !== "All") {
+      const filterLpList = lpAlbum.filter((el) => el.genre === e);
+      setCurGenreList(filterLpList);
+    } else setCurGenreList(lpAlbum);
   };
+
+  useEffect(() => {
+    setCurGenreList(lpAlbum);
+  }, [lpAlbum]);
 
   useEffect(() => {
     axios
-      .get("https://localhost:4000/AllLplist")
+      .get(`${process.env.REACT_APP_API_URL}/AllLplist`)
       .then((res) => setLpAlbum(res.data.data));
   }, []);
-
-  const albumsPerPage = 3;
-  let arrayForHoldingPosts = [];
-
-  const loopWithSlice = (start, end) => {
-    const slicedAlbums = LpInfo.slice(start, end);
-    arrayForHoldingPosts = [...arrayForHoldingPosts, ...slicedAlbums];
-    setAlbumShow(arrayForHoldingPosts);
-  };
-
-  useEffect(() => {
-    loopWithSlice(0, albumsPerPage);
-  }, []);
-
-  const onLoadMore = () => {
-    loopWithSlice(next, next + albumsPerPage);
-    setNext(next + albumsPerPage);
-  };
 
   const lpSinglePageRender = (e) => {
     console.log(e);
     // setSingleLpPageId(e);
     window.location.replace(
-      `https://localhost:3000/all/lp_single_page/?lpListId=${e}`
+      `${process.env.REACT_APP_ORIGIN_URL}/all/lp_single_page/?lpListId=${e}`
     );
   };
 
-  return (
-    <div>
-      <div id="genre-categories">
-        {genre.map((e, idx) => (
-          <span
-            className="genre-category"
-            key={idx + 200}
-            onClick={() => genreHandler(e)}
-          >
-            {e}
-          </span>
-        ))}
-      </div>
-      {console.log(lpAlbum)}
-      {/* <Link to="./lp_single_page"> */}
-      <div className="album-wrapper">
-        {lpAlbum.map((el) => (
-          <div className="album-list">
-            <img
-              className="album-image"
-              onClick={() => lpSinglePageRender(el.id)}
-              src={`https://localhost:4000/${el.image}`}
-              alt={el.albumTitle}
-            />
-            <div className="album-articles">
-              <div className="album-tag">{el.TagName}</div>
-              <div className="artist">{el.artist}</div>
-              <div className="album-title">{el.albumTitle}</div>
-            </div>
-          </div>
-        ))}
-      </div>
-      {/* </Link> */}
+  const albumsPerPage = albumShow ? curGenreList.length : 8
 
-      <button onClick={onLoadMore} className="load-more-button">
-        More
-      </button>
+  return (
+    <div id="lp-single-page">
+      <div className="genre-container">
+        <div className="genre-categories">
+          {genre.map((e, idx) => (
+            <span
+              className="genre-category"
+              id={`category${idx}`}
+              key={idx + 200}
+              onClick={() => genreHandler(e)}
+            >
+              {e}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <section className="album-container">
+        <div className="lp-album-content">
+
+        {curGenreList.slice(0, albumsPerPage).map((el) => (
+          <div className="album-single-container">
+            <div className="album-image">
+              <img
+                onClick={() => lpSinglePageRender(el.id)}
+                src={`${process.env.REACT_APP_API_URL}/${el.image}`}
+                alt={el.albumTitle}
+              />
+              </div>
+            <div className="lp-album-articles">
+              <div className="lp-album-artist" onClick={() => lpSinglePageRender(el.id)}>{el.artist}</div>
+              <div className="lp-album-title" onClick={() => lpSinglePageRender(el.id)}>{el.albumTitle}</div>
+            </div>
+            </div>
+          ))}
+        </div>
+
+      </section>
+
+      <div className="load-more-btn">
+
+        <button onClick={()=>setAlbumShow(!albumShow)}>
+          {albumShow ? "LESS" : "MORE"} 
+        </button>
+      </div>
     </div>
   );
 }
 
 export default LpListPage;
+

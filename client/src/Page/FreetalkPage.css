@@ -1,18 +1,203 @@
+.free-talk-section-div {
+}
+
+.free-talk-name {
+  font-size: 36px;
+  font-weight: bold;
+  margin: auto;
+  text-align: center;
+  margin-block-start: 0.83em;
+  margin-block-end: 0.83em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
 .free-talk-div {
-  border-bottom: 1px solid black;
-  padding-bottom: 1em;
+  margin: auto;
+  width: 75%;
+  border-bottom: 1px solid rgb(230, 230, 230);
+  padding-bottom: 2em;
+  padding-top: 1em;
   padding-left: 0.5em;
 }
 .free-talk-title {
   margin-top: 1em;
-  margin-bottom: 0.5em;
-  font-size: 1.3em;
+  margin-bottom: 1em;
+  font-size: 1.5em;
   font-weight: bold;
+  cursor: pointer;
 }
 .free-talk-script {
   margin-bottom: 1em;
+  font-size: 1.2em;
+  color: rgb(88, 88, 88);
 }
 
 span {
   margin-left: 0.3em;
+}
+
+/* 싱글 프리톡 */
+
+.single-free-talk-script-div {
+}
+
+.single-free-talk-title {
+  font-size: 2.3em;
+  font-weight: bold;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+.single-free-talk-div {
+  margin: auto;
+  width: 75%;
+}
+
+.single-free-talk-user-img {
+  width: 3em;
+  margin: 0;
+  border-radius: 2.5em;
+  margin-bottom: 0.5em;
+}
+.single-free-talk-user-div {
+  display: flex;
+  align-items: left;
+  margin-bottom: 1em;
+  margin-left: 0.5em;
+}
+.single-free-talk-writer {
+  margin: auto;
+  margin-left: 0.5em;
+  color: rgb(88, 88, 88);
+  font-size: 1.3em;
+}
+.single-free-talk-script {
+  font-size: 1.5em;
+  font-weight: light;
+  margin-bottom: 2em;
+  color: rgb(63, 63, 63);
+}
+.single-free-talk-comment-div {
+  width: 100%;
+  float: right;
+  margin-top: 1em;
+  display: flex;
+}
+
+.single-free-talk-comment-input {
+  width: 100%;
+  height: 2.5em;
+  margin-right: 1em;
+  padding: 0.5rem 1rem;
+  margin-top: 0.5em;
+  font-size: 1.1em;
+}
+.single-free-talk-comment-div {
+  padding-top: 0.5em;
+  margin-bottom: 1em;
+  width: 100vw;
+  display: flex;
+}
+.free-talk-wirte-div {
+  display: block;
+  width: 75%;
+  margin: auto;
+}
+.title-input {
+  margin-top: 2em;
+  width: 100%;
+  margin-bottom: 1em;
+  height: 2.5em;
+  font-size: 1.3em;
+  padding-left: 1em;
+}
+.text-area {
+  width: 100%;
+  height: 30em;
+  font-size: 14px;
+  padding-left: 1em;
+  padding-top: 1em;
+  font-size: 1.3em;
+}
+
+.text-area::placeholder {
+  font-size: 1em;
+}
+
+.button {
+  display: inline-block;
+  margin: auto;
+}
+
+.submit-button {
+  float: right;
+  margin-top: 1em;
+  float: right;
+  width: 5rem;
+  height: 2rem;
+  border: none;
+  background-color: black;
+  color: white;
+  border-radius: 30px;
+  font-size: 1rem;
+  letter-spacing: -0.33px;
+  cursor: pointer;
+}
+
+.button-margin {
+  margin-right: 13%;
+}
+
+.submit-button-div {
+  margin: 0;
+  margin-right: 13%;
+  float: right;
+  padding: 0;
+}
+
+.comment-submit-button-div {
+  margin-top: 0.5em;
+  margin-right: 0;
+  float: right;
+  padding: 0;
+  float: right;
+  width: 5rem;
+  height: 2.5rem;
+  border: none;
+  background-color: black;
+  color: white;
+  border-radius: 30px;
+  font-size: 1rem;
+  letter-spacing: -0.33px;
+  cursor: pointer;
+}
+
+.single-free-talk-comment-div {
+  margin: auto;
+  float: right;
+  width: 100%;
+}
+
+.free-talk-like {
+  float: right;
+  padding-right: 1em;
+}
+
+.single-free-talk-comment-writer {
+  font-weight: bold;
+  margin-right: 1em;
+}
+.single-free-talk-comment-single-div {
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  margin-top: 1em;
+}
+.single-free-talk-comment-writer {
+}
+.single-free-talk-comment-single-div {
+  display: flex;
+}
+.single-free-talk-comment-div {
+  display: inline;
 }

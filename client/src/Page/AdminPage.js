@@ -80,7 +80,7 @@ function AdminPage() {
 
     try {
       const res = await axios
-        .post("https://localhost:4000/upload", formData, {
+        .post(`${process.env.REACT_APP_API_URL}/upload`, formData, {
           headers: {
             "Content-type": "multipart/form-data",
           },
@@ -96,7 +96,7 @@ function AdminPage() {
     // console.log(result);
     await axios
       .post(
-        "https://localhost:4000/AddLplist",
+        `${process.env.REACT_APP_API_URL}/AddLplist`,
         qs.stringify({
           genre: result.genre,
           artist: result.artist,
@@ -123,6 +123,7 @@ function AdminPage() {
     // });
     //!내보내기 실행 시 몇개나 진행되었는지 확인해주는 모달창 띄워주기
     //!내보내기 완료 되면 페이지 리렌더
+    window.location.reload(true);
   };
 
   return (
@@ -192,7 +193,7 @@ function AdminPage() {
 
           <input
             type="file"
-            accpet="image/*"
+            accept="image/*"
             onChange={handleInputLpimg}
             placeholder="이미지 입력"
           ></input>

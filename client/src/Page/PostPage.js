@@ -10,34 +10,38 @@ function PostPage() {
 
   useEffect(() => {
     axios
-      .get("https://localhost:4000/AllPost")
+      .get(`${process.env.REACT_APP_API_URL}/AllPost`)
       .then((res) => setPostList(res.data.data));
   }, []);
 
   const MoveToSinglePost = (e) => {
     window.location.replace(
-      `https://localhost:3000/post/single_post_page/?postId=${e}`
+      `${process.env.REACT_APP_ORIGIN_URL}/post/single_post_page/?postId=${e}`
     );
   };
 
   return (
     <div>
-      <span className="post-title">POST</span>
-      <Link to="./upload">
-        <span className="camera-icon">
-          <FontAwesomeIcon icon={faCamera} size="2x" />
-        </span>
-      </Link>
-      <div className="posts">
-        {postList.map((e) => (
-          <div className="post-image">
-            <img
-              src={`https://localhost:4000/${e.picture}`}
-              onClick={() => MoveToSinglePost(e.id)}
-              alt=""
-            />
+      <div className="post-title-section">
+        <span className="post-title-text">POST</span>
+        <Link to="./upload">
+          <div className="camera-icon">
+            <FontAwesomeIcon icon={faCamera} size="2x" />
           </div>
-        ))}
+        </Link>
+      </div>
+      <div className="posts-section">
+        <div className="posts">
+          {postList.map((e) => (
+            <div className="post-image">
+              <img
+                src={`${process.env.REACT_APP_API_URL}/${e.picture}`}
+                onClick={() => MoveToSinglePost(e.id)}
+                alt=""
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

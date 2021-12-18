@@ -1,21 +1,200 @@
-#genre-categories {
-  font-size: 15px;
+.bold {
+  font-weight: bold;
+  color: black;
+}
+
+.genre-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+}
+
+.genre-categories {
+  clear: both;
+  height: auto;
+  font-size: 16px;
   display: inline-block;
-  margin-top: 1em;
-  margin-bottom: 1em;
+  margin-top: 5em;
+  padding-bottom: 1em;
   position: flex;
   width: 90%;
-  max-width: 1240px;
+  max-width: 1200px;
+  text-align: center;
+  color: #9b9b9b;
+  flex-wrap: wrap;
+  margin: 0 auto;
 }
 
 .genre-category {
-  text-align: center;
-  margin-right: 1em;
+  margin-right: 1.5em;
   padding: 0.5rem 1rem;
   cursor: pointer;
+  transition: 0.2s;
+  padding-top: 1rem;
+  display: inline-block;
+  margin-top: 3rem;
 }
 
-.album-wrapper {
+.genre-category:hover {
+  top: -2px;
+}
+
+/* ------------------앨범 부분----------------- */
+
+.album-container {
+  clear: both;
+  width: 90%;
+  max-width: 1200px;
+  height: auto;
+  margin: auto;
+  padding: 0 20px;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.lp-album-content {
+  -webkit-column-count: 4;
+  -moz-column-count: 4;
+  column-count: 4;
+  -webkit-column-width: 40%;
+  -moz-column-width: 40%;
+  column-width: 40%;
+  margin-left: 5em;
+  margin-right: 8em;
+  padding-top: 3em;
+  position: relative;
+  box-sizing: border-box;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+.album-single-container {
+  display: inline-block;
+}
+
+.album-single-container:hover {
+  cursor: pointer;
+  top: -2px;
+}
+
+.album-image {
+  position: relative;
+  padding-top: 5%;
+  float: left;
+}
+
+.album-image img {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.lp-album-articles {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  float: left;
+  width: 100%;
+  height: auto;
+}
+
+.lp-album-title {
+  margin-top: 0.5rem;
+}
+
+.lp-album-artist {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.load-more-btn {
+  width: 100%;
+  height: auto;
+  display: flex;
+}
+
+.load-more-btn button {
+  width: 150px;
+  height: 45px;
+  margin: 0 auto;
+  border: none;
+  background-color: black;
+  color: white;
+  border-radius: 8px;
+  font-size: 20px;
+  cursor: pointer;
+  margin-bottom: 3rem;
+  margin-top: 1rem;
+}
+
+@media screen and (max-width: 1000px) {
+  .lp-album-content {
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+    -webkit-column-width: 50%;
+    -moz-column-width: 50%;
+    column-width: 50%;
+    margin-left: 5em;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+  }
+
+  .album-single-container {
+    display: block;
+    padding: -5%;
+  }
+
+  .genre-categories {
+    padding-bottom: 1em;
+    position: flex;
+    width: 100%;
+    text-align: center;
+    color: #9b9b9b;
+    margin-left: 1rem;
+  }
+
+  .load-more-btn button {
+    margin-left: 40%;
+    margin-bottom: 3%;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .album-container {
+    clear: both;
+    width: 90%;
+    height: 0 auto;
+  }
+
+  .lp-album-content {
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+    -webkit-column-width: 100%;
+    -moz-column-width: 100%;
+    column-width: 100%;
+    flex-wrap: wrap;
+    margin-right: -3em;
+    margin-left: 1em;
+  }
+
+  .genre-category {
+    margin-right: 0;
+    padding: 0 1.5rem;
+  }
+
+  .album-container {
+    margin: 5px -10px 10px;
+  }
+
+  .load-more-btn button {
+    margin-left: 33%;
+  }
+}
+
+/* .album-wrapper {
   width: 90%;
   max-width: 1240px;
   margin: 0 auto;
@@ -26,16 +205,21 @@
 }
 
 .album-list {
-  background: #fff;
-  color: #444;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  display: flex;
-  min-height: 100%;
-  flex-direction: column;
-  justify-content: space-between;
+  -webkit-column-count: 4;
+  -moz-column-count: 4;
+  column-count: 4;
+  -webkit-column-width: 40%;
+  -moz-column-width: 40%;
+  column-width: 40%;
+  margin-right: -30em;
+  padding-top: 1em;
   position: relative;
-  top: 0;
-  transition: 0.2s;
+  display: inline-block;
+  padding: 0 8px;
+}
+
+.album-inner {
+  display: block;
 }
 
 .album-list:hover {
@@ -43,20 +227,25 @@
 }
 
 .album-image {
-  padding-bottom: 60%;
-  background-size: cover;
-  background-position: center center;
+  overflow: hidden;
+  position: relative;
+  padding-top: 5%;
+}
+
+.album-image img {
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 200px;
+  float: left;
 }
 
 .album-articles {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  padding-top: 10%;
+  float: left;
 }
 
 .album-title {
-  flex: 1;
 }
 
 .load-more-button {
@@ -69,18 +258,6 @@
   border-radius: 8px;
   font-size: 20px;
   cursor: pointer;
-}
-
-/* 2등분 */
-@media screen and (max-width: 500px) {
-  .album-wrapper {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-/* 4등분 */
-@media screen and (min-width: 850px) {
-  .album-wrapper {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
+  margin-left: 50%;
+  margin-top: 5%;
+} */

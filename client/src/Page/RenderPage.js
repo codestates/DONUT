@@ -1,18 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import qs from "qs";
 import axios from "axios";
-
 import PostList from "./DummyPostList";
 import { LpInfo } from "./DummyLpList";
 import "./RenderPage.css";
 import LpVideo from "./LpVideo.mp4";
-import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from "react-icons/fa";
-import donut from "./donut.gif";
+
 axios.defaults.withCredentials = true;
 
 function RenderPage({ isLogin, setIsLogin }) {
   const [currentPost, setCurrentPost] = useState(0);
   const PostLength = PostList.length;
+
+  const screenSize = window.screen.width;
 
   const nextSlide = () => {
     setCurrentPost(currentPost === PostLength - 1 ? 0 : currentPost + 1);
@@ -38,7 +38,7 @@ function RenderPage({ isLogin, setIsLogin }) {
     //console.log(authorization); // 잘찍힘
     axios
       .post(
-        "https://localhost:4000/KakaoCallback",
+        `${process.env.REACT_APP_API_URL}/KakaoCallback`,
         qs.stringify({ authorizationCode }),
         {
           headers: {
@@ -61,53 +61,41 @@ function RenderPage({ isLogin, setIsLogin }) {
       <div>
         <section className="render-first">
           <div className="first-items">
-            <div className="render-title">HOTTEST</div>
-            <div className="hottest-albums">
-              <div className="hottest-albums-track">
-                {LpInfo.map((el) => (
-                  <div className="hottest-album">
-                    <img
-                      src={el.image}
-                      className="hottest-img"
-                      alt={el.albumTitle}
-                    />
-                    <div className="hottest-info">
-                      <div>{el.artist}</div>
-                      <div>{el.albumTitle}</div>
-                    </div>
-                  </div>
-                ))}
-              </div>
+            <div className="title-container">
+              <div className="render-title">NEW</div>
             </div>
+
+            <div className="albums-container">
+              <div className="album-content">
+                  {LpInfo.map((el) => (
+                    <div className="album-single">
+                      <div className="album-single-img">
+                      <img
+                        src={el.image}
+                        alt={el.albumTitle}
+                      />
+                      </div>
+                      <div className="album-single-info">
+                        <div className="album-artist">{el.artist}</div>
+                        <div className="album-title">{el.albumTitle}</div>
+                    </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
           </div>
         </section>
       </div>
 
-      {/* <section>
-        <img src={donut} className="donut-gif" alt="donut" />
-      </section> */}
       <div>
         <section className="render-second">
+          <div className="second-render-title">POST</div>
           <div className="second-items">
-            {/* <div className="render-title">POST</div> */}
-            {/* <FaArrowAltCircleLeft className="left-arrow" onClick={prevSlide} />
-            <FaArrowAltCircleRight
-              className="right-arrow"
-              onClick={nextSlide}
-            /> */}
             <div className="slider">
               <div className="track-slider">
                 <div className="slide-track">
                   {PostList.map((post, idx) => {
                     return (
-                      // <div
-                      //   className={idx === currentPost ? "slide active" : "slide"}
-                      //   key={idx}
-                      // >
-                      //   {idx === currentPost && (
-                      //     <img src={post.image} className="slide-img" alt="" />
-                      //   )}
-                      // </div>
                       <div>
                         <img
                           className="slide-img"
@@ -127,10 +115,12 @@ function RenderPage({ isLogin, setIsLogin }) {
 
       <div>
         <section className="render-third">
-          <div className="render-title">video</div>
-          <video autoPlay loop muted>
-            <source calssName="video" src={LpVideo} type="video/mp4" />
-          </video>
+          {/* <video className="video" autoPlay loop muted> */}
+          <div className="video-box">
+            <video controls autoPlay loop muted>
+              <source src={LpVideo} type="video/mp4" />
+            </video>
+          </div>
         </section>
       </div>
     </>
