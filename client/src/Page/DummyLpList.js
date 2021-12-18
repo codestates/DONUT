@@ -2,9 +2,8 @@ export const LpInfo = [
   {
     id: 1,
     genre: "KOREAN",
-    artist: "전람회",
-    albumTitle:
-      "졸업",
+    artist: "전람",
+    albumTitle: "졸업",
     sellingPrice: "51,000원",
     image:
       "https://contents.sixshop.com/thumbnails/uploadedFiles/99047/product/image_1627375194380_1000.jpg",
@@ -59,8 +58,8 @@ export const LpInfo = [
     TagName: "BLACK",
     price: "150,000원",
     date: "2021.9.13",
-  }
-]
+  },
+];
 
 export const talkList = [
   {
