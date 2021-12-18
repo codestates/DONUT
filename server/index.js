@@ -63,6 +63,8 @@ app.post("/AddPostComment", controllers.AddPostComment);
 
 app.use("/uploads", express.static("uploads"));
 
+app.get("/RenderPage", controllers.RenderPage);
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => cb(null, "./uploads"),
   filename: (req, file, cb) =>
