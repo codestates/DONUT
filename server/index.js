@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false })); // 주소형식으로 들어온 요청 파싱 옵션 지정
 app.use(
   cors({
-    origin: ["https://localhost:3000"],
+    origin: [process.env.ORIGIN],
     credentials: true,
     methods: ["GET", "POST", "OPTIONS", "DELETE", "PATCH"],
   })
