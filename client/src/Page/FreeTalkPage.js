@@ -37,7 +37,7 @@ function FreeTalkPage({ isLogin, setIsLogin }) {
     <section>
       <div className="free-talk-name">FREE TALK</div>
       <div className="free-talk-section-div">
-      {talkList.length
+        {talkList.length
           ? talkList.map((e, idx) => (
               <div
                 className="free-talk-div"
