@@ -27,6 +27,36 @@ img {
 
 @media screen and (max-width: 768px) {
   .turntable-img {
+    width: 80%;
+    margin: auto;
+    padding: 0;
+    padding-left: 4em;
+  }
+  .kakao-login-btn {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .turntable-img {
+    width: 80%;
+    margin: auto;
+    padding: 0;
+    padding-left: 2em;
+  }
+  .kakao-login-btn {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .turntable-img {
+    width: 80%;
+    margin: auto;
+    padding: 0;
+    padding-left: 2em;
+  }
+  .kakao-login-btn {
     width: 70%;
   }
 }

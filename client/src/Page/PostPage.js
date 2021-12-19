@@ -24,23 +24,27 @@ function PostPage({ isLogin, setIsLogin }) {
     <div>
       <div className="post-title-section">
         <span className="post-title-text">POST</span>
-        <Link to="./upload">
-          <div className="camera-icon">
-            {isLogin ? <FontAwesomeIcon icon={faCamera} size="2x" /> : null}
-          </div>
-        </Link>
+        {isLogin ? (
+          <Link to="./upload">
+            <div className="camera-icon">
+              <FontAwesomeIcon icon={faCamera} size="2x" />
+            </div>
+          </Link>
+        ) : null}
       </div>
       <div className="posts-section">
         <div className="posts">
-          {postList.map((e) => (
-            <div className="post-image">
-              <img
-                src={`${process.env.REACT_APP_API_URL}/${e.picture}`}
-                onClick={() => MoveToSinglePost(e.id)}
-                alt=""
-              />
-            </div>
-          ))}
+          {postList.length
+            ? postList.map((e, idx) => (
+                <div className="post-image" key={idx * 3400}>
+                  <img
+                    src={`${process.env.REACT_APP_API_URL}/${e.picture}`}
+                    onClick={() => MoveToSinglePost(e.id)}
+                    alt=""
+                  />
+                </div>
+              ))
+            : null}
         </div>
       </div>
     </div>
