@@ -37,22 +37,24 @@ function FreeTalkPage({ isLogin, setIsLogin }) {
     <section>
       <div className="free-talk-name">FREE TALK</div>
       <div className="free-talk-section-div">
-        {talkList.map((e, idx) => (
-          <div
-            className="free-talk-div"
-            key={idx + 100}
-            onClick={() => talkSinglePageRender(e.id)}
-          >
-            <div className="free-talk-title">{e.title}</div>
-            <div className="free-talk-script">{e.article}</div>
-            <div className="free-talk-like">
-              comment
-              <span>{commentCount(e.id, comment)}</span>
-            </div>
-            <div className="free-talk-date">{e.updateAt}</div>
-            <div className="free-talk-view">{e.view}</div>
-          </div>
-        ))}
+      {talkList.length
+          ? talkList.map((e, idx) => (
+              <div
+                className="free-talk-div"
+                key={idx + 100}
+                onClick={() => talkSinglePageRender(e.id)}
+              >
+                <div className="free-talk-title">{e.title}</div>
+                <div className="free-talk-script">{e.article}</div>
+                <div className="free-talk-like">
+                  comment
+                  <span>{commentCount(e.id, comment)}</span>
+                </div>
+                <div className="free-talk-date">{e.updateAt}</div>
+                <div className="free-talk-view">{e.view}</div>
+              </div>
+            ))
+          : null}
         <div className="button-div">
           {isLogin ? (
             <Link className="submit-button-div" to="/free_talk/write">
