@@ -6,6 +6,7 @@ import axios from "axios";
 import "./FreetalkPage.css";
 
 function FreeTalkPage({ isLogin, setIsLogin }) {
+  console.log(process.env.REACT_APP_API_URL, "찍힘");
   const [talkList, setTalkList] = useState([]);
   const [comment, setComment] = useState([]);
   const talkListHandler = (res) => {

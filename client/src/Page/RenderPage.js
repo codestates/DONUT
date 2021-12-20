@@ -28,7 +28,7 @@ function RenderPage({ isLogin, setIsLogin }) {
     console.log(e);
     // setSingleLpPageId(e);
     window.location.replace(
-      `https://localhost:3000/all/lp_single_page/?lpListId=${e}`
+      `${process.env.REACT_APP_ORIGIN_URL}/all/lp_single_page/?lpListId=${e}`
     );
   };
 
